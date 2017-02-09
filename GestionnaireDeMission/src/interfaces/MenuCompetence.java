@@ -5,6 +5,20 @@
  */
 package interfaces;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Maxence
@@ -16,6 +30,7 @@ public class MenuCompetence extends javax.swing.JFrame {
      */
     public MenuCompetence() {
         initComponents();
+        initialiserTableau();
     }
 
     /**
@@ -29,13 +44,15 @@ public class MenuCompetence extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jBtnRetour = new javax.swing.JButton();
+        jButtonSauvegarder = new javax.swing.JButton();
+        jButtonCharger = new javax.swing.JButton();
+        jPanelTable = new javax.swing.JPanel();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(766, 458));
-        setPreferredSize(new java.awt.Dimension(766, 458));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Gestion des Compétences");
@@ -49,6 +66,21 @@ public class MenuCompetence extends javax.swing.JFrame {
                 jBtnRetourActionPerformed(evt);
             }
         });
+
+        jButtonSauvegarder.setText("SAUVEGARDER TABLEAU");
+
+        jButtonCharger.setText("CHARGER FICHIER");
+
+        javax.swing.GroupLayout jPanelTableLayout = new javax.swing.GroupLayout(jPanelTable);
+        jPanelTable.setLayout(jPanelTableLayout);
+        jPanelTableLayout.setHorizontalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 608, Short.MAX_VALUE)
+        );
+        jPanelTableLayout.setVerticalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 449, Short.MAX_VALUE)
+        );
 
         jMenuPrincipal.setText("Application");
 
@@ -69,19 +101,32 @@ public class MenuCompetence extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
+                .addGap(203, 203, 203)
                 .addComponent(jLabel1)
-                .addContainerGap(182, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 364, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,6 +145,8 @@ public class MenuCompetence extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
 
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -131,15 +178,44 @@ public class MenuCompetence extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuCompetence().setVisible(true);
+                
             }
+
+            
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnRetour;
+    private javax.swing.JButton jButtonCharger;
+    private javax.swing.JButton jButtonSauvegarder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
+    private javax.swing.JPanel jPanelTable;
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
+
+  
+
+    private void initialiserTableau() {
+        
+       
+        jPanelTable.setLayout(new BorderLayout());
+        DefaultTableModel model = new DefaultTableModel(new Integer[][] {
+            { 1, 2 }, { 3, 4 } }, new String[] { "A", "B" });
+       
+        JTable table = new JTable(model);
+
+        JScrollPane tableContainer = new JScrollPane(table);
+
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+
+        this.pack();
+        this.setVisible(true);
+    
+       
+    }
 }
+

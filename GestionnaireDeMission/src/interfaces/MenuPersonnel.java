@@ -5,6 +5,14 @@
  */
 package interfaces;
 
+import java.awt.BorderLayout;
+import java.util.Vector;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Maxence
@@ -16,6 +24,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
      */
     public MenuPersonnel() {
         initComponents();
+        initialiserTableau();
     }
 
     /**
@@ -29,13 +38,15 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jBtnRetour = new javax.swing.JButton();
+        jPanelTable = new javax.swing.JPanel();
+        jButtonCharger = new javax.swing.JButton();
+        jButtonSauvegarder = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(766, 458));
-        setPreferredSize(new java.awt.Dimension(766, 458));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Gestion du Personnel");
@@ -50,6 +61,21 @@ public class MenuPersonnel extends javax.swing.JFrame {
                 jBtnRetourActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanelTableLayout = new javax.swing.GroupLayout(jPanelTable);
+        jPanelTable.setLayout(jPanelTableLayout);
+        jPanelTableLayout.setHorizontalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 652, Short.MAX_VALUE)
+        );
+        jPanelTableLayout.setVerticalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+
+        jButtonCharger.setText("CHARGER FICHIER");
+
+        jButtonSauvegarder.setText("SAUVEGARDER TABLEAU");
 
         jMenuPrincipal.setText("Application");
 
@@ -68,21 +94,41 @@ public class MenuPersonnel extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(199, 199, 199))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(jLabel1)
+                        .addGap(134, 134, 134))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 364, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -100,7 +146,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
-
+      
     /**
      * @param args the command line arguments
      */
@@ -138,9 +184,34 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnRetour;
+    private javax.swing.JButton jButtonCharger;
+    private javax.swing.JButton jButtonSauvegarder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
+    private javax.swing.JPanel jPanelTable;
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
+
+private void initialiserTableau() {
+        
+       
+        jPanelTable.setLayout(new BorderLayout());
+        DefaultTableModel model = new DefaultTableModel(new Integer[][] {
+            { 1, 2 }, { 3, 4 } }, new String[] { "A", "B" });
+       
+        JTable table = new JTable(model);
+
+        JScrollPane tableContainer = new JScrollPane(table);
+
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+
+        this.pack();
+        this.setVisible(true);
+    
+       
+    }
+
+
 }
