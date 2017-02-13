@@ -5,16 +5,16 @@
  */
 package interfaces;
 
+import com.opencsv.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +30,6 @@ public class MenuCompetence extends javax.swing.JFrame {
      */
     public MenuCompetence() {
         initComponents();
-        initialiserTableau();
     }
 
     /**
@@ -56,6 +55,7 @@ public class MenuCompetence extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Gestion des Compétences");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jBtnRetour.setText("Retour");
         jBtnRetour.setMaximumSize(new java.awt.Dimension(120, 36));
@@ -70,16 +70,21 @@ public class MenuCompetence extends javax.swing.JFrame {
         jButtonSauvegarder.setText("SAUVEGARDER TABLEAU");
 
         jButtonCharger.setText("CHARGER FICHIER");
+        jButtonCharger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChargerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelTableLayout = new javax.swing.GroupLayout(jPanelTable);
         jPanelTable.setLayout(jPanelTableLayout);
         jPanelTableLayout.setHorizontalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanelTableLayout.setVerticalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jMenuPrincipal.setText("Application");
@@ -101,32 +106,39 @@ public class MenuCompetence extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(203, 203, 203)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 134, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                        .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -144,6 +156,24 @@ public class MenuCompetence extends javax.swing.JFrame {
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
+
+    private void jButtonChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChargerActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jc = new JFileChooser();
+        int returnValue = jc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) 
+        {
+            File selectedFile = jc.getSelectedFile();
+            try {
+                initialiserTableau(selectedFile);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jPanelTable.setVisible(true);
+            jButtonSauvegarder.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_jButtonChargerActionPerformed
 
    
     
@@ -180,8 +210,6 @@ public class MenuCompetence extends javax.swing.JFrame {
                 new MenuCompetence().setVisible(true);
                 
             }
-
-            
         });
     }
 
@@ -196,26 +224,72 @@ public class MenuCompetence extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
-  
 
-    private void initialiserTableau() {
+    private void initialiserTableau() throws FileNotFoundException, IOException {
+     
+        Object[] columnnames;
+        CSVReader t = new CSVReader(new FileReader("C:\\Users\\Maxence\\Documents\\L3 MIAGE\\S6\\Projet Java\\liste_competences.csv"));
+        List myEntries = t.readAll();
+        columnnames = (String[]) myEntries.get(0);
+        DefaultTableModel tableModel = new DefaultTableModel(columnnames, myEntries.size()-1); 
+        int rowcount = tableModel.getRowCount();
+        for (int x = 0; x<rowcount+1; x++)
+        {
+          int columnnumber = 0;
+          // if x = 0 this is the first row...skip it... data used for columnnames
+          if (x>0)
+          {
+            for (String thiscellvalue : (String[])myEntries.get(x))
+            {
+                tableModel.setValueAt(thiscellvalue, x-1, columnnumber);
+               columnnumber++;
+            }
+          }
+        }
+
         
-       
+        JTable table = new JTable(tableModel);
         jPanelTable.setLayout(new BorderLayout());
-        DefaultTableModel model = new DefaultTableModel(new Integer[][] {
-            { 1, 2 }, { 3, 4 } }, new String[] { "A", "B" });
-       
-        JTable table = new JTable(model);
-
-        JScrollPane tableContainer = new JScrollPane(table);
-
+        JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
-
         this.pack();
         this.setVisible(true);
-    
-       
+        jPanelTable.setVisible(false);
+        jButtonSauvegarder.setVisible(false);
+    }
+    private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
+     
+        Object[] columnnames;
+        CSVReader t = new CSVReader(new FileReader(fi));
+        List myEntries = t.readAll();
+        columnnames = (String[]) myEntries.get(0);
+        DefaultTableModel tableModel = new DefaultTableModel(columnnames, myEntries.size()-1); 
+        int rowcount = tableModel.getRowCount();
+        for (int x = 0; x<rowcount+1; x++)
+        {
+          int columnnumber = 0;
+          // if x = 0 this is the first row...skip it... data used for columnnames
+          if (x>0)
+          {
+            for (String thiscellvalue : (String[])myEntries.get(x))
+            {
+                tableModel.setValueAt(thiscellvalue, x-1, columnnumber);
+               columnnumber++;
+            }
+          }
+        }
+
+        
+        JTable table = new JTable(tableModel);
+        jPanelTable.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(table);    
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+        this.pack();
+        this.setVisible(true);
+        jPanelTable.setVisible(false);
+        jButtonSauvegarder.setVisible(false);
     }
 }
 
