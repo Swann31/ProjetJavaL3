@@ -225,7 +225,7 @@ public class MenuCompetence extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    private void initialiserTableau() throws FileNotFoundException, IOException {
+    /*private void initialiserTableau() throws FileNotFoundException, IOException {
      
         Object[] columnnames;
         CSVReader t = new CSVReader(new FileReader("C:\\Users\\Maxence\\Documents\\L3 MIAGE\\S6\\Projet Java\\liste_competences.csv"));
@@ -257,7 +257,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         this.setVisible(true);
         jPanelTable.setVisible(false);
         jButtonSauvegarder.setVisible(false);
-    }
+    }*/
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
      
         Object[] columnnames;
@@ -288,8 +288,6 @@ public class MenuCompetence extends javax.swing.JFrame {
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
-        jPanelTable.setVisible(false);
-        jButtonSauvegarder.setVisible(false);
     }
 }
 

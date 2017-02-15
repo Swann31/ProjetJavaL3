@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import com.opencsv.CSVReader;
 import java.awt.BorderLayout;
 import java.util.Vector;
 import javax.swing.JScrollPane;
@@ -14,6 +15,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.JFileChooser;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -27,7 +34,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
      */
     public MenuPersonnel() {
         initComponents();
-        initialiserTableau();
     }
 
     /**
@@ -153,12 +159,16 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     private void jButtonChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChargerActionPerformed
         // TODO add your handling code here:
-        JFileChooser jc = new JFileChooser();
+       JFileChooser jc = new JFileChooser();
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
         {
             File selectedFile = jc.getSelectedFile();
-            System.out.println(selectedFile.getName()); 
+            try {
+                initialiserTableau(selectedFile);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
+            }
             jPanelTable.setVisible(true);
             jButtonSauvegarder.setVisible(true);
         }
@@ -210,7 +220,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
-private void initialiserTableau() {
+/*private void initialiserTableau() {
         
         jPanelTable.setLayout(new BorderLayout());
         DefaultTableModel model = new DefaultTableModel(new Integer[][] {
@@ -223,5 +233,37 @@ private void initialiserTableau() {
         this.setVisible(true);
         jPanelTable.setVisible(false);
         jButtonSauvegarder.setVisible(false);
+    }*/
+
+private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
+     
+        Object[] columnnames;
+        CSVReader t = new CSVReader(new FileReader(fi));
+        List myEntries = t.readAll();
+        columnnames = (String[]) myEntries.get(0);
+        DefaultTableModel tableModel = new DefaultTableModel(columnnames, myEntries.size()-1); 
+        int rowcount = tableModel.getRowCount();
+        for (int x = 0; x<rowcount+1; x++)
+        {
+          int columnnumber = 0;
+          // if x = 0 this is the first row...skip it... data used for columnnames
+          if (x>0)
+          {
+            for (String thiscellvalue : (String[])myEntries.get(x))
+            {
+                tableModel.setValueAt(thiscellvalue, x-1, columnnumber);
+               columnnumber++;
+            }
+          }
+        }
+
+        
+        JTable table = new JTable(tableModel);
+        jPanelTable.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(table);    
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+        this.pack();
+        this.setVisible(true);
     }
 }

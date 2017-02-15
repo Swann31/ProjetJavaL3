@@ -72,6 +72,11 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         );
 
         jBtnNouvelleMission.setText("Nouvelle Mission");
+        jBtnNouvelleMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNouvelleMissionActionPerformed(evt);
+            }
+        });
 
         jCbxTypeMission.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -149,6 +154,14 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
+
+    private void jBtnNouvelleMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNouvelleMissionActionPerformed
+        // TODO add your handling code here:
+        MenuNouvelleMission mnm = new MenuNouvelleMission();
+        mnm.setLocationRelativeTo(this);
+        mnm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBtnNouvelleMissionActionPerformed
 
     /**
      * @param args the command line arguments

@@ -149,6 +149,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Nouvelle Mission"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnNouvelleMissionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jCbxTypeMission">
       <Properties>
