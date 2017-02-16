@@ -13,9 +13,9 @@ public class CsvEmployeDAO implements EmployeDAO {
         super();
     }
     public CsvEmployeDAO(File file) {
-        this.();
+        this();
         this.f=file;
-        this.csvF = new CsvFile; 
+        this.csvF = new CsvFile(file); 
     }
     @Override
     public List<Employe> addEmploye() {
