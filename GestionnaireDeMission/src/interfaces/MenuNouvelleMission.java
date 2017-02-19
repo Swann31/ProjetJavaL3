@@ -164,7 +164,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBtnEnregistrer, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jBtnEnregistrer, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(jBtnAnnuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -255,7 +255,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void implementerDatePicker() {
-        showMessageDialog(null, "My Goodness, this is so concise");
+        //showMessageDialog(null, "My Goodness, this is so concise");
         /*JFrame f1 = new JFrame();
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f1.setSize(300, 300);

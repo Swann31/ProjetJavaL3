@@ -8,6 +8,8 @@ package interfaces;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +24,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     public MenuMissionGeneral() {
         initComponents();
         initialiserTableau();
+        jBtnDetailMission.setVisible(false);
     }
 
     /**
@@ -39,6 +42,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         jBtnNouvelleMission = new javax.swing.JButton();
         jCbxTypeMission = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jBtnDetailMission = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -82,6 +86,13 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
 
         jLabel2.setText("Afficher type de mission :");
 
+        jBtnDetailMission.setText("Detail Mission");
+        jBtnDetailMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDetailMissionActionPerformed(evt);
+            }
+        });
+
         jMenuPrincipal.setText("Application");
 
         jMenuPrincpalItem1.setText("Fermer");
@@ -113,9 +124,11 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                             .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBtnDetailMission, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -135,7 +148,9 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnDetailMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
@@ -162,6 +177,10 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         mnm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnNouvelleMissionActionPerformed
+
+    private void jBtnDetailMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDetailMissionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnDetailMissionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +218,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnDetailMission;
     private javax.swing.JButton jBtnNouvelleMission;
     private javax.swing.JButton jBtnRetour;
     private javax.swing.JComboBox<String> jCbxTypeMission;
@@ -220,6 +240,15 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            // do some actions here, for example
+            // print first column value from selected row
+            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            jBtnDetailMission.setVisible(true);
+        }
+    });
     }
+   
 
 }
