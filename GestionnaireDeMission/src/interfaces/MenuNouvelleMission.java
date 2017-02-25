@@ -5,8 +5,14 @@
  */
 package interfaces;
 
+import java.awt.Component;
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.Properties;
+import javafx.scene.control.Alert;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -19,11 +25,14 @@ import org.jdatepicker.impl.UtilDateModel;
  */
 public class MenuNouvelleMission extends javax.swing.JFrame {
 
+    private static int nbComp = 0;
+    private static ArrayList<Component> competences;
     /**
      * Creates new form MenuNouvelleMission
      */
     public MenuNouvelleMission() {
         initComponents();
+        competences = new ArrayList<Component>();
         implementerDatePicker();
     }
 
@@ -48,6 +57,11 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jBtnAnnuler = new javax.swing.JButton();
         jBtnEnregistrer = new javax.swing.JButton();
+        jPanelPers = new javax.swing.JPanel();
+        jPanelCompRech = new javax.swing.JPanel();
+        jLabelTitre = new javax.swing.JLabel();
+        jButtonAddCompRech = new javax.swing.JButton();
+        jButtonRemoveCompRech = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -59,7 +73,9 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Nouvelle Mission");
 
-        jLabel2.setText("Id Mission :");
+        jLabel2.setText("Nom Mission :");
+
+        jSprNbPers.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel3.setText("Nombre de Pers. :");
 
@@ -85,14 +101,12 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSprNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldDuree, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldMission, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)))))
+                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldDuree, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMission, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSprNbPers))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanelSettingsLayout.setVerticalGroup(
@@ -136,6 +150,56 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanelPersLayout = new javax.swing.GroupLayout(jPanelPers);
+        jPanelPers.setLayout(jPanelPersLayout);
+        jPanelPersLayout.setHorizontalGroup(
+            jPanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
+        );
+        jPanelPersLayout.setVerticalGroup(
+            jPanelPersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 353, Short.MAX_VALUE)
+        );
+
+        jLabelTitre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelTitre.setText("Compétences recherchées:");
+
+        jButtonAddCompRech.setText("+");
+        jButtonAddCompRech.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddCompRechActionPerformed(evt);
+            }
+        });
+
+        jButtonRemoveCompRech.setText("-");
+        jButtonRemoveCompRech.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveCompRechActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCompRechLayout = new javax.swing.GroupLayout(jPanelCompRech);
+        jPanelCompRech.setLayout(jPanelCompRechLayout);
+        jPanelCompRechLayout.setHorizontalGroup(
+            jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCompRechLayout.createSequentialGroup()
+                .addComponent(jLabelTitre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(jButtonRemoveCompRech)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAddCompRech))
+        );
+        jPanelCompRechLayout.setVerticalGroup(
+            jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCompRechLayout.createSequentialGroup()
+                .addGroup(jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTitre)
+                    .addGroup(jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonAddCompRech)
+                        .addComponent(jButtonRemoveCompRech)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         jMenuPrincipal.setText("Application");
 
         jMenuPrincpalItem1.setText("Fermer");
@@ -159,13 +223,15 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 384, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBtnEnregistrer, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(jBtnAnnuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanelSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelCompRech, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnAnnuler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnEnregistrer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelPers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,9 +239,12 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelCompRech, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelPers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnAnnuler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,6 +260,8 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
     private void jBtnAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAnnulerActionPerformed
         // TODO add your handling code here:
+        nbComp = 0;
+        competences.removeAll(competences);
         MenuMissionGeneral mmg = new MenuMissionGeneral();
         mmg.setLocationRelativeTo(this);
         mmg.setVisible(true);
@@ -199,7 +270,48 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
     private void jBtnEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEnregistrerActionPerformed
         // TODO add your handling code here:
+        
+            
     }//GEN-LAST:event_jBtnEnregistrerActionPerformed
+
+    private void jButtonAddCompRechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCompRechActionPerformed
+        // TODO add your handling code here:
+        
+        if(nbComp ==0){
+            
+            JComboBox listComp = new JComboBox();
+            listComp.setBounds(jLabelTitre.getX(), jLabelTitre.getY()+15, 200,30);
+            jPanelCompRech.add(listComp);
+            competences.add(listComp);
+            this.revalidate();
+            this.repaint();
+            nbComp ++;
+            
+            //showMessageDialog(null,label1.getX() + " " + label1.getY() + " " +label1.isVisible() );
+        }else {
+            
+            JComboBox listComp = new JComboBox();
+            listComp.setBounds(jLabelTitre.getX(), jLabelTitre.getY() + 15 + (35*nbComp), 200,30);
+            jPanelCompRech.add(listComp);
+            competences.add(listComp);
+            this.revalidate();
+            this.repaint();
+            nbComp ++;
+        }
+    }//GEN-LAST:event_jButtonAddCompRechActionPerformed
+
+    private void jButtonRemoveCompRechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCompRechActionPerformed
+        // TODO add your handling code here:
+        if(nbComp >0){
+            Component test = competences.get(competences.size() - 1);
+            //showMessageDialog(null,test);
+            jPanelCompRech.remove(test);
+            competences.remove(test);
+            this.revalidate();
+            this.repaint();
+            nbComp--;
+        }
+    }//GEN-LAST:event_jButtonRemoveCompRechActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,14 +351,19 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAnnuler;
     private javax.swing.JButton jBtnEnregistrer;
+    private javax.swing.JButton jButtonAddCompRech;
+    private javax.swing.JButton jButtonRemoveCompRech;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelTitre;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
+    private javax.swing.JPanel jPanelCompRech;
+    private javax.swing.JPanel jPanelPers;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JSpinner jSprNbPers;
     private javax.swing.JTextField jTextFieldDuree;
