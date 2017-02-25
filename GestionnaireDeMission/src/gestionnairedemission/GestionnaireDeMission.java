@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionnairedemission;
 
 /**
- *
- * @author Maxence
- */
-public class GestionnaireDeMission {
+ * <b>Fichier main du programme java.</b>
+ * <p>Il s'agit de la zone d'exécution du programme java. </p>
+ *  @author Swann LAZAR
+ *  @version 1.0
+*/
 
-    /**
-     * @param args the command line arguments
-     */
+public class GestionnaireDeMission {
     public static void main(String[] args) {
-        // TODO code application logic here
-        //commit
+
     }
-    
 }
