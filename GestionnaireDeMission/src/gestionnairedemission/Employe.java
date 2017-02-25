@@ -1,16 +1,14 @@
-/*
-Classe définissant un employe au sein du projet
- */
 package gestionnairedemission;
 
 import java.util.Date;
 
 /**
- * 
+ * <b> Classe Employé </b>
+ * <p> Cette classe définit un employé de l'entreprise.</p>
  * @author Swann LAZAR
  * @version 1.0
  */
-public class Employe extends Personne {
+public class Employe extends Personne implements IEmploye {
     
     /**
      * ID d'un employé.
@@ -66,10 +64,10 @@ public class Employe extends Personne {
         this.nom=n;
         this.prenom=p;
         this.dateEntree=dateE;
-        this.comp[]=C[];
+        this.comp=C;
     }
     
-        /**
+    /**
      * Constructeur de la classe employé.
      * @param id
      *      L'Identifiant de l'employé.
@@ -92,7 +90,7 @@ public class Employe extends Personne {
         this.dateEntree=dateE;
     }
     
-        /**
+    /**
      * Constructeur de la classe employé.
      * @param id
      *      L'Identifiant de l'employé.
@@ -144,7 +142,7 @@ public class Employe extends Personne {
      */
     protected void setCompetence(Competence [] C)
     {
-        
+        this.comp=C;
     }
     
     /**
@@ -152,6 +150,7 @@ public class Employe extends Personne {
      * @return L'identifiant de l'employé.
      * @see Employe#idE
      */
+    @Override
     public int getIdE()
     {
         return this.idE;
@@ -162,6 +161,7 @@ public class Employe extends Personne {
      * @return La date d'entrée dans l'entreprise.
      * @see Employe#dateEntree
      */
+    @Override
     public Date getDate()
     {
         return this.dateEntree;
@@ -173,10 +173,9 @@ public class Employe extends Personne {
      * @see Employe#comp
      * @see Competence
      */
-    public Competence[] getCompetence()
+    @Override
+    public Competence [] getCompetence()
     {
-        return this.comp[];
+        return this.comp;
     }
-    //Import des employés à partir d'un fichier CSV
-    
 }

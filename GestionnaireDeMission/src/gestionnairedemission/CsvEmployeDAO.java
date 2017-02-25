@@ -9,9 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <b>ExmployeDAO est une classe de Data Acces Object dédiée à la classe Employe.</b>
- * <p>Il s'agit d'un objet ayant pour but de ne pas accéder directement aux données en dur, mais de travailler sur des objets du domaine.</br>
- * Il s'agit donc de la partie de code accédant aux données pour les lire depuis un fichier dans ce projet.</p>
+ * <b>CsvEmployeDAO est une classe de Data Acces Object dédiée à la classe Employe.</b>
+ * <p>Il s'agit d'un objet ayant pour but de ne pas accéder directement aux données en dur, mais de travailler sur des objets du domaine.</p>
+ * <p>Il s'agit donc de la partie de code accédant aux données pour les lire depuis un fichier dans ce projet.</p>
  *  @author Swann LAZAR
  *  @version 1.0
 */
@@ -54,6 +54,7 @@ public class CsvEmployeDAO implements EmployeDAO {
      * @return La liste des employés ajoutés en omettant le titre au sein du fichier CSV.
      * @see Employe
      * @see CsvEmployeDAO#csvF
+     * @see CsvEmployeDAO#employeTab(java.lang.String[]) 
      */
     @Override
     public List<Employe> addEmploye() {

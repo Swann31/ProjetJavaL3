@@ -12,17 +12,20 @@ public interface IEmploye {
     
     /**
      * Getteur pour l'identifiant de l'employé.
+     * @return L'identifiant de l'employé.
      */
-    Integer GetIdE();
+    int getIdE();
     
     /**
      * Getteur pour l'ensemble des compétences possédées par l'employé.
+     * @return La liste des compétences possédées par l'employé.
      * @see Competence
      */
-    Competence getCompetence();
+    Competence [] getCompetence();
     
     /**
      * Getteur pour la date d'entrée dans l'entreprise pour l'employé.
+     * @return Date d'entrée de l'employé dans l'entreprise.
      */
-    Date getDateEntree();
+    Date getDate();
 }
