@@ -42,6 +42,7 @@ public class CsvHelper {
        File f = new File (fileName);
        return f;
    }
+   
    //Lecture ligne par ligne du fichier CSV
    /**
     * Méthode lisant ligne par ligne le fichier CSV.

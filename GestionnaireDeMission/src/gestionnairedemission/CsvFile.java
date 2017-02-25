@@ -45,6 +45,7 @@ final class CsvFile implements ICsvFile{
      * @param file 
      *      Le fichier au format CSV qui va être convertis selon les définitions de la classe pour sa lecture.
      * @see CsvFile#f
+     * @see CsvFile#init() 
      */
     public CsvFile(File file){
        this.f = file;

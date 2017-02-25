@@ -10,22 +10,22 @@ public class Competence implements ICompetence{
     
     /**
      * Identifiant de la compétence.
-     * @see Competence#getIDC
-     * @see Competence#setIDC
+     * @see Competence#getIDC() 
+     * @see Competence#setIDC(java.lang.String) 
      */
     private String idC;
     
     /**
      * Catégorie de la compétence
-     * @see Competence#getCat
-     * @see Competence#setCat
+     * @see Competence#getCat() 
+     * @see Competence#setCat(java.lang.String) 
      */
     private String categorieComp;
     
     /**
      * Libellé de la compétence.
-     * @see Competence#getLib
-     * @see Competence#setLib
+     * @see Competence#getLib() 
+     * @see Competence#setLib(java.lang.String) 
      */
     private String libelleComp;
     
