@@ -220,7 +220,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
-/*private void initialiserTableau() {
+private void initialiserTableau() {
         
         jPanelTable.setLayout(new BorderLayout());
         DefaultTableModel model = new DefaultTableModel(new Integer[][] {
@@ -233,7 +233,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         this.setVisible(true);
         jPanelTable.setVisible(false);
         jButtonSauvegarder.setVisible(false);
-    }*/
+    }
 
 private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
      
