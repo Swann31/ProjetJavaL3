@@ -5,8 +5,6 @@
  */
 package interfaces;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 /**
  *
  * @author Maxence
@@ -16,13 +14,8 @@ public class MenuDetailMission extends javax.swing.JFrame {
     /**
      * Creates new form MenuDetailMission
      */
-    public MenuDetailMission(int num) {
+    public MenuDetailMission() {
         initComponents();
-        getInfoMission(num);
-    }
-
-    private MenuDetailMission() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -103,13 +96,12 @@ public class MenuDetailMission extends javax.swing.JFrame {
             jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -255,7 +247,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDetailMission(/*0*/).setVisible(true);
+                new MenuDetailMission().setVisible(true);
             }
         });
     }
@@ -281,9 +273,4 @@ public class MenuDetailMission extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTypeMission;
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
-
-    private void getInfoMission(int num) {
-        //num est le numero de la ligne seletionné
-        showMessageDialog(null,num);
-    }
 }

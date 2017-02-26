@@ -8,7 +8,6 @@ package interfaces;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuMissionGeneral extends javax.swing.JFrame {
 
-    private static int num;
     /**
      * Creates new form MenuMissionGeneral
      */
@@ -182,10 +180,6 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
 
     private void jBtnDetailMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDetailMissionActionPerformed
         // TODO add your handling code here:
-        MenuDetailMission mdm = new MenuDetailMission(num);
-        mdm.setLocationRelativeTo(this);
-        mdm.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jBtnDetailMissionActionPerformed
 
     /**
@@ -239,16 +233,8 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     private void initialiserTableau() {
         jPanelTable.setLayout(new BorderLayout());
         DefaultTableModel model = new DefaultTableModel(new Integer[][] {
-            { 1, 2 }, { 3, 4 } }, new String[] { "A", "B" }){
-                public boolean isCellEditable(int row, int column)
-                {
-                  return false;//aucune cellule editable
-                }
-            };
-        
+            { 1, 2 }, { 3, 4 } }, new String[] { "A", "B" });
         JTable table = new JTable(model);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
@@ -259,10 +245,6 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             // do some actions here, for example
             // print first column value from selected row
             //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
-            if(!event.getValueIsAdjusting()) {
-			ListSelectionModel  model = (ListSelectionModel)event.getSource();
-			num=model.getMinSelectionIndex()+1; 
-            }
             jBtnDetailMission.setVisible(true);
         }
     });
