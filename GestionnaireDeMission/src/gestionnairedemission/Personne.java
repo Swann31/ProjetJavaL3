@@ -49,7 +49,7 @@ public abstract class Personne {
      * @return Le nom de la personne concernée.
      * @see Personne#nom
      */
-    protected String getNom()
+    public String getNom()
     {
         return this.nom;
     }
@@ -59,7 +59,7 @@ public abstract class Personne {
      * @return Le prénom de la personne concernée.
      * @see Personne#prenom
      */
-    protected String getPrenom()
+    public String getPrenom()
     {
         return this.prenom;
     }      

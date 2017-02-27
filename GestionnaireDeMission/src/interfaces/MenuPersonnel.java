@@ -6,6 +6,8 @@
 package interfaces;
 
 import com.opencsv.CSVReader;
+import gestionnairedemission.CsvEmployeDAO;
+import static interfaces.MenuPrincipal.listE;
 import java.awt.BorderLayout;
 import java.util.Vector;
 import javax.swing.JScrollPane;
@@ -18,6 +20,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -252,12 +259,34 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
             for (String thiscellvalue : (String[])myEntries.get(x))
             {
                 tableModel.setValueAt(thiscellvalue, x-1, columnnumber);
+                CsvEmployeDAO csvE = new CsvEmployeDAO(fi);
+                MenuPrincipal.listE = (ArrayList) csvE.addEmploye(); 
                columnnumber++;
             }
+             Iterator itr = MenuPrincipal.listE.iterator();
+      while(itr.hasNext()) {
+         Object element = itr.next();
+         System.out.print(element + " ");
+      }
           }
         }
+        /*String[][] tabEAff = null;
+        for (int i=0;i>listE.size();i++)
+        {
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            int ide;
+            String pnom, nom;
+            Date dt;
+            ide=listE.get(i).getIdE();
+            pnom=listE.get(i).getPrenom();
+            nom=listE.get(i).getNom();
+            dt=listE.get(i).getDate();
+            tabEAff[i][0]=String.valueOf(ide);
+            tabEAff[i][1]=pnom;
+            tabEAff[i][2]=nom;
+            tabEAff[i][3]=df.format(dt);
+        }*/
 
-        
         JTable table = new JTable(tableModel);
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    

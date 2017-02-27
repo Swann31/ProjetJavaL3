@@ -58,14 +58,19 @@ public class CsvEmployeDAO implements EmployeDAO {
      * @see CsvEmployeDAO#employeTab(java.lang.String[]) 
      */
     @Override
-    public List<Employe> addEmploye() {
-        final List<Employe> listE = new ArrayList<>();
-        List<String[]> data;
+    public ArrayList<Employe> addEmploye() {
+        final ArrayList<Employe> listE = new ArrayList<>();
+        ArrayList<String[]> data;
         data = this.csvF.getData();
         final List<String[]> dataWT = data;
         dataWT.remove(0);
+        if (dataWT.size()>data.size()-1)
+        {
+            dataWT.subList(data.size()-1,dataWT.size()).clear();
+        }
         for(String[] data1 : dataWT)
         {
+
             final Employe employe;
             employe = employeTab(data1);
             listE.add(employe);
@@ -87,6 +92,15 @@ public class CsvEmployeDAO implements EmployeDAO {
      */
     private Employe employeTab(String[] tab)
     {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        try {
+           Employe e = new Employe(Integer.parseInt(tab[3]), tab[1], tab[0], sdf.parse(tab[2]));
+            return e;
+        } catch (ParseException ex) {
+            Logger.getLogger(CsvEmployeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        /*
         Employe e = new Employe();
         e.setIdE(Integer.parseInt(tab[3]));
         e.setPrenom(tab[0]);
@@ -98,5 +112,6 @@ public class CsvEmployeDAO implements EmployeDAO {
             Logger.getLogger(CsvEmployeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return e;
+*/
     }  
 }

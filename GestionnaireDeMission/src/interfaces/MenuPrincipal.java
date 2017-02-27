@@ -5,12 +5,20 @@
  */
 package interfaces;
 
+import gestionnairedemission.Competence;
+import gestionnairedemission.Employe;
+import gestionnairedemission.Mission;
+import java.util.ArrayList;
+
 /**
  *
  * @author Maxence
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    public static ArrayList<Employe> listE;
+    public static ArrayList<Competence> listC;
+    public static ArrayList<Mission> listM;
     /**
      * Creates new form MenuPrincipal
      */

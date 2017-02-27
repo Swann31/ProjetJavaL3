@@ -32,7 +32,7 @@ final class CsvFile implements ICsvFile{
      * Tableau comprenant les données uniques (chaque cellule correspond à une entrée) du fichier CSV.
      * @see CsvFile#getData()
      */
-    private List<String[]> data; 
+    private ArrayList<String[]> data; 
     
     /**
      * Constructeur par défaut d'un fichier CSV.
@@ -85,7 +85,7 @@ final class CsvFile implements ICsvFile{
      * @see CsvFile#data
      */
     @Override
-    public List<String[]> getData() {
+    public ArrayList<String[]> getData() {
         return this.data;
     }
 }
