@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * <b> Classe CsvFile servant de lecteur CSV.</b>
  * <p> Cette classe est le "lecteur" du fichier CSV, il permet de définir les différents éléments composant le fichier au format CSV et d'en extraire les données.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
 */
 final class CsvFile implements ICsvFile{

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Interface IEmploye</b>
  * <p> Interface définissant les méthodes pour la classe Emplpoyé tout en permettant d'anticiper l'évolutivité de l'application</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public interface IEmploye {

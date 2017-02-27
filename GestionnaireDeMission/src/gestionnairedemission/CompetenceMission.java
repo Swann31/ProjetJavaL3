@@ -3,7 +3,7 @@ package gestionnairedemission;
 /**
  * <b> Classe CompétenceMission </b>
  * <p> Définit au sein d'une mission, une compétence et le nombre de personnes devant la posséder.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class CompetenceMission extends Competence {

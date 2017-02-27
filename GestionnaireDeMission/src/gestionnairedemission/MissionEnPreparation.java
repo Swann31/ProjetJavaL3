@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Classe Mission en Préparation</b>
  * <p> Cette classe définit une mission en cours de préparation.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class MissionEnPreparation extends Mission{

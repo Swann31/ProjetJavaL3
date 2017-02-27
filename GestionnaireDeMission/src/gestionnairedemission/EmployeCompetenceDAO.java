@@ -3,7 +3,7 @@ package gestionnairedemission;
 /**
  * <b> Interface EmployeCompetenceDAO </b>
  * <p>Interface liée à la classe CsvEmployeCompetenceDAO, le Data Access Object de la classe Employe ayant pour but d'ajouter à un employé les compétences qui lui sont inhérentes, utilisé ici en vue de l'évolutivité du projet.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version  1.0
  */
 public interface EmployeCompetenceDAO {

@@ -3,7 +3,7 @@ package gestionnairedemission;
 /**
  * <b> Interface ICompetence </b>
  * <p> Interface définissant les méthodes pour la classe Competence tout en permettant d'anticiper l'évolutivité de l'application. </p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public interface ICompetence {

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * <b>CsvEmployeDAO est une classe de Data Acces Object dédiée à la classe Employe.</b>
  * <p>Il s'agit d'un objet ayant pour but de ne pas accéder directement aux données en dur, mais de travailler sur des objets du domaine.</p>
  * <p>Il s'agit donc de la partie de code accédant aux données pour les lire depuis un fichier dans ce projet.</p>
- *  @author Swann LAZAR
+ *  @author Swann LAZAR, Maxence DESLANDES
  *  @version 1.0
 */
 public class CsvEmployeDAO implements EmployeDAO {
@@ -100,18 +100,5 @@ public class CsvEmployeDAO implements EmployeDAO {
             Logger.getLogger(CsvEmployeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        /*
-        Employe e = new Employe();
-        e.setIdE(Integer.parseInt(tab[3]));
-        e.setPrenom(tab[0]);
-        e.setNom(tab[1]);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-        try {
-            e.setDateEntree(sdf.parse(tab[2]));
-        } catch (ParseException ex) {
-            Logger.getLogger(CsvEmployeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return e;
-*/
     }  
 }

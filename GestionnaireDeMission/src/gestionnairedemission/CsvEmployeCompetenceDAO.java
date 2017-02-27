@@ -1,14 +1,13 @@
 package gestionnairedemission;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *<b> Classe CsvEmployeCompetenceDAO est une classe de Data Acces Object dédiée à la classe Employe et ayant pour but d'attribuer les compétences.</b>
  * <p>Il s'agit d'un objet ayant pour but de ne pas accéder directement aux données en dur, mais de travailler sur des objets du domaine.</p>
  * <p>Il s'agit donc de la partie de code accédant aux données pour les lire depuis un fichier dans ce projet.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {

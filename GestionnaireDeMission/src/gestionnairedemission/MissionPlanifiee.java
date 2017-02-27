@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Classe MissionPlanifiee </b>
  * <p> Mission ayant vu les employés affectés à celle-ci.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class MissionPlanifiee extends MissionEnPreparation {

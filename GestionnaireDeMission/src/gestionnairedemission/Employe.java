@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Classe Employé </b>
  * <p> Cette classe définit un employé de l'entreprise.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class Employe extends Personne implements IEmploye {

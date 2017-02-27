@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * <b> Interface CompetenceDAO </b>
  * <p> Interface liée à la classe CsvCompetenceDAO, le Data Access Object de la classe Compétence, utilisé ici en vue de l'évolutivité du projet.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public interface CompetenceDAO {

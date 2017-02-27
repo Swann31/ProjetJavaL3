@@ -3,7 +3,7 @@ package gestionnairedemission;
 /**
  * <b> Classe Compétence </b>
  * <p> Cette classe définit une compétence.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class Competence implements ICompetence{
