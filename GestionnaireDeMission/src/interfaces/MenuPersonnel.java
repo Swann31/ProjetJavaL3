@@ -309,7 +309,7 @@ private void initialiserTableau() {
 
 private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
      
-        Object[] columnnames;
+        /*Object[] columnnames;
         CSVReader t = new CSVReader(new FileReader(fi));
         List myEntries = t.readAll();
         columnnames = (String[]) myEntries.get(0);
@@ -323,10 +323,10 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
           {
             for (String thiscellvalue : (String[])myEntries.get(x))
             {
-                tableModel.setValueAt(thiscellvalue, x-1, columnnumber);
+                tableModel.setValueAt(thiscellvalue, x-1, columnnumber);*/
                 CsvEmployeDAO csvE = new CsvEmployeDAO(fi);
-                MenuPrincipal.listE = (ArrayList) csvE.addEmploye(); 
-               columnnumber++;
+                MenuPrincipal.listE = csvE.addEmploye(); 
+               /*columnnumber++;
             }
              Iterator itr = MenuPrincipal.listE.iterator();
       while(itr.hasNext()) {
@@ -334,9 +334,9 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
          System.out.print(element + " ");
       }
           }
-        }
-        /*String[][] tabEAff = null;
-        for (int i=0;i>listE.size();i++)
+        }*/
+        String[][] tabEAff = new String[listE.size()][4]; 
+        for (int i=0;i<listE.size();i++)
         {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             int ide;
@@ -346,14 +346,19 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
             pnom=listE.get(i).getPrenom();
             nom=listE.get(i).getNom();
             dt=listE.get(i).getDate();
-            tabEAff[i][0]=String.valueOf(ide);
+            String id= Integer.toString(ide);
+            tabEAff[i][0]=id;
             tabEAff[i][1]=pnom;
             tabEAff[i][2]=nom;
             tabEAff[i][3]=df.format(dt);
-        }*/
+        }
+        String[] title = {"IDE","Prenom","Nom","Date Entrée"};
+        table = new JTable(tabEAff,title);
+        
+        
 
         
-        table = new JTable(tableModel);
+        //table = new JTable(tableModel);
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
