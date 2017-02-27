@@ -33,6 +33,7 @@ import java.io.Writer;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 /**
@@ -41,14 +42,18 @@ import java.util.logging.Logger;
  */
 public class MenuPersonnel extends javax.swing.JFrame {
 
-    private JTable table;
+    protected JTable table;
     private File selectedFile; 
+    protected static DefaultTableModel tablemodel;
     /**
      * Creates new form MenuPersonnel
      */
     public MenuPersonnel() {
         initComponents();
         jButtonSauvegarder.setVisible(false);
+        //BOUTON POUR TESTER LE RELOAD
+        jButton1.setVisible(true);
+        tablemodel = new DefaultTableModel();
     }
 
     /**
@@ -65,6 +70,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jButtonCharger = new javax.swing.JButton();
         jButtonSauvegarder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButtonAjouterEmp = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -89,7 +96,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jPanelTable.setLayout(jPanelTableLayout);
         jPanelTableLayout.setHorizontalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 505, Short.MAX_VALUE)
         );
         jPanelTableLayout.setVerticalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,6 +120,20 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Gestion du Personnel");
 
+        jButtonAjouterEmp.setText("+");
+        jButtonAjouterEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAjouterEmpActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Mettre a jour");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jMenuPrincipal.setText("Application");
 
         jMenuPrincpalItem1.setText("Fermer");
@@ -133,12 +154,14 @@ public class MenuPersonnel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAjouterEmp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 333, Short.MAX_VALUE))
@@ -153,7 +176,11 @@ public class MenuPersonnel extends javax.swing.JFrame {
                         .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAjouterEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -245,6 +272,22 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonSauvegarderActionPerformed
+
+    private void jButtonAjouterEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterEmpActionPerformed
+        // TODO add your handling code here:
+        MenuAjoutEmploye mae = new MenuAjoutEmploye();
+        mae.setLocationRelativeTo(this);
+        mae.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonAjouterEmpActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        tablemodel = refreshTableModel();
+        tablemodel.fireTableDataChanged();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
       
     /**
      * @param args the command line arguments
@@ -283,6 +326,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnRetour;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAjouterEmp;
     private javax.swing.JButton jButtonCharger;
     private javax.swing.JButton jButtonSauvegarder;
     private javax.swing.JLabel jLabel1;
@@ -292,7 +337,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
-private void initialiserTableau() {
+/*private void initialiserTableau() {
         
         jPanelTable.setLayout(new BorderLayout());
         DefaultTableModel model = new DefaultTableModel(new Integer[][] {
@@ -305,7 +350,7 @@ private void initialiserTableau() {
         this.setVisible(true);
         jPanelTable.setVisible(false);
         jButtonSauvegarder.setVisible(false);
-    }
+    }*/
 
 private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
      
@@ -335,6 +380,20 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
       }
           }
         }*/
+        
+        
+        tablemodel = refreshTableModel();
+        table = new JTable(tablemodel);
+        
+        jPanelTable.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(table);    
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+        this.pack();
+        this.setVisible(true);
+    }
+
+    public static DefaultTableModel refreshTableModel(){
         String[][] tabEAff = new String[listE.size()][4]; 
         for (int i=0;i<listE.size();i++)
         {
@@ -353,17 +412,6 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
             tabEAff[i][3]=df.format(dt);
         }
         String[] title = {"IDE","Prenom","Nom","Date Entrée"};
-        table = new JTable(tabEAff,title);
-        
-        
-
-        
-        //table = new JTable(tableModel);
-        jPanelTable.setLayout(new BorderLayout());
-        JScrollPane tableContainer = new JScrollPane(table);    
-        jPanelTable.add(tableContainer, BorderLayout.CENTER);
-        this.getContentPane().add(jPanelTable);
-        this.pack();
-        this.setVisible(true);
+        return new DefaultTableModel(tabEAff, title);
     }
 }

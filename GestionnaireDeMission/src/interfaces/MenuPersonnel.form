@@ -50,12 +50,14 @@
       <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanelTable" pref="549" max="32767" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jPanelTable" min="-2" pref="505" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jBtnRetour" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                   <Component id="jButtonCharger" alignment="1" min="-2" pref="189" max="-2" attributes="0"/>
                   <Component id="jButtonSauvegarder" alignment="1" min="-2" pref="189" max="-2" attributes="0"/>
+                  <Component id="jButtonAjouterEmp" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -74,7 +76,11 @@
                       <Component id="jButtonCharger" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonSauvegarder" min="-2" pref="68" max="-2" attributes="0"/>
-                      <EmptySpace pref="216" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonAjouterEmp" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="146" max="32767" attributes="0"/>
                       <Component id="jBtnRetour" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -116,7 +122,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="505" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -149,6 +155,22 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Gestion du Personnel"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonAjouterEmp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAjouterEmpActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mettre a jour"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
