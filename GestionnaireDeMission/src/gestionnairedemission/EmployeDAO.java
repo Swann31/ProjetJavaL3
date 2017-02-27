@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * <b> Interface EmployeDAO </b>
  * <p>Interface liée à la classe CsvEmployeDAO, le Data Acces Object de la classe Employe, utilisé ici en vue de l'évolutivité du projet.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
 */
 public interface EmployeDAO {

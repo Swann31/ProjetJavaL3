@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * <b> Classe CsvHelper</b>
  * <p> Classe permettant de rechercher et de récupérer une ressource sur un disque. Ici, le but est justement de récupérer les différents fichiers CSV.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
 */
 public class CsvHelper {
@@ -43,7 +43,6 @@ public class CsvHelper {
        return f;
    }
    
-   //Lecture ligne par ligne du fichier CSV
    /**
     * Méthode lisant ligne par ligne le fichier CSV.
     * @param f

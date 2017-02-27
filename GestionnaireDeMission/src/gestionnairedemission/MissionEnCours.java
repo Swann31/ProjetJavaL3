@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Classe MissionEnCours </b>
  * <p> Phase de la mission ou les affectations d'employés ne sont plus possibles.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class MissionEnCours extends MissionPlanifiee{

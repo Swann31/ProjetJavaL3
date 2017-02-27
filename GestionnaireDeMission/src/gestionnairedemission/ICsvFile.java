@@ -4,7 +4,10 @@ import java.io.File;
 import java.util.List;
 
 /** 
- * Interface ICsvFile permettant de définir les méthodes de la classe CsvFile et d'anticiper des évolutions.
+ * <b> Interace IcsvFile </b>
+ * <p>Interface ICsvFile permettant de définir les méthodes de la classe CsvFile et d'anticiper des évolutions.</p>
+ * @author Swann LAZAR, Maxence DESLANDES
+ * @version 1.0
 */
 interface ICsvFile {
     

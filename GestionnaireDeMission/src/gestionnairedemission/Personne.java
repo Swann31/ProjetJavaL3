@@ -3,7 +3,7 @@ package gestionnairedemission;
 /**
  * <b> Classe abstraite Personne </b>
  * <p> Classe abstraite permettant de définir une personne et créée en vue d'une évolutivité de l'application. Elle représente les principaux attributs et méthodes d'une personne.</p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public abstract class Personne {

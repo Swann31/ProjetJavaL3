@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Classe MissionTerminee </b>
  * <p> Mission ayant atteind son terme. </p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class MissionTerminee extends MissionEnCours {

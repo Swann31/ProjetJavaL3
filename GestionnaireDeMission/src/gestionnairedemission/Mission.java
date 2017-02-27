@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * <b> Classe Mission </b>
  * <p> Cette classe sert à définir une mission dans l'application. </p>
- * @author Swann LAZAR
+ * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
 public class Mission {
@@ -32,6 +32,10 @@ public class Mission {
     
     /**
      * Constructeur de la classe Mission.
+     * @param id
+     *      Identifiant de la mission.
+     * @param dd
+     *      Date de début de la mission.
      * @see Mission#idM
      * @see Mission#dateDebut
      */
