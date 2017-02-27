@@ -7,6 +7,7 @@ package interfaces;
 
 import com.opencsv.CSVReader;
 import java.awt.BorderLayout;
+import java.io.BufferedWriter;
 import java.util.Vector;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,8 +17,12 @@ import javax.swing.table.TableModel;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,11 +34,14 @@ import java.util.logging.Logger;
  */
 public class MenuPersonnel extends javax.swing.JFrame {
 
+    private JTable table;
+    private File selectedFile; 
     /**
      * Creates new form MenuPersonnel
      */
     public MenuPersonnel() {
         initComponents();
+        jButtonSauvegarder.setVisible(false);
     }
 
     /**
@@ -89,6 +97,11 @@ public class MenuPersonnel extends javax.swing.JFrame {
         });
 
         jButtonSauvegarder.setText("SAUVEGARDER TABLEAU");
+        jButtonSauvegarder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSauvegarderActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Gestion du Personnel");
@@ -163,7 +176,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
         {
-            File selectedFile = jc.getSelectedFile();
+            selectedFile = jc.getSelectedFile();
             try {
                 initialiserTableau(selectedFile);
             } catch (IOException ex) {
@@ -173,6 +186,58 @@ public class MenuPersonnel extends javax.swing.JFrame {
             jButtonSauvegarder.setVisible(true);
         }
     }//GEN-LAST:event_jButtonChargerActionPerformed
+
+    private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
+        // Sauvegarder le jTable dans le fichier
+        Writer writer = null;
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        int nRow = dtm.getRowCount();
+        int nCol = dtm.getColumnCount();
+        try {
+            try {
+                try {
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile.getAbsolutePath()), "utf-8"));
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //write the header information
+            StringBuffer bufferHeader = new StringBuffer();
+            for (int j = 0; j < nCol; j++) {
+                bufferHeader.append(dtm.getColumnName(j));
+                //if (j!=nCol) bufferHeader.append(", ");
+            }
+            try {
+                writer.write(bufferHeader.toString() + "\r\n");
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           //write row information
+            for (int i = 0 ; i < nRow ; i++){
+                 StringBuffer buffer = new StringBuffer();
+                for (int j = 0 ; j < nCol ; j++){
+                    buffer.append(dtm.getValueAt(i,j));
+                    //if (j!=nCol) buffer.append(", ");
+                }
+                try {
+                    writer.write(buffer.toString() + "\r\n");
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jButtonSauvegarderActionPerformed
       
     /**
      * @param args the command line arguments
@@ -220,7 +285,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
-private void initialiserTableau() {
+/*private void initialiserTableau() {
         
         jPanelTable.setLayout(new BorderLayout());
         DefaultTableModel model = new DefaultTableModel(new Integer[][] {
@@ -233,7 +298,7 @@ private void initialiserTableau() {
         this.setVisible(true);
         jPanelTable.setVisible(false);
         jButtonSauvegarder.setVisible(false);
-    }
+    }*/
 
 private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
      
@@ -258,7 +323,7 @@ private void initialiserTableau( File fi) throws FileNotFoundException, IOExcept
         }
 
         
-        JTable table = new JTable(tableModel);
+        table = new JTable(tableModel);
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
