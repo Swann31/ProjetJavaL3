@@ -25,11 +25,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuCompetence extends javax.swing.JFrame {
 
+    private File selectedFile;
+    private JTable table;
     /**
      * Creates new form MenuCompetence
      */
     public MenuCompetence() {
         initComponents();
+        jButtonSauvegarder.setVisible(false);
     }
 
     /**
@@ -68,6 +71,11 @@ public class MenuCompetence extends javax.swing.JFrame {
         });
 
         jButtonSauvegarder.setText("SAUVEGARDER TABLEAU");
+        jButtonSauvegarder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSauvegarderActionPerformed(evt);
+            }
+        });
 
         jButtonCharger.setText("CHARGER FICHIER");
         jButtonCharger.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +121,6 @@ public class MenuCompetence extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 134, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -163,7 +170,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
         {
-            File selectedFile = jc.getSelectedFile();
+            selectedFile = jc.getSelectedFile();
             try {
                 initialiserTableau(selectedFile);
             } catch (IOException ex) {
@@ -174,6 +181,58 @@ public class MenuCompetence extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButtonChargerActionPerformed
+
+    private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
+        // TODO add your handling code here:
+        Writer writer = null;
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        int nRow = dtm.getRowCount();
+        int nCol = dtm.getColumnCount();
+        try {
+            try {
+                try {
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile.getAbsolutePath()), "utf-8"));
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //write the header information
+            StringBuffer bufferHeader = new StringBuffer();
+            for (int j = 0; j < nCol; j++) {
+                bufferHeader.append(dtm.getColumnName(j));
+                //if (j!=nCol) bufferHeader.append(", ");
+            }
+            try {
+                writer.write(bufferHeader.toString() + "\r\n");
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           //write row information
+            for (int i = 0 ; i < nRow ; i++){
+                 StringBuffer buffer = new StringBuffer();
+                for (int j = 0 ; j < nCol ; j++){
+                    buffer.append(dtm.getValueAt(i,j));
+                    //if (j!=nCol) buffer.append(", ");
+                }
+                try {
+                    writer.write(buffer.toString() + "\r\n");
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jButtonSauvegarderActionPerformed
 
    
     
@@ -281,7 +340,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         }
 
         
-        JTable table = new JTable(tableModel);
+        table = new JTable(tableModel);
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);

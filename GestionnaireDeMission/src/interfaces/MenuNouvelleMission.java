@@ -390,7 +390,6 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(jLabel4.getX() + 110,jLabel4.getY() - 5,120,30);
         jPanelSettings.add(datePicker);
-        
     }
 }
 
