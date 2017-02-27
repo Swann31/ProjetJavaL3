@@ -52,7 +52,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         initComponents();
         jButtonSauvegarder.setVisible(false);
         //BOUTON POUR TESTER LE RELOAD
-        jButton1.setVisible(true);
+        jButton1.setVisible(false);
         tablemodel = new DefaultTableModel();
     }
 
