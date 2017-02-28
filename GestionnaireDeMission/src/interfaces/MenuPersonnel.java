@@ -34,7 +34,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     protected static JTable table;
     private File selectedFile; 
     protected static DefaultTableModel tablemodel;
-    protected static String[] title = {"IDE","Prenom","Nom","Date Entrée"};
+    protected static String[] title = {"Prenom","Nom","Date Entrée","IDE"};
 
     public MenuPersonnel() {
         initComponents();
@@ -219,7 +219,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(dtm.getColumnName(j));
-                //if (j!=nCol) bufferHeader.append(", ");
+                if (j!=nCol) bufferHeader.append(";");
             }
             try {
                 writer.write(bufferHeader.toString() + "\r\n");
@@ -232,7 +232,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
                  StringBuffer buffer = new StringBuffer();
                 for (int j = 0 ; j < nCol ; j++){
                     buffer.append(dtm.getValueAt(i,j));
-                    //if (j!=nCol) buffer.append(", ");
+                    if (j!=nCol) buffer.append(";");
                 }
                 try {
                     writer.write(buffer.toString() + "\r\n");
@@ -333,10 +333,10 @@ public class MenuPersonnel extends javax.swing.JFrame {
             nom=listE.get(i).getNom();
             dt=listE.get(i).getDate();
             String id= Integer.toString(ide);
-            tabEAff[i][0]=id;
-            tabEAff[i][1]=pnom;
-            tabEAff[i][2]=nom;
-            tabEAff[i][3]=df.format(dt);
+            tabEAff[i][0]=pnom;
+            tabEAff[i][1]=nom;
+            tabEAff[i][2]=df.format(dt);
+            tabEAff[i][3]= id;
         }
         return new DefaultTableModel(tabEAff, title);
     }
