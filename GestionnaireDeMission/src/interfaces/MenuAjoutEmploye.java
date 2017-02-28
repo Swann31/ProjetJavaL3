@@ -7,6 +7,7 @@ package interfaces;
 
 import gestionnairedemission.Employe;
 import static interfaces.MenuPersonnel.refreshTableModel;
+import static interfaces.MenuPersonnel.table;
 import static interfaces.MenuPersonnel.tablemodel;
 import static interfaces.MenuPrincipal.listE;
 import java.util.Date;
@@ -179,11 +180,10 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
         Employe nouvelEmp = new Employe(id, jTextFieldNom.getText(), jTextFieldPrenom.getText(), new Date());
         System.out.println(nouvelEmp);
         listE.add(nouvelEmp);
-     
-        //tablemodel = refreshTableModel();
-        //tablemodel.fireTableDataChanged();
-        
-        
+        tablemodel = refreshTableModel();
+        table.setModel(tablemodel);
+        table.repaint();   
+        this.dispose();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     /**
