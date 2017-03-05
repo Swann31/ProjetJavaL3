@@ -33,7 +33,6 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     public MenuNouvelleMission() {
         initComponents();
         competences = new ArrayList<Component>();
-        
         implementerDatePicker();
     }
 
@@ -374,10 +373,10 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
     private void implementerDatePicker() {
         //showMessageDialog(null, "My Goodness, this is so concise");
-        JFrame f1 = new JFrame();
+        /*JFrame f1 = new JFrame();
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f1.setSize(300, 300);
-        f1.setVisible(true);
+        f1.setVisible(true);*/
         UtilDateModel model = new UtilDateModel();
         model.setDate(20,04,2014);
         // Need this...

@@ -261,7 +261,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
             if(!event.getValueIsAdjusting()) {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
-			num=model.getMinSelectionIndex()+1; 
+			num=model.getMinSelectionIndex(); 
             }
             jBtnDetailMission.setVisible(true);
         }
