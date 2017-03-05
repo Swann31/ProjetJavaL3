@@ -340,24 +340,4 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
         return new DefaultTableModel(tabEAff, title);
     }
-    /*
-        public static String[] formaterExport() {
-        String[] tab = new String[listE.size()+1];
-        String titleExp = "Prenom;Nom;date entrée entreprise;identifiant";
-        tab[0]=titleExp;
-        for(int i=1;i<listE.size()+1;i++)
-        {
-            DateFormat df = new SimpleDateFormat("dd/MM/YYYY");
-            int ide;
-            String pnom, nom;
-            String date = df.format(listE.get(i-1).getDate());
-            pnom = listE.get(i-1).getPrenom();
-            nom = listE.get(i-1).getNom();
-            ide = listE.get(i-1).getIdE();
-            String id = Integer.toString(ide);
-            String val = pnom +";"+nom+";"+date+";"+id;
-            tab[i]=val;
-        }
-        return tab;
-    }*/
 }

@@ -26,7 +26,9 @@ import javax.swing.table.DefaultTableModel;
 public class MenuCompetence extends javax.swing.JFrame {
 
     private File selectedFile;
-    private JTable table;
+    protected static JTable table;
+    protected static DefaultTableModel tablemodel;
+    protected static String[] title = {"Identifiant","Catégorie","Libelle"};
     /**
      * Creates new form MenuCompetence
      */
@@ -203,7 +205,7 @@ public class MenuCompetence extends javax.swing.JFrame {
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(dtm.getColumnName(j));
-                //if (j!=nCol) bufferHeader.append(", ");
+                if (j!=nCol) bufferHeader.append(";");
             }
             try {
                 writer.write(bufferHeader.toString() + "\r\n");
