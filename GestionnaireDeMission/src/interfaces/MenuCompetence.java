@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package interfaces;
-
-import com.opencsv.*;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -319,7 +317,7 @@ public class MenuCompetence extends javax.swing.JFrame {
     }*/
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
      
-        Object[] columnnames;
+        /*Object[] columnnames;
         CSVReader t = new CSVReader(new FileReader(fi));
         List myEntries = t.readAll();
         columnnames = (String[]) myEntries.get(0);
@@ -346,7 +344,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
         this.pack();
-        this.setVisible(true);
+        this.setVisible(true);*/
     }
 }
 

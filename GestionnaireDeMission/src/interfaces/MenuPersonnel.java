@@ -20,6 +20,10 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 
 /**
@@ -31,15 +35,19 @@ import java.util.logging.Logger;
  */
 public class MenuPersonnel extends javax.swing.JFrame {
 
+    private static int num;
     protected static JTable table;
     private File selectedFile; 
     protected static DefaultTableModel tablemodel;
     protected static String[] title = {"Prenom","Nom","Date Entrée","IDE"};
+    protected static String valueId;
+    private static String[][] tabEAff;
 
     public MenuPersonnel() {
         initComponents();
         jButtonSauvegarder.setVisible(false);
-        jButton1.setVisible(false);
+        jButtonSupprimer.setVisible(false);
+        jButtonAjouterEmp.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +60,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jButtonSauvegarder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButtonAjouterEmp = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonSupprimer = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -108,10 +116,10 @@ public class MenuPersonnel extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Mettre a jour");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSupprimer.setText("-");
+        jButtonSupprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSupprimerActionPerformed(evt);
             }
         });
 
@@ -136,16 +144,20 @@ public class MenuPersonnel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAjouterEmp, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAjouterEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 333, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,11 +169,11 @@ public class MenuPersonnel extends javax.swing.JFrame {
                         .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(61, 61, 61)
                         .addComponent(jButtonAjouterEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                        .addComponent(jButtonSupprimer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -177,6 +189,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
 
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
+        
         MenuPrincipal mp = new MenuPrincipal();
         mp.setLocationRelativeTo(this);
         mp.setVisible(true);
@@ -190,20 +203,24 @@ public class MenuPersonnel extends javax.swing.JFrame {
         {
             selectedFile = jc.getSelectedFile();
             try {
-                initialiserTableau(selectedFile);
+               //PROBLEME ICI
+                initialiserTableau(selectedFile); 
+                
             } catch (IOException ex) {
                 Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
             }
             jPanelTable.setVisible(true);
             jButtonSauvegarder.setVisible(true);
+            jButtonAjouterEmp.setVisible(true);
         }
     }//GEN-LAST:event_jButtonChargerActionPerformed
 
     private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
         Writer writer = null;
-        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        int nRow = dtm.getRowCount();
-        int nCol = dtm.getColumnCount();
+        //DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        tablemodel = rebuildFile();
+        int nRow = listE.size();
+        int nCol = 4;
         try {
             try {
                 try {
@@ -218,7 +235,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
             //write the header information
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
-                bufferHeader.append(dtm.getColumnName(j));
+                bufferHeader.append(title[j]);
                 if (j!=nCol) bufferHeader.append(";");
             }
             try {
@@ -231,7 +248,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
             for (int i = 0 ; i < nRow ; i++){
                  StringBuffer buffer = new StringBuffer();
                 for (int j = 0 ; j < nCol ; j++){
-                    buffer.append(dtm.getValueAt(i,j));
+                    buffer.append(tabEAff[i][j]);
                     if (j!=nCol) buffer.append(";");
                 }
                 try {
@@ -240,6 +257,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
                     Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            writer.write(System.getProperty( "line.separator" ));
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 writer.close();
@@ -257,12 +277,24 @@ public class MenuPersonnel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonAjouterEmpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        tablemodel = refreshTableModel();
-        table.setModel(tablemodel);
-        table.repaint();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
+        // TODO add your handling code here:
+        for (int j = 0; j < listE.size(); j++) {
+            int ide=listE.get(j).getIdE();
+            int value = Integer.parseInt(valueId);
+            if(ide == value ){
+                listE.get(j).setSuppr(true);
+            }
+        }   
+       tablemodel = refreshTableModel();
+       for (int i = 0; i < tablemodel.getRowCount() ; i++)
+        {
+            if (table.getModel().getValueAt(i,3) == null)
+                tablemodel.removeRow(i);
+        }
+       table.setModel(tablemodel);
+       table.repaint();
+    }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
     public static void main(String args[]) {
 
@@ -296,10 +328,10 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnRetour;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAjouterEmp;
     private javax.swing.JButton jButtonCharger;
     private javax.swing.JButton jButtonSauvegarder;
+    private javax.swing.JButton jButtonSupprimer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
@@ -310,20 +342,68 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
         CsvEmployeDAO csvE = new CsvEmployeDAO(fi);
         MenuPrincipal.listE = csvE.addEmploye(); 
-        tablemodel = refreshTableModel();
+        tablemodel = rebuildFile();
         table = new JTable(tablemodel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            // do some actions here, for example
+            // print first column value from selected row
+            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            if(!event.getValueIsAdjusting()) {
+			ListSelectionModel  model = (ListSelectionModel)event.getSource();
+			num=model.getMinSelectionIndex();
+                        if(num != -1){
+                            valueId = new String();
+                            valueId = (String)table.getModel().getValueAt(num,3);
+                        }
+            }
+            jButtonSupprimer.setVisible(true);
+        }
+    });
     }
 
+    //Avec la vérification des flag afin d'avoir un affichage correspondant
     public static DefaultTableModel refreshTableModel(){
-        String[][] tabEAff = new String[listE.size()][4]; 
+        int j = 0;
+        tabEAff = new String[listE.size()][4]; 
         for (int i=0;i<listE.size();i++)
         {
+            if(listE.get(i).getSuppr() == false){
+                
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                int ide;
+                String pnom, nom;
+                Date dt;
+                ide=listE.get(i).getIdE();
+                pnom=listE.get(i).getPrenom();
+                nom=listE.get(i).getNom();
+                dt=listE.get(i).getDate();
+                String id= Integer.toString(ide);
+                tabEAff[i-j][0]=pnom;
+                tabEAff[i-j][1]=nom;
+                tabEAff[i-j][2]=df.format(dt);
+                tabEAff[i-j][3]= id;
+                
+            } else j++;
+        }
+
+        return new DefaultTableModel(tabEAff, title);
+    }
+    
+    
+    //Sans la vérification des flag afin d'avoir un fichier csv complet
+    public static DefaultTableModel rebuildFile(){
+        
+        tabEAff = new String[listE.size()][4]; 
+        for (int i=0;i<listE.size();i++)
+        {   
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             int ide;
             String pnom, nom;
@@ -337,8 +417,10 @@ public class MenuPersonnel extends javax.swing.JFrame {
             tabEAff[i][1]=nom;
             tabEAff[i][2]=df.format(dt);
             tabEAff[i][3]= id;
+           
         }
         return new DefaultTableModel(tabEAff, title);
+  
     }
     /*
         public static String[] formaterExport() {

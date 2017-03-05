@@ -28,10 +28,17 @@ public class Employe extends Personne implements IEmploye {
     
     /**
      * Date d'entrée de l'employé dans l'entreprise.
-     * @see Employe#getCompetence() 
+     * @see Employe#getDate() 
      * @see Employe#setDateEntree(java.util.Date) 
      */
     private Date dateEntree;
+    
+    /**
+     * Flag afin de savoir si l'employé est supprimé ou pas.
+     * @see Employe#getSuppr() 
+     * @see Employe#setSuppr(boolean) 
+     */
+    private boolean suppr;
     
     /**
      * Constructeur par défaut de la classe Employe.
@@ -166,6 +173,28 @@ public class Employe extends Personne implements IEmploye {
     {
         return this.dateEntree;
     }
+    
+    /**
+     * Getteur pour le flag suppression de l'employé.
+     * @return si l'employé est supprimé ou pas.
+     * @see Employe#suppr
+     */
+    public boolean getSuppr()
+    {
+        return this.suppr;
+    }
+    
+     /**
+     * Setteur pour le flafg de l'employé.
+     * @param bool 
+     *      Si l'employé est présent dans la liste ou non.
+     * @see Employe#suppr
+     */
+    public void setSuppr(boolean bool)
+    {
+        this.suppr=bool;
+    }
+    
     
     /**
      * Getteur pour l'ensemble des compétences possédées par l'employé.
