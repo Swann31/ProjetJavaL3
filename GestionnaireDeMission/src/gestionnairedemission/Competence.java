@@ -30,6 +30,12 @@ public class Competence implements ICompetence{
     private String libelleComp;
     
     /**
+     * Flag indiquant la suppression d'une compétencce
+     * @see 
+     */
+    private boolean suppr;
+    
+    /**
      * Constructeur par défaut d'une compétence.
      */
     public Competence() {
@@ -86,6 +92,10 @@ public class Competence implements ICompetence{
         return this.libelleComp;
     }
     
+    public boolean getSuppr(){
+        return this.suppr;
+    }
+    
     /**
      * Setteur pour l'identifiant de la compétence.
      * @param id 
@@ -117,5 +127,10 @@ public class Competence implements ICompetence{
     public void setLib (String lib)
     {
         this.libelleComp=lib;
+    }
+    
+    public void setSuppr(boolean bool)
+    {
+        this.suppr=bool;
     }
 }
