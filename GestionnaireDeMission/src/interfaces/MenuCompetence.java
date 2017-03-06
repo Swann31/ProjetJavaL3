@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package interfaces;
+import gestionnairedemission.CsvCompetenceDAO;
+import static interfaces.MenuPersonnel.table;
+import static interfaces.MenuPrincipal.listC;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +18,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,8 +29,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuCompetence extends javax.swing.JFrame {
 
+    private static int num;
     private File selectedFile;
-    private JTable table;
+    protected static String valueID;
+    protected static JTable table;
+    protected static DefaultTableModel tablemodel;
+    protected static String[] title = {"Identifiant","Catégorie","Libelle"};
+    private static String[][] tabCAff;
     /**
      * Creates new form MenuCompetence
      */
@@ -47,6 +58,8 @@ public class MenuCompetence extends javax.swing.JFrame {
         jButtonSauvegarder = new javax.swing.JButton();
         jButtonCharger = new javax.swing.JButton();
         jPanelTable = new javax.swing.JPanel();
+        jButtonAjouterComp = new javax.swing.JButton();
+        jButtonSupprimer = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -93,6 +106,20 @@ public class MenuCompetence extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jButtonAjouterComp.setText("+");
+        jButtonAjouterComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAjouterCompActionPerformed(evt);
+            }
+        });
+
+        jButtonSupprimer.setText("-");
+        jButtonSupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSupprimerActionPerformed(evt);
+            }
+        });
+
         jMenuPrincipal.setText("Application");
 
         jMenuPrincpalItem1.setText("Fermer");
@@ -118,7 +145,7 @@ public class MenuCompetence extends javax.swing.JFrame {
                         .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 134, Short.MAX_VALUE)))
+                        .addGap(0, 122, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -127,7 +154,13 @@ public class MenuCompetence extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAjouterComp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSupprimer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -139,7 +172,11 @@ public class MenuCompetence extends javax.swing.JFrame {
                         .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jButtonAjouterComp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonSupprimer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -163,7 +200,6 @@ public class MenuCompetence extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnRetourActionPerformed
 
     private void jButtonChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChargerActionPerformed
-        // TODO add your handling code here:
         JFileChooser jc = new JFileChooser();
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
@@ -201,7 +237,7 @@ public class MenuCompetence extends javax.swing.JFrame {
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(dtm.getColumnName(j));
-                //if (j!=nCol) bufferHeader.append(", ");
+                if (j!=nCol) bufferHeader.append(";");
             }
             try {
                 writer.write(bufferHeader.toString() + "\r\n");
@@ -231,6 +267,42 @@ public class MenuCompetence extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonSauvegarderActionPerformed
+
+    private void jButtonAjouterCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterCompActionPerformed
+            for (int j = 0; j < listC.size(); j++) {
+            String ide=listC.get(j).getIDC();
+            String value = valueID;
+            if(ide == null ? value == null : ide.equals(value) ){
+                listC.get(j).setSuppr(true);
+            }
+        }   
+       tablemodel = refreshTableModel();
+       for (int i = 0; i < tablemodel.getRowCount() ; i++)
+        {
+            if (table.getModel().getValueAt(i,3) == null)
+                tablemodel.removeRow(i);
+        }
+       table.setModel(tablemodel);
+       table.repaint();
+    }//GEN-LAST:event_jButtonAjouterCompActionPerformed
+
+    private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
+        for (int j = 0; j < listC.size(); j++) {
+            String ide=listC.get(j).getIDC();
+            String value = valueID;
+            if(ide == value ){
+                listC.get(j).setSuppr(true);
+            }
+        }   
+       tablemodel = refreshTableModel();
+       for (int i = 0; i < tablemodel.getRowCount() ; i++)
+        {
+            if (table.getModel().getValueAt(i,3) == null)
+                tablemodel.removeRow(i);
+        }
+       table.setModel(tablemodel);
+       table.repaint();
+    }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
    
     
@@ -272,8 +344,10 @@ public class MenuCompetence extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnRetour;
+    private javax.swing.JButton jButtonAjouterComp;
     private javax.swing.JButton jButtonCharger;
     private javax.swing.JButton jButtonSauvegarder;
+    private javax.swing.JButton jButtonSupprimer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
@@ -316,35 +390,68 @@ public class MenuCompetence extends javax.swing.JFrame {
         jButtonSauvegarder.setVisible(false);
     }*/
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
-     
-        /*Object[] columnnames;
-        CSVReader t = new CSVReader(new FileReader(fi));
-        List myEntries = t.readAll();
-        columnnames = (String[]) myEntries.get(0);
-        DefaultTableModel tableModel = new DefaultTableModel(columnnames, myEntries.size()-1); 
-        int rowcount = tableModel.getRowCount();
-        for (int x = 0; x<rowcount+1; x++)
-        {
-          int columnnumber = 0;
-          // if x = 0 this is the first row...skip it... data used for columnnames
-          if (x>0)
-          {
-            for (String thiscellvalue : (String[])myEntries.get(x))
-            {
-                tableModel.setValueAt(thiscellvalue, x-1, columnnumber);
-               columnnumber++;
-            }
-          }
-        }
-
-        
-        table = new JTable(tableModel);
+        CsvCompetenceDAO csvC = new CsvCompetenceDAO(fi);
+        MenuPrincipal.listC = csvC.addCompetence();
+        tablemodel = rebuildFile();
+        table = new JTable(tablemodel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
         this.pack();
-        this.setVisible(true);*/
+        this.setVisible(true);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            // do some actions here, for example
+            // print first column value from selected row
+            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            if(!event.getValueIsAdjusting()) {
+			ListSelectionModel  model = (ListSelectionModel)event.getSource();
+			num=model.getMinSelectionIndex();
+                        if(num != -1){
+                            valueID = new String();
+                            valueID = (String)table.getModel().getValueAt(num,0);
+                        }
+            }
+            jButtonSupprimer.setVisible(true);
+        }
+        });
+    }
+    
+        public static DefaultTableModel refreshTableModel(){
+        int j = 0;
+        tabCAff = new String[listC.size()][3]; 
+        for (int i=0;i<listC.size();i++)
+        {
+            if(listC.get(i).getSuppr() == false){
+                
+                String idc, libelle, cat;
+                idc=listC.get(i).getIDC();
+                cat=listC.get(i).getCat();
+                libelle=listC.get(i).getLib();
+                tabCAff[i-j][0]=idc;
+                tabCAff[i-j][1]=cat;
+                tabCAff[i-j][2]=libelle;
+            } else j++;
+        }
+
+        return new DefaultTableModel(tabCAff, title);
+    }
+        
+        public static DefaultTableModel rebuildFile(){
+        tabCAff  = new String[listC.size()][3];
+        for (int i=0;i<listC.size();i++)
+        {
+                String idc, libelle, cat;
+                idc=listC.get(i).getIDC();
+                cat=listC.get(i).getCat();
+                libelle=listC.get(i).getLib();
+                tabCAff[i][0]=idc;
+                tabCAff[i][1]=cat;
+                tabCAff[i][2]=libelle;
+        }
+
+        return new DefaultTableModel(tabCAff, title);
     }
 }
-

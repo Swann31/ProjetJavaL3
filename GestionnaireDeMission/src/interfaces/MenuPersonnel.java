@@ -415,7 +415,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
         return new DefaultTableModel(tabEAff, titleHead);
     }
     
-    
     /*
         public static String[] formaterExport() {
         String[] tab = new String[listE.size()+1];
@@ -436,4 +435,5 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
         return tab;
     }*/
+
 }

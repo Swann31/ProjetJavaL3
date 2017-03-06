@@ -54,9 +54,9 @@ public class CsvCompetenceDAO implements CompetenceDAO{
      * @see CsvCompetenceDAO#competenceTab(java.lang.String[]) 
      */
     @Override
-    public List<Competence> addCompetence() {
-        final List<Competence> listC = new ArrayList<>();
-        List<String[]> data;
+    public ArrayList<Competence> addCompetence() {
+        final ArrayList<Competence> listC = new ArrayList<>();
+        ArrayList<String[]> data;
         data = this.csvF.getData();
         final List<String[]> dataWT = data;
         dataWT.remove(0);
