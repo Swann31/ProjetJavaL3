@@ -105,6 +105,32 @@ public class Employe extends Personne implements IEmploye {
      *      Le nom de l'employé.
      * @param p
      *      Le prénom de l'employé.
+     * @param dateE
+     *      La date d'entrée de l'employé dans l'entreprise.
+     * @param b
+     *      Le flag si l'employé est supprimé.
+     * @see Employe#idE
+     * @see Employe#nom
+     * @see Employe#prenom
+     * @see Employe#dateEntree
+     * @see Employe#suppr
+     */
+     public Employe(int id, String n, String p, Date dateE, boolean b)
+    {
+        this.idE=id;
+        this.nom=n;
+        this.prenom=p;
+        this.dateEntree=dateE;
+        this.suppr = b;
+    }
+    /**
+     * Constructeur de la classe employé.
+     * @param id
+     *      L'Identifiant de l'employé.
+     * @param n
+     *      Le nom de l'employé.
+     * @param p
+     *      Le prénom de l'employé.
      * @see Employe#idE
      * @see Employe#nom
      * @see Employe#prenom

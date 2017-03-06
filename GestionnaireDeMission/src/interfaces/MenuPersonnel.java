@@ -39,7 +39,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
     protected static JTable table;
     private File selectedFile; 
     protected static DefaultTableModel tablemodel;
-    protected static String[] title = {"Prenom","Nom","Date Entrée","IDE"};
+    protected static String[] title = {"Prenom","Nom","Date Entrée","IDE","Suppr"};
+    protected static String[] titleHead = {"Prenom","Nom","Date Entrée","IDE"};
     protected static String valueId;
     private static String[][] tabEAff;
 
@@ -218,9 +219,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
         Writer writer = null;
         //DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        tablemodel = rebuildFile();
+      
         int nRow = listE.size();
-        int nCol = 4;
+        int nCol = 5;
         try {
             try {
                 try {
@@ -236,7 +237,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(title[j]);
-                if (j!=nCol) bufferHeader.append(";");
+                if (j!=nCol){
+                    bufferHeader.append(";");
+                }
             }
             try {
                 writer.write(bufferHeader.toString() + "\r\n");
@@ -245,12 +248,27 @@ public class MenuPersonnel extends javax.swing.JFrame {
             }
 
            //write row information
+           DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             for (int i = 0 ; i < nRow ; i++){
                  StringBuffer buffer = new StringBuffer();
-                for (int j = 0 ; j < nCol ; j++){
-                    buffer.append(tabEAff[i][j]);
-                    if (j!=nCol) buffer.append(";");
-                }
+                //for (int j = 0 ; j < nCol ; j++){
+                    //ICI 
+                        /*buffer.append(tabEAff[i][j]);
+                        if (j!=nCol){
+                            buffer.append(";");
+                        }*/
+                        buffer.append(listE.get(i).getPrenom());
+                        buffer.append(";");
+                        buffer.append(listE.get(i).getNom());
+                        buffer.append(";");
+                        buffer.append(df.format(listE.get(i).getDate()));
+                        buffer.append(";");
+                        buffer.append(listE.get(i).getIdE());
+                        buffer.append(";");
+                        buffer.append(listE.get(i).getSuppr());
+                        buffer.append(";");
+                        
+                   
                 try {
                     writer.write(buffer.toString() + "\r\n");
                 } catch (IOException ex) {
@@ -287,11 +305,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
             }
         }   
        tablemodel = refreshTableModel();
-       for (int i = 0; i < tablemodel.getRowCount() ; i++)
-        {
-            if (table.getModel().getValueAt(i,3) == null)
-                tablemodel.removeRow(i);
-        }
        table.setModel(tablemodel);
        table.repaint();
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
@@ -342,7 +355,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
         CsvEmployeDAO csvE = new CsvEmployeDAO(fi);
         MenuPrincipal.listE = csvE.addEmploye(); 
-        tablemodel = rebuildFile();
+        tablemodel = refreshTableModel();
         table = new JTable(tablemodel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jPanelTable.setLayout(new BorderLayout());
@@ -360,6 +373,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
 			num=model.getMinSelectionIndex();
                         if(num != -1){
+                            
                             valueId = new String();
                             valueId = (String)table.getModel().getValueAt(num,3);
                         }
@@ -372,56 +386,36 @@ public class MenuPersonnel extends javax.swing.JFrame {
     //Avec la vérification des flag afin d'avoir un affichage correspondant
     public static DefaultTableModel refreshTableModel(){
         int j = 0;
-        tabEAff = new String[listE.size()][4]; 
+        tabEAff = new String[listE.size()][5]; 
         for (int i=0;i<listE.size();i++)
         {
             if(listE.get(i).getSuppr() == false){
                 
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 int ide;
-                String pnom, nom;
+                String pnom, nom, bool;
                 Date dt;
+                boolean b;
+                b= listE.get(i).getSuppr();
                 ide=listE.get(i).getIdE();
                 pnom=listE.get(i).getPrenom();
                 nom=listE.get(i).getNom();
                 dt=listE.get(i).getDate();
                 String id= Integer.toString(ide);
+                bool = String.valueOf(b);
                 tabEAff[i-j][0]=pnom;
                 tabEAff[i-j][1]=nom;
                 tabEAff[i-j][2]=df.format(dt);
                 tabEAff[i-j][3]= id;
+                tabEAff[i-j][4]=bool;
                 
-            } else j++;
+            }else j++;
         }
 
-        return new DefaultTableModel(tabEAff, title);
+        return new DefaultTableModel(tabEAff, titleHead);
     }
     
     
-    //Sans la vérification des flag afin d'avoir un fichier csv complet
-    public static DefaultTableModel rebuildFile(){
-        
-        tabEAff = new String[listE.size()][4]; 
-        for (int i=0;i<listE.size();i++)
-        {   
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            int ide;
-            String pnom, nom;
-            Date dt;
-            ide=listE.get(i).getIdE();
-            pnom=listE.get(i).getPrenom();
-            nom=listE.get(i).getNom();
-            dt=listE.get(i).getDate();
-            String id= Integer.toString(ide);
-            tabEAff[i][0]=pnom;
-            tabEAff[i][1]=nom;
-            tabEAff[i][2]=df.format(dt);
-            tabEAff[i][3]= id;
-           
-        }
-        return new DefaultTableModel(tabEAff, title);
-  
-    }
     /*
         public static String[] formaterExport() {
         String[] tab = new String[listE.size()+1];

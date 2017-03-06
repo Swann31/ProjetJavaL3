@@ -73,7 +73,7 @@ public class CsvEmployeDAO implements EmployeDAO {
 
             final Employe employe;
             employe = employeTab(data1);
-            listE.add(employe);
+            listE.add(employe);  
         }   
         return listE;
     }
@@ -94,7 +94,7 @@ public class CsvEmployeDAO implements EmployeDAO {
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
         try {
-           Employe e = new Employe(Integer.parseInt(tab[3]), tab[1], tab[0], sdf.parse(tab[2]));
+           Employe e = new Employe(Integer.parseInt(tab[3]), tab[1], tab[0], sdf.parse(tab[2]), Boolean.valueOf(tab[4]));
             return e;
         } catch (ParseException ex) {
             Logger.getLogger(CsvEmployeDAO.class.getName()).log(Level.SEVERE, null, ex);
