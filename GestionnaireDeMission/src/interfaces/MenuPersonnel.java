@@ -67,7 +67,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(766, 458));
+        setMinimumSize(new java.awt.Dimension(766, 550));
+        setPreferredSize(new java.awt.Dimension(763, 550));
 
         jBtnRetour.setText("Retour");
         jBtnRetour.setMaximumSize(new java.awt.Dimension(120, 36));
@@ -174,11 +175,11 @@ public class MenuPersonnel extends javax.swing.JFrame {
                         .addComponent(jButtonAjouterEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSupprimer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                        .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -204,7 +205,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
         {
             selectedFile = jc.getSelectedFile();
             try {
-               //PROBLEME ICI
                 initialiserTableau(selectedFile); 
                 
             } catch (IOException ex) {
@@ -252,23 +252,18 @@ public class MenuPersonnel extends javax.swing.JFrame {
             for (int i = 0 ; i < nRow ; i++){
                  StringBuffer buffer = new StringBuffer();
                 //for (int j = 0 ; j < nCol ; j++){
-                    //ICI 
-                        /*buffer.append(tabEAff[i][j]);
-                        if (j!=nCol){
-                            buffer.append(";");
-                        }*/
-                        buffer.append(listE.get(i).getPrenom());
-                        buffer.append(";");
-                        buffer.append(listE.get(i).getNom());
-                        buffer.append(";");
-                        buffer.append(df.format(listE.get(i).getDate()));
-                        buffer.append(";");
-                        buffer.append(listE.get(i).getIdE());
-                        buffer.append(";");
-                        buffer.append(listE.get(i).getSuppr());
-                        buffer.append(";");
-                        
-                   
+                  
+                buffer.append(listE.get(i).getPrenom());
+                buffer.append(";");
+                buffer.append(listE.get(i).getNom());
+                buffer.append(";");
+                buffer.append(df.format(listE.get(i).getDate()));
+                buffer.append(";");
+                buffer.append(listE.get(i).getIdE());
+                buffer.append(";");
+                buffer.append(listE.get(i).getSuppr());
+                buffer.append(";");
+                       
                 try {
                     writer.write(buffer.toString() + "\r\n");
                 } catch (IOException ex) {
@@ -359,26 +354,29 @@ public class MenuPersonnel extends javax.swing.JFrame {
         table = new JTable(tablemodel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jPanelTable.setLayout(new BorderLayout());
-        JScrollPane tableContainer = new JScrollPane(table);    
+        JScrollPane tableContainer = new JScrollPane(table);
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         public void valueChanged(ListSelectionEvent event) {
-            // do some actions here, for example
-            // print first column value from selected row
             //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
             if(!event.getValueIsAdjusting()) {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
 			num=model.getMinSelectionIndex();
+                        //JOptionPane.showMessageDialog(null,num);
                         if(num != -1){
-                            
                             valueId = new String();
                             valueId = (String)table.getModel().getValueAt(num,3);
+                            //JOptionPane.showMessageDialog(null,valueId);
+                            if(valueId == null){
+                                jButtonSupprimer.setVisible(false);
+                                JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
+                                
+                            }else jButtonSupprimer.setVisible(true);
                         }
             }
-            jButtonSupprimer.setVisible(true);
         }
     });
     }
@@ -415,25 +413,5 @@ public class MenuPersonnel extends javax.swing.JFrame {
         return new DefaultTableModel(tabEAff, titleHead);
     }
     
-    /*
-        public static String[] formaterExport() {
-        String[] tab = new String[listE.size()+1];
-        String titleExp = "Prenom;Nom;date entrée entreprise;identifiant";
-        tab[0]=titleExp;
-        for(int i=1;i<listE.size()+1;i++)
-        {
-            DateFormat df = new SimpleDateFormat("dd/MM/YYYY");
-            int ide;
-            String pnom, nom;
-            String date = df.format(listE.get(i-1).getDate());
-            pnom = listE.get(i-1).getPrenom();
-            nom = listE.get(i-1).getNom();
-            ide = listE.get(i-1).getIdE();
-            String id = Integer.toString(ide);
-            String val = pnom +";"+nom+";"+date+";"+id;
-            tab[i]=val;
-        }
-        return tab;
-    }*/
-
+   
 }
