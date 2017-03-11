@@ -10,6 +10,8 @@ import static interfaces.MenuPersonnel.refreshTableModel;
 import static interfaces.MenuPersonnel.table;
 import static interfaces.MenuPersonnel.tablemodel;
 import static interfaces.MenuPrincipal.listE;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -22,6 +24,7 @@ import org.jdatepicker.impl.UtilDateModel;
  */
 public class MenuAjoutEmploye extends javax.swing.JFrame {
     
+    private static JDatePickerImpl datePicker;
     /**
      * Creates new form MenuAjoutEmploye
      */
@@ -176,8 +179,10 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         // TODO add your handling code here:
-        int id = (int)jSpinnerId.getValue();
-        Employe nouvelEmp = new Employe(id, jTextFieldNom.getText(), jTextFieldPrenom.getText(), new Date());
+        int id = (int) jSpinnerId.getValue();
+        Date d = (Date) datePicker.getModel().getValue();
+        //DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Employe nouvelEmp = new Employe(id, jTextFieldNom.getText(), jTextFieldPrenom.getText(), d);
         System.out.println(nouvelEmp);
         listE.add(nouvelEmp);
         tablemodel = refreshTableModel();
@@ -250,7 +255,7 @@ private void implementerDatePicker() {
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
         // Don't know about the formatter, but there it is...
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(jLabelDate.getX() + 110,jLabelDate.getY() - 5,120,30);
         this.add(datePicker);
         this.revalidate();

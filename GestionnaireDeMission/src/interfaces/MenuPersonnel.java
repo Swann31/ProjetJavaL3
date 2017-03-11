@@ -49,6 +49,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jButtonSauvegarder.setVisible(false);
         jButtonSupprimer.setVisible(false);
         jButtonAjouterEmp.setVisible(false);
+        jButtonCharger.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -213,6 +214,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
             jPanelTable.setVisible(true);
             jButtonSauvegarder.setVisible(true);
             jButtonAjouterEmp.setVisible(true);
+            jButtonCharger.setVisible(false);
         }
     }//GEN-LAST:event_jButtonChargerActionPerformed
 
