@@ -84,7 +84,7 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
             }
         });
 
-        jSpinnerId.setModel(new javax.swing.SpinnerNumberModel());
+        jSpinnerId.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -244,22 +244,19 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 private void implementerDatePicker() {
-        //showMessageDialog(null, "My Goodness, this is so concise");
-        
+       
         UtilDateModel model = new UtilDateModel();
         model.setDate(20,04,2014);
-        // Need this...
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        // Don't know about the formatter, but there it is...
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(jLabelDate.getX() + 110,jLabelDate.getY() - 5,120,30);
         this.add(datePicker);
-        this.revalidate();
-        this.repaint();
+        //this.revalidate();
+        //this.repaint();
     }
 
 

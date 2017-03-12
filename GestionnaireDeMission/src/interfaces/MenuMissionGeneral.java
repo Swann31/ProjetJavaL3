@@ -5,7 +5,24 @@
  */
 package interfaces;
 
+import gestionnairedemission.CsvMissionDAO;
+import static interfaces.MenuPrincipal.listM;
 import java.awt.BorderLayout;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -20,13 +37,18 @@ import javax.swing.table.DefaultTableModel;
 public class MenuMissionGeneral extends javax.swing.JFrame {
 
     private static int num;
+    protected static String[] titleHead = {"IdM","Date"};
+    private static String[][] tabMAff;
+    protected static DefaultTableModel model;
+    private static File selectedFile;
+    protected static JTable table;
     /**
      * Creates new form MenuMissionGeneral
      */
     public MenuMissionGeneral() {
         initComponents();
-        initialiserTableau();
         jBtnDetailMission.setVisible(false);
+        jBtnNouvelleMission.setVisible(false);
     }
 
     /**
@@ -45,6 +67,8 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         jCbxTypeMission = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jBtnDetailMission = new javax.swing.JButton();
+        jBtnChargerMission = new javax.swing.JButton();
+        jBtnFichierMission = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -95,6 +119,20 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             }
         });
 
+        jBtnChargerMission.setText("Charger Mission");
+        jBtnChargerMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnChargerMissionActionPerformed(evt);
+            }
+        });
+
+        jBtnFichierMission.setText("Generer fichier mission");
+        jBtnFichierMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnFichierMissionActionPerformed(evt);
+            }
+        });
+
         jMenuPrincipal.setText("Application");
 
         jMenuPrincpalItem1.setText("Fermer");
@@ -117,28 +155,27 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCbxTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jBtnDetailMission, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCbxTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnFichierMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnDetailMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(jBtnChargerMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnFichierMission))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -152,7 +189,9 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                         .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnDetailMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnChargerMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
@@ -177,7 +216,6 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         MenuNouvelleMission mnm = new MenuNouvelleMission();
         mnm.setLocationRelativeTo(this);
         mnm.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jBtnNouvelleMissionActionPerformed
 
     private void jBtnDetailMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDetailMissionActionPerformed
@@ -185,8 +223,65 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         MenuDetailMission mdm = new MenuDetailMission(num);
         mdm.setLocationRelativeTo(this);
         mdm.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jBtnDetailMissionActionPerformed
+
+    private void jBtnChargerMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnChargerMissionActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jc = new JFileChooser();
+        int returnValue = jc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION)
+        {
+            selectedFile = jc.getSelectedFile();
+            initialiserTableau(selectedFile);
+            jPanelTable.setVisible(true);
+            jBtnChargerMission.setVisible(false);
+            jBtnNouvelleMission.setVisible(true);
+
+        }
+    }//GEN-LAST:event_jBtnChargerMissionActionPerformed
+
+    private void jBtnFichierMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFichierMissionActionPerformed
+        // TODO add your handling code here:
+        Writer writer = null;
+        int nRow = 1;
+        int nCol = 2;
+        try {
+            try {
+                try {
+                    String path = System.getProperty("user.home") + File.separator + "Documents";
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path,"new_liste_mission.csv")), "utf-8"));
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //write the header information
+            StringBuffer bufferHeader = new StringBuffer();
+            for (int j = 0; j < nCol; j++) {
+                bufferHeader.append(titleHead[j]);
+                if (j!=nCol){
+                    bufferHeader.append(";");
+                }
+            }
+            try {
+                writer.write(bufferHeader.toString() + "\r\n");
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            writer.write(System.getProperty( "line.separator" ));
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                showMessageDialog(null,"Fichier new_liste_mission créé dans 'Mes Documents'");
+    }//GEN-LAST:event_jBtnFichierMissionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +319,9 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnChargerMission;
     private javax.swing.JButton jBtnDetailMission;
+    private javax.swing.JButton jBtnFichierMission;
     private javax.swing.JButton jBtnNouvelleMission;
     private javax.swing.JButton jBtnRetour;
     private javax.swing.JComboBox<String> jCbxTypeMission;
@@ -236,19 +333,14 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
-    private void initialiserTableau() {
+    private void initialiserTableau(File fi) {
+        CsvMissionDAO csvM = new CsvMissionDAO(fi);
+        MenuPrincipal.listM = csvM.addMission(); 
+        
         jPanelTable.setLayout(new BorderLayout());
-        DefaultTableModel model = new DefaultTableModel(new Integer[][] {
-            { 1, 2 }, { 3, 4 } }, new String[] { "A", "B" }){
-                public boolean isCellEditable(int row, int column)
-                {
-                  return false;//aucune cellule editable
-                }
-            };
-        
-        JTable table = new JTable(model);
+        model = refreshTableModel();
+        table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         this.getContentPane().add(jPanelTable);
@@ -256,8 +348,6 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         this.setVisible(true);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         public void valueChanged(ListSelectionEvent event) {
-            // do some actions here, for example
-            // print first column value from selected row
             //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
             if(!event.getValueIsAdjusting()) {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
@@ -268,5 +358,77 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     });
     }
    
+    public static DefaultTableModel refreshTableModel(){
+        int j = 0;
+        tabMAff = new String[listM.size()][2]; 
+        for (int i=0;i<listM.size();i++)
+        {
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                int idm;
+                Date dt;
+                idm=listM.get(i).getIDM();
+                dt=listM.get(i).getDateDebut();
+                String id= Integer.toString(idm);
+                tabMAff[i][0]=id;
+                tabMAff[i][1]=df.format(dt);
+        }
+        return new DefaultTableModel(tabMAff, titleHead);
+    }
+    
+    public static void sauvegarderMissions(){
+        Writer writer = null;
+        int nRow = listM.size();
+        int nCol = 2;
+        try {
+            try {
+                try {
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile.getAbsolutePath()), "utf-8"));
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //write the header information
+            StringBuffer bufferHeader = new StringBuffer();
+            for (int j = 0; j < nCol; j++) {
+                bufferHeader.append(titleHead[j]);
+                if (j!=nCol){
+                    bufferHeader.append(";");
+                }
+            }
+            try {
+                writer.write(bufferHeader.toString() + "\r\n");
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            for (int i = 0 ; i < nRow ; i++){
+                 StringBuffer buffer = new StringBuffer();
+                //for (int j = 0 ; j < nCol ; j++){
+                  
+                buffer.append(listM.get(i).getIDM());
+                buffer.append(";");
+                buffer.append(df.format(listM.get(i).getDateDebut()));
+                buffer.append(";");
+                
+                try {
+                    writer.write(buffer.toString() + "\r\n");
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            writer.write(System.getProperty( "line.separator" ));
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
 }
