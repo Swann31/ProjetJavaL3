@@ -163,7 +163,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                         .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                        .addComponent(jButtonImptCompEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonImptCompEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAjouterEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,7 +475,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         {
             for(int j=0;j<listC.size();j++)
             {
-                if(tab[i]==listC.get(j).getIDC())
+                if(tab[i] == null ? listC.get(j).getIDC() == null : tab[i].equals(listC.get(j).getIDC()))
                 {
                    comp[list]=listC.get(j);
                    list++;    

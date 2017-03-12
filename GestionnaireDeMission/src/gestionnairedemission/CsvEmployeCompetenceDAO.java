@@ -1,5 +1,6 @@
 package gestionnairedemission;
 
+import static interfaces.MenuPrincipal.listC;
 import java.io.File;
 import java.util.List;
 
@@ -53,7 +54,8 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
     public String[] addCompetence(String str) {
         List<String[]> data;
         data = this.csvF.getData();
-        String[][] tabp = null;
+        //String[][] tabp = null;
+        String[][] tabp = new String[data.size()][listC.size()+1];
         String tab[] = null;
         int tour=0;
         for(String[] data1 : data)
@@ -74,7 +76,8 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
         public int nbLignes() {
         List<String[]> data;
         data = this.csvF.getData();
-        String[][] tabp = null;
+        //String[][] tabp = null;
+        String[][] tabp = new String[data.size()][listC.size()+1];
         int tour=0;
         for(String[] data1 : data)
         {
@@ -90,7 +93,8 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
     public String[][] tabEmpComp(){
         List<String[]> data;
         data = this.csvF.getData();
-        String[][] tabp = null;
+        //String[][] tabp = null;
+        String[][] tabp = new String[data.size()][listC.size()+1];
         int tour=0;
         for(String[] data1 : data)
         {
