@@ -34,7 +34,8 @@ public class MenuCompetence extends javax.swing.JFrame {
     protected static String valueID;
     protected static JTable table;
     protected static DefaultTableModel tablemodel;
-    protected static String[] title = {"Identifiant","Catégorie","Libelle"};
+    protected static String[] title = {"Identifiant","Catégorie","Libelle","suppr"};
+    protected static String[] title2 = {"Identifiant","Catégorie","Libelle"};
     private static String[][] tabCAff;
     /**
      * Creates new form MenuCompetence
@@ -42,6 +43,8 @@ public class MenuCompetence extends javax.swing.JFrame {
     public MenuCompetence() {
         initComponents();
         jButtonSauvegarder.setVisible(false);
+        jButtonSupprimer.setVisible(false);
+        jButtonAjouterComp.setVisible(false);
     }
 
     /**
@@ -212,6 +215,8 @@ public class MenuCompetence extends javax.swing.JFrame {
             }
             jPanelTable.setVisible(true);
             jButtonSauvegarder.setVisible(true);
+            jButtonSupprimer.setVisible(true);
+            jButtonAjouterComp.setVisible(true);
         }
         
     }//GEN-LAST:event_jButtonChargerActionPerformed
@@ -219,9 +224,8 @@ public class MenuCompetence extends javax.swing.JFrame {
     private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
         // TODO add your handling code here:
         Writer writer = null;
-        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        int nRow = dtm.getRowCount();
-        int nCol = dtm.getColumnCount();
+        int nRow = listC.size();
+        int nCol = 4;
         try {
             try {
                 try {
@@ -236,8 +240,10 @@ public class MenuCompetence extends javax.swing.JFrame {
             //write the header information
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
-                bufferHeader.append(dtm.getColumnName(j));
-                if (j!=nCol) bufferHeader.append(";");
+                bufferHeader.append(title[j]);
+                if (j!=nCol){
+                    bufferHeader.append(";");
+                }
             }
             try {
                 writer.write(bufferHeader.toString() + "\r\n");
@@ -247,17 +253,21 @@ public class MenuCompetence extends javax.swing.JFrame {
 
            //write row information
             for (int i = 0 ; i < nRow ; i++){
-                 StringBuffer buffer = new StringBuffer();
-                for (int j = 0 ; j < nCol ; j++){
-                    buffer.append(dtm.getValueAt(i,j));
-                    //if (j!=nCol) buffer.append(", ");
-                }
-                try {
-                    writer.write(buffer.toString() + "\r\n");
-                } catch (IOException ex) {
-                    Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            StringBuffer buffer = new StringBuffer();
+            buffer.append(listC.get(i).getIDC());
+            buffer.append(";");
+            buffer.append(listC.get(i).getCat());
+            buffer.append(";");
+            buffer.append(listC.get(i).getLib());
+            buffer.append(";");
+            buffer.append(listC.get(i).getSuppr());
+            buffer.append(";");
+            try {
+                writer.write(buffer.toString() + "\r\n");
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
         } finally {
             try {
                 writer.close();
@@ -269,37 +279,19 @@ public class MenuCompetence extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSauvegarderActionPerformed
 
     private void jButtonAjouterCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterCompActionPerformed
-            for (int j = 0; j < listC.size(); j++) {
-            String ide=listC.get(j).getIDC();
-            String value = valueID;
-            if(ide == null ? value == null : ide.equals(value) ){
-                listC.get(j).setSuppr(true);
-            }
-        }   
-       tablemodel = refreshTableModel();
-       for (int i = 0; i < tablemodel.getRowCount() ; i++)
-        {
-            if (table.getModel().getValueAt(i,3) == null)
-                tablemodel.removeRow(i);
-        }
-       table.setModel(tablemodel);
-       table.repaint();
+        MenuAjoutCompetence mac = new MenuAjoutCompetence();
+        mac.setLocationRelativeTo(this);
+        mac.setVisible(true);
     }//GEN-LAST:event_jButtonAjouterCompActionPerformed
 
     private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
-        for (int j = 0; j < listC.size(); j++) {
-            String ide=listC.get(j).getIDC();
-            String value = valueID;
-            if(ide == value ){
+       for (int j = 0; j < listC.size(); j++) {
+            String idc=listC.get(j).getIDC();
+            if(idc == valueID ){
                 listC.get(j).setSuppr(true);
             }
         }   
        tablemodel = refreshTableModel();
-       for (int i = 0; i < tablemodel.getRowCount() ; i++)
-        {
-            if (table.getModel().getValueAt(i,3) == null)
-                tablemodel.removeRow(i);
-        }
        table.setModel(tablemodel);
        table.repaint();
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
@@ -402,6 +394,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         this.pack();
         this.setVisible(true);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        @Override
         public void valueChanged(ListSelectionEvent event) {
             // do some actions here, for example
             // print first column value from selected row
@@ -413,8 +406,12 @@ public class MenuCompetence extends javax.swing.JFrame {
                             valueID = new String();
                             valueID = (String)table.getModel().getValueAt(num,0);
                         }
-            }
-            jButtonSupprimer.setVisible(true);
+                            if(valueID == null){
+                                jButtonSupprimer.setVisible(false);
+                                JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
+                                
+                            }else jButtonSupprimer.setVisible(true);
+                        }
         }
         });
     }
@@ -436,7 +433,7 @@ public class MenuCompetence extends javax.swing.JFrame {
             } else j++;
         }
 
-        return new DefaultTableModel(tabCAff, title);
+        return new DefaultTableModel(tabCAff, title2);
     }
         
         public static DefaultTableModel rebuildFile(){
@@ -452,6 +449,6 @@ public class MenuCompetence extends javax.swing.JFrame {
                 tabCAff[i][2]=libelle;
         }
 
-        return new DefaultTableModel(tabCAff, title);
+        return new DefaultTableModel(tabCAff, title2);
     }
 }

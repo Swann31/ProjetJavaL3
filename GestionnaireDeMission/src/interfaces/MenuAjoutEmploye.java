@@ -42,6 +42,8 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -57,6 +59,8 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
+        jScrollPane1.setViewportView(jTextPane1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nom :");
@@ -69,6 +73,18 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Saisissez les informations du nouvel employé :");
+
+        jTextFieldNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomActionPerformed(evt);
+            }
+        });
+
+        jTextFieldPrenom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPrenomActionPerformed(evt);
+            }
+        });
 
         jButtonOk.setText("Valider");
         jButtonOk.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +207,14 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
+    private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomActionPerformed
+
+    private void jTextFieldPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrenomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPrenomActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,9 +261,11 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerId;
     private javax.swing.JTextField jTextFieldNom;
     private javax.swing.JTextField jTextFieldPrenom;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 

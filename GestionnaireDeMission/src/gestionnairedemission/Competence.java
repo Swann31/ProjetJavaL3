@@ -59,6 +59,13 @@ public class Competence implements ICompetence{
         this.libelleComp=libC;
     }
     
+    public Competence (String id, String catC, String libC, boolean bool) {
+        this.idC=id;
+        this.categorieComp=catC;
+        this.libelleComp=libC;
+        this.suppr=bool;
+    }
+    
     /**
      * Getteur pour l'identifiant de la compétence.
      * @return L'identifiant de la compétence.
