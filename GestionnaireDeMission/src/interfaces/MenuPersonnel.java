@@ -1,6 +1,9 @@
 package interfaces;
 
+import gestionnairedemission.Competence;
+import gestionnairedemission.CsvEmployeCompetenceDAO;
 import gestionnairedemission.CsvEmployeDAO;
+import static interfaces.MenuPrincipal.listC;
 import static interfaces.MenuPrincipal.listE;
 import java.awt.BorderLayout;
 import java.io.BufferedWriter;
@@ -63,6 +66,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonAjouterEmp = new javax.swing.JButton();
         jButtonSupprimer = new javax.swing.JButton();
+        jButtonImptCompEmp = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
@@ -91,7 +95,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         );
         jPanelTableLayout.setVerticalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         jButtonCharger.setText("CHARGER FICHIER");
@@ -125,6 +129,13 @@ public class MenuPersonnel extends javax.swing.JFrame {
             }
         });
 
+        jButtonImptCompEmp.setText("IMPORTER COMPETENCE");
+        jButtonImptCompEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImptCompEmpActionPerformed(evt);
+            }
+        });
+
         jMenuPrincipal.setText("Application");
 
         jMenuPrincpalItem1.setText("Fermer");
@@ -148,15 +159,16 @@ public class MenuPersonnel extends javax.swing.JFrame {
                 .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addComponent(jButtonCharger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                        .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                        .addComponent(jButtonImptCompEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAjouterEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jButtonAjouterEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSupprimer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -166,16 +178,18 @@ public class MenuPersonnel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSauvegarder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonImptCompEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addComponent(jButtonAjouterEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSupprimer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -305,6 +319,22 @@ public class MenuPersonnel extends javax.swing.JFrame {
        table.repaint();
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
+    private void jButtonImptCompEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImptCompEmpActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jc = new JFileChooser();
+        int returnValue = jc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) 
+        {
+            selectedFile = jc.getSelectedFile();
+            try {
+                ajoutCompetenceEmploye(selectedFile); 
+                
+            } catch (IOException ex) {
+                Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonImptCompEmpActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -339,6 +369,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private javax.swing.JButton jBtnRetour;
     private javax.swing.JButton jButtonAjouterEmp;
     private javax.swing.JButton jButtonCharger;
+    private javax.swing.JButton jButtonImptCompEmp;
     private javax.swing.JButton jButtonSauvegarder;
     private javax.swing.JButton jButtonSupprimer;
     private javax.swing.JLabel jLabel1;
@@ -414,5 +445,44 @@ public class MenuPersonnel extends javax.swing.JFrame {
         return new DefaultTableModel(tabEAff, titleHead);
     }
     
-   
+    private void ajoutCompetenceEmploye(File fi) throws FileNotFoundException, IOException
+    {
+        CsvEmployeCompetenceDAO csvEC = new CsvEmployeCompetenceDAO(fi);
+        Competence[] comp = null;
+        String[][] tabEC = csvEC.tabEmpComp();
+        String[] tabComp = null;
+        for (int i=0;i<csvEC.nbLignes();i++)
+        {
+            for(int j=0;j<listE.size();j++)
+            {
+                String idEmp = Integer.toString(listE.get(j).getIdE());
+                if (idEmp == null ? tabEC[i][0] == null : idEmp.equals(tabEC[i][0]))
+                {
+                    tabComp=csvEC.addCompetence(idEmp);
+                    comp=transformComp(tabComp);
+                    listE.get(j).setCompetence(comp);
+                } else {
+                }
+            }
+        }
+    }
+    
+    private Competence[] transformComp(String[] tab)
+    {
+        Competence[] comp = null;
+        int list=0;
+        for(int i=1;i<tab.length;i++)
+        {
+            for(int j=0;j<listC.size();j++)
+            {
+                if(tab[i]==listC.get(j).getIDC())
+                {
+                   comp[list]=listC.get(j);
+                   list++;    
+                }
+            }
+        }
+        return comp;
+    }
+
 }

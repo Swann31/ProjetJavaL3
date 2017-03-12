@@ -50,19 +50,56 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
      * @see CsvEmployeCompetenceDAO#csvF
      */
     @Override
-    public String[][] addCompetence() {
+    public String[] addCompetence(String str) {
         List<String[]> data;
         data = this.csvF.getData();
-        String[][] tab = null;
+        String[][] tabp = null;
+        String tab[] = null;
         int tour=0;
         for(String[] data1 : data)
         {
             for(int i=0;i<data1.length;i++)
             {
-                tab[tour][i]=data1[i];
+                tabp[tour][i]=data1[i];
+                if(tabp[tour][0]==str && i!=0)
+                {
+                    tab[i]=data1[i];
+                }
             }
             tour++;
         }
         return tab;
+    }
+    
+        public int nbLignes() {
+        List<String[]> data;
+        data = this.csvF.getData();
+        String[][] tabp = null;
+        int tour=0;
+        for(String[] data1 : data)
+        {
+            for(int i=0;i<data1.length;i++)
+            {
+                tabp[tour][i]=data1[i];
+            }
+            tour++;
+        }
+        return tour;
+    }
+        
+    public String[][] tabEmpComp(){
+        List<String[]> data;
+        data = this.csvF.getData();
+        String[][] tabp = null;
+        int tour=0;
+        for(String[] data1 : data)
+        {
+            for(int i=0;i<data1.length;i++)
+            {
+                tabp[tour][i]=data1[i];
+            }
+            tour++;
+        }
+        return tabp;
     }
 }

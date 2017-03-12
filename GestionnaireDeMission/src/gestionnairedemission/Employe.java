@@ -173,7 +173,7 @@ public class Employe extends Personne implements IEmploye {
      * @see Employe#comp
      * @see Competence
      */
-    protected void setCompetence(Competence [] C)
+    public void setCompetence(Competence [] C)
     {
         this.comp=C;
     }

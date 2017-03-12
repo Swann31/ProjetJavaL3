@@ -10,7 +10,9 @@ public interface EmployeCompetenceDAO {
     
     /**
      * Conversion des données reçues au sein du fichier en un tableau comprenant l'ensemble des données à traiter.
+     * @param s
+     *      id de la personne
      * @return La liste des IdEmployés liée à la liste des IDCompetences.
      */
-    String[][] addCompetence();
+    String[] addCompetence(String s);
 }
