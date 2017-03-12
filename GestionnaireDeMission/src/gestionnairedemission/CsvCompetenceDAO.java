@@ -60,6 +60,10 @@ public class CsvCompetenceDAO implements CompetenceDAO{
         data = this.csvF.getData();
         final List<String[]> dataWT = data;
         dataWT.remove(0);
+        if (dataWT.size()>data.size()-1)
+        {
+            dataWT.subList(data.size()-1,dataWT.size()).clear();
+        }
         for(String[] data1 : dataWT)
         {
             final Competence competence;
@@ -81,10 +85,7 @@ public class CsvCompetenceDAO implements CompetenceDAO{
      */
     private Competence competenceTab(String[] tab)
     {
-        Competence c = new Competence();
-        c.setIDC(tab[0]);
-        c.setCat(tab[1]);
-        c.setLib(tab[2]);
+        Competence c = new Competence(tab[0],tab[1],tab[2],Boolean.valueOf(tab[3]));
         return c;
     } 
 }
