@@ -2,6 +2,7 @@ package gestionnairedemission;
 
 import static interfaces.MenuPrincipal.listC;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,26 +52,19 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
      * @see CsvEmployeCompetenceDAO#csvF
      */
     @Override
-    public String[] addCompetence(String str) {
+    public ArrayList<String[]> addCompetence() {
         List<String[]> data;
         data = this.csvF.getData();
-        //String[][] tabp = null;
-        String[][] tabp = new String[data.size()][listC.size()+1];
-        String tab[] = null;
-        int tour=0;
+        ArrayList<String[]> listD= new ArrayList<String[]>(data.size());
         for(String[] data1 : data)
         {
             for(int i=0;i<data1.length;i++)
             {
-                tabp[tour][i]=data1[i];
-                if(tabp[tour][0]==str && i!=0)
-                {
-                    tab[i]=data1[i];
-                }
+                String[][] tab = new String[1][data1.length];
+                listD.add(data1);
             }
-            tour++;
         }
-        return tab;
+        return listD;
     }
     
         public int nbLignes() {
@@ -88,22 +82,5 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
             tour++;
         }
         return tour;
-    }
-        
-    public String[][] tabEmpComp(){
-        List<String[]> data;
-        data = this.csvF.getData();
-        //String[][] tabp = null;
-        String[][] tabp = new String[data.size()][listC.size()+1];
-        int tour=0;
-        for(String[] data1 : data)
-        {
-            for(int i=0;i<data1.length;i++)
-            {
-                tabp[tour][i]=data1[i];
-            }
-            tour++;
-        }
-        return tabp;
     }
 }

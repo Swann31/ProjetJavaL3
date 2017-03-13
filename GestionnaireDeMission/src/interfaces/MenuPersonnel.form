@@ -52,19 +52,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelTable" min="-2" pref="505" max="-2" attributes="0"/>
               <EmptySpace pref="62" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jBtnRetour" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="jButtonCharger" alignment="1" pref="189" max="32767" attributes="0"/>
-                      <Component id="jButtonSauvegarder" alignment="1" pref="189" max="32767" attributes="0"/>
-                      <Component id="jButtonImptCompEmp" alignment="1" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jBtnRetour" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="jButtonCharger" alignment="1" pref="189" max="32767" attributes="0"/>
+                  <Component id="jButtonSauvegarder" alignment="1" pref="189" max="32767" attributes="0"/>
+                  <Component id="jButtonImptCompEmp" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonAjouterEmp" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                           <Component id="jButtonSupprimer" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
+                          <Component id="jButtonDetailsMission" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
+                          <Component id="jButtonDetailsComp" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -90,6 +90,10 @@
                       <Component id="jButtonAjouterEmp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonSupprimer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="jButtonDetailsMission" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonDetailsComp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jBtnRetour" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
@@ -189,6 +193,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonImptCompEmpActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDetailsMission">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Missions"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDetailsComp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Comp&#xe9;tences"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
