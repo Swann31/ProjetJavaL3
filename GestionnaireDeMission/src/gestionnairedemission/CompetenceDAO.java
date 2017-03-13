@@ -1,5 +1,6 @@
 package gestionnairedemission;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ public interface CompetenceDAO {
      * @return La liste des compétences ajoutés en omettant le titre au sein du fichier CSV.
      * @see Competence
      */
-    List<Competence> addCompetence();
+    ArrayList<Competence> addCompetence();
 }
