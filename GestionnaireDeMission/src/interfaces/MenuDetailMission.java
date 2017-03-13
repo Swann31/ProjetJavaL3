@@ -219,9 +219,6 @@ public class MenuDetailMission extends javax.swing.JFrame {
 
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
         // TODO add your handling code here:
-        MenuMissionGeneral mmg = new MenuMissionGeneral();
-        mmg.setLocationRelativeTo(this);
-        mmg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
 

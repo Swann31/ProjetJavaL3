@@ -135,7 +135,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
             }
         });
 
-        jButtonImptCompEmp.setText("IMPORTER COMPETENCE");
+        jButtonImptCompEmp.setText("IMPORTER COMPETENCES");
         jButtonImptCompEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonImptCompEmpActionPerformed(evt);
