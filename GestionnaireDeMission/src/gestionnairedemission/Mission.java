@@ -8,7 +8,7 @@ import java.util.Date;
  * @author Swann LAZAR, Maxence DESLANDES
  * @version 1.0
  */
-public class Mission {
+public class Mission extends MissionAbs {
     
     /**
      * Identifiant de la mission.
@@ -27,6 +27,8 @@ public class Mission {
     /**
      * Constructeur par défaut de la classe Mission.
      */
+    private int idMission = 1;
+    
     public Mission(){
     }
     

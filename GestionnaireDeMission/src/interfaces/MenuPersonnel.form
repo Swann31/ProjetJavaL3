@@ -25,7 +25,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[766, 550]"/>
+      <Dimension value="[776, 649]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -50,30 +50,31 @@
       <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanelTable" min="-2" pref="505" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanelTable" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jButtonSauvegarder" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonAjouterEmp" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                           <Component id="jButtonSupprimer" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
+                          <Component id="jButtonDetailsMission" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
+                          <Component id="jButtonDetailsComp" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButtonImptCompEmp" alignment="1" pref="178" max="32767" attributes="0"/>
-                          <Component id="jButtonSauvegarder" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jBtnRetour" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="jButtonCharger" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jButtonImptCompEmp" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonCharger" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <Component id="jLabel1" min="-2" pref="433" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jBtnRetour" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,7 +83,7 @@
           <Group type="102" attributes="0">
               <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jButtonCharger" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -93,15 +94,16 @@
                       <Component id="jButtonAjouterEmp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonSupprimer" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jBtnRetour" min="-2" pref="36" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="jPanelTable" pref="457" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="jButtonDetailsMission" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonDetailsComp" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jPanelTable" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <Component id="jBtnRetour" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,19 +130,19 @@
     <Container class="javax.swing.JPanel" name="jPanelTable">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[608, 449]"/>
+          <Dimension value="[564, 509]"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="505" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="564" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="457" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="509" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -192,6 +194,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonImptCompEmpActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDetailsMission">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Missions"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDetailsComp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Comp&#xe9;tences"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
