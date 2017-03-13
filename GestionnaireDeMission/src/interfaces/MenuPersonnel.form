@@ -51,20 +51,23 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelTable" min="-2" pref="505" max="-2" attributes="0"/>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jBtnRetour" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="jButtonCharger" alignment="1" pref="189" max="32767" attributes="0"/>
-                      <Component id="jButtonSauvegarder" alignment="1" pref="189" max="32767" attributes="0"/>
-                      <Component id="jButtonImptCompEmp" alignment="1" min="-2" pref="167" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonAjouterEmp" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                           <Component id="jButtonSupprimer" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonImptCompEmp" alignment="1" pref="178" max="32767" attributes="0"/>
+                          <Component id="jButtonSauvegarder" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jBtnRetour" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jButtonCharger" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>

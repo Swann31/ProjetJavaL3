@@ -90,7 +90,7 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
     public String[][] tabEmpComp(){
         List<String[]> data;
         data = this.csvF.getData();
-        String[][] tabp = null;
+        String[][] tabp = new String[data.size()][8];
         int tour=0;
         for(String[] data1 : data)
         {

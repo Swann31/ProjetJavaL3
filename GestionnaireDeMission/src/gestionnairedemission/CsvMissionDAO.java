@@ -49,7 +49,7 @@ public class CsvMissionDAO {
     
     private Mission missionTab(String[] tab)
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
            Mission m = new Mission(Integer.parseInt(tab[0]), sdf.parse(tab[1]));
             return m;
