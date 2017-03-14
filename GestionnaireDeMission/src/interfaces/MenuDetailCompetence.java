@@ -5,7 +5,13 @@
  */
 package interfaces;
 
+import gestionnairedemission.Competence;
+import gestionnairedemission.Employe;
+import static interfaces.MenuPrincipal.listE;
 import java.awt.BorderLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +27,7 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      */
     public MenuDetailCompetence(int idEmp) {
         initComponents();
+        afficherInfo(idEmp);
         chargerCompetence(idEmp);
     }
 
@@ -38,20 +45,64 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButtonRetour = new javax.swing.JButton();
+        jLabelCompetences = new javax.swing.JLabel();
+        jPanelCompetences = new javax.swing.JPanel();
+        jTextFieldDateD = new javax.swing.JTextField();
+        jTextFieldNom = new javax.swing.JTextField();
+        jTextFieldPrenom = new javax.swing.JTextField();
+        jTextFieldIDE = new javax.swing.JTextField();
         jLabelTitle = new javax.swing.JLabel();
         jLabelIDE = new javax.swing.JLabel();
         jLabelPrenom = new javax.swing.JLabel();
         jLabelNom = new javax.swing.JLabel();
         jLabelDateD = new javax.swing.JLabel();
-        jButtonRetour = new javax.swing.JButton();
-        jTextFieldDateD = new javax.swing.JTextField();
-        jTextFieldNom = new javax.swing.JTextField();
-        jTextFieldPrenom = new javax.swing.JTextField();
-        jTextFieldIDE = new javax.swing.JTextField();
-        jLabelCompetences = new javax.swing.JLabel();
-        jPanelCompetences = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonRetour.setText("Retour");
+        jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetourActionPerformed(evt);
+            }
+        });
+
+        jLabelCompetences.setText("Compétences");
+
+        javax.swing.GroupLayout jPanelCompetencesLayout = new javax.swing.GroupLayout(jPanelCompetences);
+        jPanelCompetences.setLayout(jPanelCompetencesLayout);
+        jPanelCompetencesLayout.setHorizontalGroup(
+            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 726, Short.MAX_VALUE)
+        );
+        jPanelCompetencesLayout.setVerticalGroup(
+            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 297, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelCompetences)
+                        .addComponent(jPanelCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelCompetences)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         jLabelTitle.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabelTitle.setText("Détail des compétences");
@@ -64,107 +115,64 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
 
         jLabelDateD.setText("Date d'entrée");
 
-        jButtonRetour.setText("Retour");
-
-        jLabelCompetences.setText("Compétences");
-
-        javax.swing.GroupLayout jPanelCompetencesLayout = new javax.swing.GroupLayout(jPanelCompetences);
-        jPanelCompetences.setLayout(jPanelCompetencesLayout);
-        jPanelCompetencesLayout.setHorizontalGroup(
-            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
-        );
-        jPanelCompetencesLayout.setVerticalGroup(
-            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDateD)
-                            .addComponent(jLabelNom)
-                            .addComponent(jLabelPrenom)
-                            .addComponent(jLabelIDE))
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldPrenom)
-                            .addComponent(jTextFieldNom)
-                            .addComponent(jTextFieldDateD)
-                            .addComponent(jTextFieldIDE, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                        .addGap(188, 188, 188)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCompetences)
-                            .addComponent(jPanelCompetences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitle)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitle)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelIDE)
-                            .addComponent(jTextFieldIDE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCompetences))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPrenom)
-                            .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNom)
-                            .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelDateD)
-                            .addComponent(jTextFieldDateD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanelCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitle)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelIDE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldIDE, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelPrenom)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelNom)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelDateD)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldDateD, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 25, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jLabelTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelIDE)
+                    .addComponent(jTextFieldIDE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPrenom)
+                    .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNom)
+                    .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDateD)
+                    .addComponent(jTextFieldDateD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRetourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,9 +226,11 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void chargerCompetence(int idEmp) {
-        
-        
-        DefaultTableModel dtm = new DefaultTableModel();
+        int taille = tailleTab(idEmp);
+        String[][] tabComp = new String[taille][3];
+        tabComp=tabCompetence(taille,idEmp);
+        String[] titleC = {"Identifiant","Catégorie","Libelle"};
+        DefaultTableModel dtm = new DefaultTableModel(tabComp,titleC);
         JTable table = new JTable(dtm);
         jPanelCompetences.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);
@@ -229,4 +239,64 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
         this.pack();
         this.setVisible(true);
      }
+    
+    private int tailleTab(int idEmp){
+        int taille = 0;
+        for(int i=0;i<listE.size();i++)
+        {
+            if(listE.get(i).getIdE()==idEmp)
+            {
+                taille=listE.get(i).getCompetence().length;
+            }
+        }
+        return taille;
+    }
+    
+    private String[][] tabCompetence (int taille, int idEmp){
+        Competence[] comp = new Competence[taille];
+        String[][] tabComp = new String[taille][3];
+        for(int i=0;i<listE.size();i++)
+        {
+            if(listE.get(i).getIdE()==idEmp)
+            {
+                comp =listE.get(i).getCompetence();
+                for(int j=0;j<taille;j++)
+                {
+                    tabComp[j][0]=comp[j].getIDC();
+                    tabComp[j][1]=comp[j].getCat();
+                    tabComp[j][2]=comp[j].getLib();
+                }
+            }
+        }
+        return tabComp;
+    }
+    
+    private Employe obtEmp(int idEmp)
+    {
+        Employe e = new Employe();
+        for(int i=0;i<listE.size();i++)
+        {
+            if(listE.get(i).getIdE()==idEmp)
+            {
+                e=listE.get(i);
+            }
+        }
+        return e;   
+    }
+    
+    private void afficherInfo(int idEmp)
+    {
+        Employe e = new Employe();
+        e=obtEmp(idEmp);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date dt = e.getDate();
+        String ide = Integer.toString(e.getIdE());
+        String pnom = e.getPrenom();
+        String nom = e.getNom();
+        String dd = df.format(dt);    
+        jTextFieldIDE.setText(ide);
+        jTextFieldPrenom.setText(pnom);
+        jTextFieldNom.setText(nom);
+        jTextFieldDateD.setText(dd);
+    }
 }
