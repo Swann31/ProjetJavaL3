@@ -145,6 +145,11 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jButtonDetailsMission.setText("Missions");
 
         jButtonDetailsComp.setText("Compétences");
+        jButtonDetailsComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDetailsCompActionPerformed(evt);
+            }
+        });
 
         jMenuPrincipal.setText("Application");
 
@@ -351,6 +356,13 @@ public class MenuPersonnel extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonImptCompEmpActionPerformed
+
+    private void jButtonDetailsCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsCompActionPerformed
+        // TODO add your handling code here:
+        MenuDetailCompetence mdc = new MenuDetailCompetence(num);
+        mdc.setLocationRelativeTo(this);
+        mdc.setVisible(true);
+    }//GEN-LAST:event_jButtonDetailsCompActionPerformed
 
     public static void main(String args[]) {
 
