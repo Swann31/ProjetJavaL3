@@ -24,6 +24,8 @@ public class Mission extends MissionAbs {
      */
     private Date dateDebut;
     
+    private String descriptif;
+    
     /**
      * Constructeur par défaut de la classe Mission.
      */
@@ -45,6 +47,13 @@ public class Mission extends MissionAbs {
     {
         this.idM=id;
         this.dateDebut=dd;
+    }
+    
+     public Mission(int id, Date dd, String lib)
+    {
+        this.idM=id;
+        this.dateDebut=dd;
+        this.descriptif = lib;
     }
     
     /**
@@ -87,5 +96,13 @@ public class Mission extends MissionAbs {
     public Date getDateDebut()
     {
         return this.dateDebut;
+    }
+    
+    public String getDescriptif(){
+        return this.descriptif;
+    }
+    
+    public void setDescriptif(String lib){
+        this.descriptif = lib;
     }
 }

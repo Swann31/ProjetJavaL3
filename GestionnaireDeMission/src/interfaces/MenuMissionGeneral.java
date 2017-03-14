@@ -37,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
 public class MenuMissionGeneral extends javax.swing.JFrame {
 
     private static int num;
-    protected static String[] titleHead = {"IdM","Date"};
+    protected static String[] titleHead = {"IdM","Date","Descriptif"};
     private static String[][] tabMAff;
     protected static DefaultTableModel model;
     private static File selectedFile;
@@ -49,6 +49,8 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         initComponents();
         jBtnDetailMission.setVisible(false);
         jBtnNouvelleMission.setVisible(false);
+        jCbxTypeMission.setVisible(false);
+        jLabel2.setVisible(false);
     }
 
     /**
@@ -235,6 +237,8 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             jPanelTable.setVisible(true);
             jBtnChargerMission.setVisible(false);
             jBtnNouvelleMission.setVisible(true);
+            jCbxTypeMission.setVisible(true);
+            jLabel2.setVisible(true);
 
         }
     }//GEN-LAST:event_jBtnChargerMissionActionPerformed
@@ -243,7 +247,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         // TODO add your handling code here:
         Writer writer = null;
         int nRow = 1;
-        int nCol = 2;
+        int nCol = 3;
         try {
             try {
                 try {
@@ -359,17 +363,20 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
    
     public static DefaultTableModel refreshTableModel(){
         int j = 0;
-        tabMAff = new String[listM.size()][2]; 
+        tabMAff = new String[listM.size()][3]; 
         for (int i=0;i<listM.size();i++)
         {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 int idm;
                 Date dt;
+                String libelle;
                 idm=listM.get(i).getIDM();
                 dt=listM.get(i).getDateDebut();
+                libelle= listM.get(i).getDescriptif();
                 String id= Integer.toString(idm);
                 tabMAff[i][0]=id;
                 tabMAff[i][1]=df.format(dt);
+                tabMAff[i][2]=libelle;
         }
         return new DefaultTableModel(tabMAff, titleHead);
     }
@@ -377,7 +384,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     public static void sauvegarderMissions(){
         Writer writer = null;
         int nRow = listM.size();
-        int nCol = 2;
+        int nCol = 3;
         try {
             try {
                 try {
@@ -410,6 +417,8 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 buffer.append(listM.get(i).getIDM());
                 buffer.append(";");
                 buffer.append(df.format(listM.get(i).getDateDebut()));
+                buffer.append(";");
+                buffer.append(listM.get(i).getDescriptif());
                 buffer.append(";");
                 
                 try {

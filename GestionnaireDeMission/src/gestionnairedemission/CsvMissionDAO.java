@@ -51,7 +51,7 @@ public class CsvMissionDAO {
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
-           Mission m = new Mission(Integer.parseInt(tab[0]), sdf.parse(tab[1]));
+           Mission m = new Mission(Integer.parseInt(tab[0]), sdf.parse(tab[1]), tab[2]);
             return m;
         } catch (ParseException ex) {
             Logger.getLogger(CsvMissionDAO.class.getName()).log(Level.SEVERE, null, ex);
