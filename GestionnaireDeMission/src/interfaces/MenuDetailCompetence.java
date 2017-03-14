@@ -44,10 +44,6 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButtonRetour = new javax.swing.JButton();
-        jLabelCompetences = new javax.swing.JLabel();
-        jPanelCompetences = new javax.swing.JPanel();
         jTextFieldDateD = new javax.swing.JTextField();
         jTextFieldNom = new javax.swing.JTextField();
         jTextFieldPrenom = new javax.swing.JTextField();
@@ -57,52 +53,21 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
         jLabelPrenom = new javax.swing.JLabel();
         jLabelNom = new javax.swing.JLabel();
         jLabelDateD = new javax.swing.JLabel();
+        jPanelCompetences = new javax.swing.JPanel();
+        jLabelCompetences = new javax.swing.JLabel();
+        jBtnRetour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(880, 499));
+        setSize(new java.awt.Dimension(880, 499));
 
-        jButtonRetour.setText("Retour");
-        jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRetourActionPerformed(evt);
-            }
-        });
+        jTextFieldDateD.setEnabled(false);
 
-        jLabelCompetences.setText("Compétences");
+        jTextFieldNom.setEnabled(false);
 
-        javax.swing.GroupLayout jPanelCompetencesLayout = new javax.swing.GroupLayout(jPanelCompetences);
-        jPanelCompetences.setLayout(jPanelCompetencesLayout);
-        jPanelCompetencesLayout.setHorizontalGroup(
-            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 726, Short.MAX_VALUE)
-        );
-        jPanelCompetencesLayout.setVerticalGroup(
-            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 297, Short.MAX_VALUE)
-        );
+        jTextFieldPrenom.setEnabled(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelCompetences)
-                        .addComponent(jPanelCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelCompetences)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jTextFieldIDE.setEnabled(false);
 
         jLabelTitle.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabelTitle.setText("Détail des compétences");
@@ -115,42 +80,66 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
 
         jLabelDateD.setText("Date d'entrée");
 
+        javax.swing.GroupLayout jPanelCompetencesLayout = new javax.swing.GroupLayout(jPanelCompetences);
+        jPanelCompetences.setLayout(jPanelCompetencesLayout);
+        jPanelCompetencesLayout.setHorizontalGroup(
+            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 726, Short.MAX_VALUE)
+        );
+        jPanelCompetencesLayout.setVerticalGroup(
+            jPanelCompetencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 344, Short.MAX_VALUE)
+        );
+
+        jLabelCompetences.setText("Compétences");
+
+        jBtnRetour.setText("Retour");
+        jBtnRetour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRetourActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTitle)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitle)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelIDE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldIDE, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelPrenom)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelNom)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelDateD)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldDateD, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 25, Short.MAX_VALUE))))
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabelIDE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelCompetences)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldIDE, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelPrenom)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNom)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelDateD)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldDateD, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelCompetences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(136, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
                 .addComponent(jLabelTitle)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIDE)
@@ -162,17 +151,20 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
                     .addComponent(jLabelDateD)
                     .addComponent(jTextFieldDateD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabelCompetences)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCompetences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
+    private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButtonRetourActionPerformed
+    }//GEN-LAST:event_jBtnRetourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,14 +202,13 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonRetour;
+    private javax.swing.JButton jBtnRetour;
     private javax.swing.JLabel jLabelCompetences;
     private javax.swing.JLabel jLabelDateD;
     private javax.swing.JLabel jLabelIDE;
     private javax.swing.JLabel jLabelNom;
     private javax.swing.JLabel jLabelPrenom;
     private javax.swing.JLabel jLabelTitle;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCompetences;
     private javax.swing.JTextField jTextFieldDateD;
     private javax.swing.JTextField jTextFieldIDE;
