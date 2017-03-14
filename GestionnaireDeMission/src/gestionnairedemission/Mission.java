@@ -1,14 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package gestionnairedemission;
 
 import java.util.Date;
 
 /**
- * <b> Classe Mission </b>
- * <p> Cette classe sert à définir une mission dans l'application. </p>
- * @author Swann LAZAR, Maxence DESLANDES
- * @version 1.0
+ *
+ * @author Maxence
  */
-public class Mission extends MissionAbs {
+public abstract class Mission {
     
     /**
      * Identifiant de la mission.
@@ -34,16 +37,7 @@ public class Mission extends MissionAbs {
     public Mission(){
     }
     
-    /**
-     * Constructeur de la classe Mission.
-     * @param id
-     *      Identifiant de la mission.
-     * @param dd
-     *      Date de début de la mission.
-     * @see Mission#idM
-     * @see Mission#dateDebut
-     */
-    public Mission(int id, Date dd)
+    public Mission(int id, String desc, Date date)
     {
         this.idM=id;
         this.dateDebut=dd;
@@ -56,46 +50,12 @@ public class Mission extends MissionAbs {
         this.descriptif = lib;
     }
     
-    /**
-     * Setteur pour l'identifiant de la mission.
-     * @param id 
-     *      Identifiant de la mission
-     * @see Mission#idM
-     */
-    public void setIDM(int id)
+    public Mission(int id, String desc, Date date, String type)
     {
         this.idM=id;
-    }
-    
-    /**
-     * Setteur pour la date de début de la mission.
-     * @param d 
-     *      Date de début de la mission.
-     * @see Mission#dateDebut
-     */
-    public void setDateDebut(Date d)
-    {
-        this.dateDebut=d;
-    }
-    
-    /**
-     * Getteur pour l'identifiant de la mission.
-     * @return L'identifiant de la mission.
-     * @see Mission#idM
-     */
-    public int getIDM()
-    {
-        return this.idM;
-    }
-
-    /**
-     * Getteur pour la date de début de mission.
-     * @return La date du début de la mission.
-     * @see Mission#dateDebut
-     */
-    public Date getDateDebut()
-    {
-        return this.dateDebut;
+        this.descM=desc;
+        this.dateDebut=date;
+        this.typeMission=type;
     }
     
     public String getDescriptif(){
