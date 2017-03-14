@@ -37,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
 public class MenuMissionGeneral extends javax.swing.JFrame {
 
     private static int num;
-    protected static String[] titleHead = {"IdM","Date","Descriptif"};
+    protected static String[] titleHead = {"IdM","Descriptif","Date","Nb Employes", "Compétences"};
     private static String[][] tabMAff;
     protected static DefaultTableModel model;
     private static File selectedFile;
@@ -156,20 +156,19 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCbxTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBtnFichierMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnDetailMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addComponent(jBtnChargerMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jBtnFichierMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnDetailMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(jBtnChargerMission, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jCbxTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -178,22 +177,21 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnFichierMission))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCbxTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnNouvelleMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnDetailMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnChargerMission, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
-                        .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCbxTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -247,7 +245,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         // TODO add your handling code here:
         Writer writer = null;
         int nRow = 1;
-        int nCol = 3;
+        int nCol = 5;
         try {
             try {
                 try {
@@ -363,20 +361,25 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
    
     public static DefaultTableModel refreshTableModel(){
         int j = 0;
-        tabMAff = new String[listM.size()][3]; 
+        tabMAff = new String[listM.size()][5]; 
         for (int i=0;i<listM.size();i++)
         {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                int idm;
+                int idm, nbE;
                 Date dt;
                 String libelle;
-                idm=listM.get(i).getIDM();
+                idm=listM.get(i).getIdM();
                 dt=listM.get(i).getDateDebut();
-                libelle= listM.get(i).getDescriptif();
+                libelle= listM.get(i).getDescM();
+                nbE = listM.get(i).getNbEmployes();
                 String id= Integer.toString(idm);
+                String nb = Integer.toString(nbE);
                 tabMAff[i][0]=id;
-                tabMAff[i][1]=df.format(dt);
-                tabMAff[i][2]=libelle;
+                tabMAff[i][1]=libelle;
+                tabMAff[i][2]=df.format(dt);
+                tabMAff[i][3]=nb;
+                tabMAff[i][4]="";
+                
         }
         return new DefaultTableModel(tabMAff, titleHead);
     }
@@ -384,7 +387,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     public static void sauvegarderMissions(){
         Writer writer = null;
         int nRow = listM.size();
-        int nCol = 3;
+        int nCol = 5;
         try {
             try {
                 try {
@@ -414,12 +417,17 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                  StringBuffer buffer = new StringBuffer();
                 //for (int j = 0 ; j < nCol ; j++){
                   
-                buffer.append(listM.get(i).getIDM());
+                buffer.append(listM.get(i).getIdM());
+                buffer.append(";");
+                buffer.append(listM.get(i).getDescM());
                 buffer.append(";");
                 buffer.append(df.format(listM.get(i).getDateDebut()));
                 buffer.append(";");
-                buffer.append(listM.get(i).getDescriptif());
+                buffer.append(listM.get(i).getNbEmployes());
                 buffer.append(";");
+                buffer.append("");
+                buffer.append(";");
+                
                 
                 try {
                     writer.write(buffer.toString() + "\r\n");

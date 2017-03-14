@@ -50,6 +50,8 @@ protected String descM;
         this.descM = descM;
     }
     
+    public abstract int getNbEmployes();
+    
     public Mission(){  
     }
 

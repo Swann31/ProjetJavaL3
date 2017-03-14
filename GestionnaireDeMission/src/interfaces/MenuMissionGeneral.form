@@ -54,22 +54,22 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jCbxTypeMission" min="-2" pref="127" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="jPanelTable" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="9" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jBtnFichierMission" max="32767" attributes="0"/>
-                  <Component id="jBtnNouvelleMission" pref="173" max="32767" attributes="0"/>
-                  <Component id="jBtnRetour" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBtnDetailMission" pref="173" max="32767" attributes="0"/>
-                  <Component id="jBtnChargerMission" pref="173" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jBtnFichierMission" max="32767" attributes="0"/>
+                      <Component id="jBtnNouvelleMission" pref="173" max="32767" attributes="0"/>
+                      <Component id="jBtnRetour" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnDetailMission" pref="173" max="32767" attributes="0"/>
+                      <Component id="jBtnChargerMission" pref="173" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCbxTypeMission" min="-2" pref="127" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -82,25 +82,22 @@
                   <Component id="jLabel1" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jBtnFichierMission" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jCbxTypeMission" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelTable" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="jBtnNouvelleMission" min="-2" pref="59" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtnDetailMission" min="-2" pref="59" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtnChargerMission" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace pref="255" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jCbxTypeMission" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="197" max="32767" attributes="0"/>
                       <Component id="jBtnRetour" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jPanelTable" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>

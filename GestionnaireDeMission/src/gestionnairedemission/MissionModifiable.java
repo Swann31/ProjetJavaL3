@@ -15,6 +15,7 @@ public abstract class MissionModifiable extends Mission {
     protected int nbEmployes;
     protected CompetenceMission [] compMission;
 
+    @Override
     public int getNbEmployes() {
         return nbEmployes;
     }

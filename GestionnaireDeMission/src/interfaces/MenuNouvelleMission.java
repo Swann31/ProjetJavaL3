@@ -6,6 +6,7 @@
 package interfaces;
 
 import gestionnairedemission.Mission;
+import gestionnairedemission.MissionEnPreparation;
 import static interfaces.MenuMissionGeneral.refreshTableModel;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.Component;
@@ -312,7 +313,8 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date d = (Date) datePicker.getModel().getValue();
         int id = (int) jSpinnerMission.getValue();
-        Mission newMiss = new Mission(id,d,jTextAreaDescriptif.getText());
+        int nb = (int) jSprNbPers.getValue();
+        Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,null);
         listM.add(newMiss);
         MenuMissionGeneral.sauvegarderMissions();
         model = refreshTableModel();
