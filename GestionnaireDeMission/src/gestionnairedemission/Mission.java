@@ -13,56 +13,59 @@ import java.util.Date;
  */
 public abstract class Mission {
     
-    /**
-     * Identifiant de la mission.
-     * @see Mission#setIDM(int) 
-     * @see Mission#getIDM() 
-     */
-    private int idM;
-    
-    /**
-     * Date de début de la mission.
-     * @see Mission#setDateDebut(java.util.Date) 
-     * @see Mission#getDateDebut() 
-     */
-    private Date dateDebut;
-    
-    private String descriptif;
-    
-    /**
-     * Constructeur par défaut de la classe Mission.
-     */
-    private int idMission = 1;
-    
-    public Mission(){
+protected String typeMission;
+protected int idM;
+protected Date dateDebut;
+protected String descM;
+
+    public String getTypeM() {
+        return typeMission;
+    }
+
+    public void setTypeM(String typeMission) {
+        this.typeMission = typeMission;
+    }
+
+    public int getIdM() {
+        return idM;
+    }
+
+    public void setIdM(int idM) {
+        this.idM = idM;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public String getDescM() {
+        return descM;
+    }
+
+    public void setDescM(String descM) {
+        this.descM = descM;
     }
     
-    public Mission(int id, String desc, Date date)
+    public Mission(){  
+    }
+
+    public Mission (int id, String desc, Date dd)
     {
         this.idM=id;
         this.dateDebut=dd;
-    }
-    
-     public Mission(int id, Date dd, String lib)
-    {
-        this.idM=id;
-        this.dateDebut=dd;
-        this.descriptif = lib;
-    }
-    
-    public Mission(int id, String desc, Date date, String type)
-    {
-        this.idM=id;
         this.descM=desc;
-        this.dateDebut=date;
+        this.typeMission="Mission";
+    }
+    
+    public Mission (int id, String desc, Date dd, String type)
+    {
+        this.idM=id;
+        this.dateDebut=dd;
+        this.descM=desc;
         this.typeMission=type;
-    }
-    
-    public String getDescriptif(){
-        return this.descriptif;
-    }
-    
-    public void setDescriptif(String lib){
-        this.descriptif = lib;
     }
 }
