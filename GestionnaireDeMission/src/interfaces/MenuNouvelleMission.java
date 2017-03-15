@@ -7,8 +7,10 @@ package interfaces;
 
 import gestionnairedemission.Competence;
 import gestionnairedemission.CompetenceMission;
+import gestionnairedemission.Employe;
 import gestionnairedemission.Mission;
 import gestionnairedemission.MissionEnPreparation;
+import gestionnairedemission.MissionPlanifiee;
 import static interfaces.MenuMissionGeneral.refreshTableModel;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.Component;
@@ -40,7 +42,9 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
     private static int nbComp = 0;
     private static ArrayList<Component> competences;
-    private static JDatePickerImpl datePicker;
+    private static JDatePickerImpl datePickerDebut;
+    private static JDatePickerImpl datePickerFin;
+    private static Date df;
     /**
      * Creates new form MenuNouvelleMission
      */
@@ -62,13 +66,9 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanelSettings = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jSprNbPers = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldDuree = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jSpinnerMission = new javax.swing.JSpinner();
+        jCheckBoxDateFin = new javax.swing.JCheckBox();
         jBtnAnnuler = new javax.swing.JButton();
         jBtnEnregistrer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -93,19 +93,16 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
         jLabel2.setText("Num Mission :");
 
-        jSprNbPers.setModel(new javax.swing.SpinnerNumberModel());
-
-        jLabel3.setText("Nombre de Pers. :");
-
         jLabel4.setText("Date début :");
 
-        jLabel5.setText("Durée :");
-
-        jTextFieldDuree.setText("0");
-
-        jLabel6.setText("jours.");
-
         jSpinnerMission.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jCheckBoxDateFin.setText("Date de fin");
+        jCheckBoxDateFin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxDateFinActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelSettingsLayout = new javax.swing.GroupLayout(jPanelSettings);
         jPanelSettings.setLayout(jPanelSettingsLayout);
@@ -116,18 +113,11 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldDuree)
-                            .addComponent(jSprNbPers, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                            .addComponent(jSpinnerMission, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(jSpinnerMission, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBoxDateFin))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelSettingsLayout.setVerticalGroup(
             jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,18 +126,11 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jSpinnerMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSprNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBoxDateFin)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jBtnAnnuler.setText("Annuler");
@@ -238,9 +221,10 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jPanelDescriptifLayout.setVerticalGroup(
             jPanelDescriptifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDescriptifLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -285,9 +269,9 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelDescriptif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelDescriptif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -314,27 +298,37 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
     private void jBtnEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEnregistrerActionPerformed
         // TODO add your handling code here:
-        Date d = (Date) datePicker.getModel().getValue();
+        Date d = (Date) datePickerDebut.getModel().getValue();
+        df = (Date)datePickerFin.getModel().getValue();
         int id = (int) jSpinnerMission.getValue();
-        int nb = (int) jSprNbPers.getValue();
+        int nb =0;
+        int value = 0;
         CompetenceMission[] tabCM = new CompetenceMission[competences.size()/2];
         for(int i = 0; i< competences.size(); i = i+2){
             for(int j = 0; j<listC.size(); j++){
                 String str = listC.get(j).getIDC() +" " + listC.get(j).getCat() + " " + listC.get(j).getLib();
                 JSpinner jsp = (JSpinner)competences.get(i+1);
-                int value = (int)jsp.getValue();
+                value = (int)jsp.getValue();
+                
                 JComboBox jcb = (JComboBox)competences.get(i);
                 if(str.equals(jcb.getSelectedItem().toString())){
                     CompetenceMission cm = new CompetenceMission(listC.get(j),value);
                     tabCM[i/2]=cm;
                 }
             }
+            nb+=value;
         }
-        Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,tabCM);
-        listM.add(newMiss);
+        if(df != null){
+            Employe[] emp = {};
+            Mission newMiss = new MissionPlanifiee(id,jTextAreaDescriptif.getText(),d,nb,tabCM,emp,df);
+            listM.add(newMiss);
+        }else{
+            Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,tabCM);
+            listM.add(newMiss);
+        }
+        
         MenuMissionGeneral.sauvegarderMissions();
         model = refreshTableModel();
-        
         table.setModel(model);
         table.repaint();  
         this.dispose();
@@ -352,7 +346,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             competences.remove(test);
             this.revalidate();
             this.repaint();
-            nbComp--;
+            nbComp -=2;
         }
     }//GEN-LAST:event_jButtonRemoveCompRechActionPerformed
 
@@ -389,6 +383,29 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             nbComp += 2;
         }
     }//GEN-LAST:event_jButtonAddCompRechActionPerformed
+
+    private void jCheckBoxDateFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDateFinActionPerformed
+        // TODO add your handling code here:
+        if(jCheckBoxDateFin.isSelected()){
+            UtilDateModel model = new UtilDateModel();
+            model.setDate(20,04,2014);
+            Properties p = new Properties();
+            p.put("text.today", "Today");
+            p.put("text.month", "Month");
+            p.put("text.year", "Year");
+            JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+            datePickerFin = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+            datePickerFin.setBounds(jCheckBoxDateFin.getX(),jCheckBoxDateFin.getY() + 25,120,30);
+            jPanelSettings.add(datePickerFin);
+            this.revalidate();
+            this.repaint();
+        }else{
+            df = null;
+            jPanelSettings.remove(datePickerFin);
+            this.revalidate();
+            this.repaint();
+        }
+    }//GEN-LAST:event_jCheckBoxDateFinActionPerformed
 
     /**
      * @param args the command line arguments
@@ -430,12 +447,10 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEnregistrer;
     private javax.swing.JButton jButtonAddCompRech;
     private javax.swing.JButton jButtonRemoveCompRech;
+    private javax.swing.JCheckBox jCheckBoxDateFin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelTitre;
     private javax.swing.JMenu jMenuPrincipal;
@@ -446,9 +461,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinnerMission;
-    private javax.swing.JSpinner jSprNbPers;
     private javax.swing.JTextArea jTextAreaDescriptif;
-    private javax.swing.JTextField jTextFieldDuree;
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
@@ -461,9 +474,9 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         p.put("text.month", "Month");
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        datePicker.setBounds(jLabel4.getX() + 110,jLabel4.getY() - 5,120,30);
-        jPanelSettings.add(datePicker);
+        datePickerDebut = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datePickerDebut.setBounds(jLabel4.getX() + 110,jLabel4.getY() - 5,120,30);
+        jPanelSettings.add(datePickerDebut);
     }
     
     private String[] tabCompetence(){

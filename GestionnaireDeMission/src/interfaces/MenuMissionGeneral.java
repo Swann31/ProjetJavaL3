@@ -447,13 +447,13 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 }
                 nbPers = compterPersonnes(listM.get(i).getEmployeMission());
                 buffer.append(nbPers + ";");
-                if(nbPers !=0){
+                if(nbPers !=0 && listM.get(i).getEmployeMission().length != 0){
                    for(int k = 0; k <nbPers; k++){
                      buffer.append(listM.get(i).getEmployeMission()[k].getIdE());
                      buffer.append(";");
                     } 
                 }else {
-                    buffer.append("0");
+                    buffer.append(nbPers);
                     buffer.append(";");
                 }
                 if( listM.get(i).getDateFin() !=null){
