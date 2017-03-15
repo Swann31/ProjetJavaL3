@@ -5,7 +5,9 @@
  */
 package interfaces;
 
+import gestionnairedemission.CompetenceMission;
 import gestionnairedemission.CsvMissionDAO;
+import gestionnairedemission.Employe;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.BorderLayout;
 import java.io.BufferedWriter;
@@ -37,7 +39,8 @@ import javax.swing.table.DefaultTableModel;
 public class MenuMissionGeneral extends javax.swing.JFrame {
 
     private static int num;
-    protected static String[] titleHead = {"IdM","Descriptif","Date","Nb Employes", "Compétences"};
+    protected static String[] titleHead = {"Type Mission","IdM","Descriptif","Date","Nb Employes"};
+    protected static String[] titleH = {"TypeM","IdM","Descriptif","DateDebut","Nb Employes", "Nb Compétences","Competences","Nb Employe Competence", "Employe Competence","Date Fin"};
     private static String[][] tabMAff;
     protected static DefaultTableModel model;
     private static File selectedFile;
@@ -245,7 +248,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         // TODO add your handling code here:
         Writer writer = null;
         int nRow = 1;
-        int nCol = 5;
+        int nCol = 10;
         try {
             try {
                 try {
@@ -261,7 +264,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             //write the header information
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
-                bufferHeader.append(titleHead[j]);
+                bufferHeader.append(titleH[j]);
                 if (j!=nCol){
                     bufferHeader.append(";");
                 }
@@ -367,18 +370,19 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 int idm, nbE;
                 Date dt;
-                String libelle;
+                String libelle,type;
+                type = listM.get(i).getTypeM();
                 idm=listM.get(i).getIdM();
                 dt=listM.get(i).getDateDebut();
                 libelle= listM.get(i).getDescM();
                 nbE = listM.get(i).getNbEmployes();
                 String id= Integer.toString(idm);
                 String nb = Integer.toString(nbE);
-                tabMAff[i][0]=id;
-                tabMAff[i][1]=libelle;
-                tabMAff[i][2]=df.format(dt);
-                tabMAff[i][3]=nb;
-                tabMAff[i][4]="";
+                tabMAff[i][0]=type;
+                tabMAff[i][1]=id;
+                tabMAff[i][2]=libelle;
+                tabMAff[i][3]=df.format(dt);
+                tabMAff[i][4]=nb;
                 
         }
         return new DefaultTableModel(tabMAff, titleHead);
@@ -387,7 +391,9 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     public static void sauvegarderMissions(){
         Writer writer = null;
         int nRow = listM.size();
-        int nCol = 5;
+        int nCol = 10;
+        int nbComp = 0;
+        int nbPers = 0;
         try {
             try {
                 try {
@@ -402,7 +408,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             //write the header information
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
-                bufferHeader.append(titleHead[j]);
+                bufferHeader.append(titleH[j]);
                 if (j!=nCol){
                     bufferHeader.append(";");
                 }
@@ -414,9 +420,10 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             }
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             for (int i = 0 ; i < nRow ; i++){
-                 StringBuffer buffer = new StringBuffer();
+                StringBuffer buffer = new StringBuffer();
                 //for (int j = 0 ; j < nCol ; j++){
-                  
+                buffer.append(listM.get(i).getTypeM());
+                buffer.append(";");
                 buffer.append(listM.get(i).getIdM());
                 buffer.append(";");
                 buffer.append(listM.get(i).getDescM());
@@ -425,10 +432,36 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 buffer.append(";");
                 buffer.append(listM.get(i).getNbEmployes());
                 buffer.append(";");
-                buffer.append("");
-                buffer.append(";");
-                
-                
+                nbComp = compterCompetences(listM.get(i).getCompMission());
+                buffer.append(nbComp + ";");
+                if(nbComp !=0){
+                   for(int k = 0; k <nbComp; k++){
+                     buffer.append(listM.get(i).getCompMission()[k].getIDC());
+                     buffer.append(";");
+                     buffer.append(listM.get(i).getCompMission()[k].getNb());
+                     buffer.append(";");
+                    } 
+                }else {
+                    buffer.append("0");
+                    buffer.append(";");
+                }
+                nbPers = compterPersonnes(listM.get(i).getEmployeMission());
+                buffer.append(nbPers + ";");
+                if(nbPers !=0){
+                   for(int k = 0; k <nbPers; k++){
+                     buffer.append(listM.get(i).getEmployeMission()[k].getIdE());
+                     buffer.append(";");
+                    } 
+                }else {
+                    buffer.append("0");
+                    buffer.append(";");
+                }
+                if( listM.get(i).getDateFin() !=null){
+                    buffer.append(df.format(listM.get(i).getDateFin()));
+                    buffer.append(";");
+                }else{
+                    buffer.append(";");
+                }
                 try {
                     writer.write(buffer.toString() + "\r\n");
                 } catch (IOException ex) {
@@ -447,4 +480,17 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         }
     }
 
+    private static int compterCompetences(CompetenceMission[] tab){
+        if (tab == null){
+            return 0;
+        }
+        return tab.length;
+    }
+    
+    private static int compterPersonnes(Employe[] tab){
+        if (tab == null){
+            return 0;
+        }
+        return tab.length;  
+    }
 }

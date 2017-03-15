@@ -32,10 +32,14 @@ public abstract class MissionModifiable extends Mission {
         this.compMission = compM;
     }
     
+     public abstract Employe[] getEmployeMission();
+      public abstract Date getDateFin();
+    
     public MissionModifiable (){
         super();
     }
     
+   
     public MissionModifiable(Mission m, int nbE, CompetenceMission[] comp)
     {
         super(m.getIdM(),m.getDescM(),m.getDateDebut(),"MissionModifiable");

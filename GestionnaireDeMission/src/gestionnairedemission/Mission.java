@@ -51,6 +51,9 @@ protected String descM;
     }
     
     public abstract int getNbEmployes();
+    public abstract CompetenceMission[] getCompMission();
+    public abstract Employe[] getEmployeMission();
+    public abstract Date getDateFin();
     
     public Mission(){  
     }

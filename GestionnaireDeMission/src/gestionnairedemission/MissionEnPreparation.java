@@ -25,4 +25,12 @@ public class MissionEnPreparation extends MissionModifiable {
     {
         super(mm.getIdM(),mm.getDescM(), mm.getDateDebut(), mm.getNbEmployes(), mm.getCompMission(), "Mission En Preparation");
     }
+    
+     public Employe[] getEmployeMission(){
+         return null;
+     };
+     
+     public Date getDateFin(){
+         return null;
+     };
 }

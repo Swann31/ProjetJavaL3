@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import gestionnairedemission.Competence;
+import gestionnairedemission.CompetenceMission;
 import gestionnairedemission.Mission;
 import gestionnairedemission.MissionEnPreparation;
 import static interfaces.MenuMissionGeneral.refreshTableModel;
@@ -25,6 +27,10 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import static interfaces.MenuMissionGeneral.model;
 import static interfaces.MenuMissionGeneral.table;
+import static interfaces.MenuPrincipal.listC;
+import static interfaces.MenuPrincipal.listE;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -79,8 +85,8 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(766, 458));
-        setPreferredSize(new java.awt.Dimension(766, 525));
+        setMinimumSize(new java.awt.Dimension(800, 458));
+        setPreferredSize(new java.awt.Dimension(800, 525));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Nouvelle Mission");
@@ -191,7 +197,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCompRechLayout.createSequentialGroup()
                 .addComponent(jLabelTitre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(jButtonAddCompRech)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonRemoveCompRech)
@@ -303,9 +309,6 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         // TODO add your handling code here:
         nbComp = 0;
         competences.removeAll(competences);
-        MenuMissionGeneral mmg = new MenuMissionGeneral();
-        mmg.setLocationRelativeTo(this);
-        mmg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnAnnulerActionPerformed
 
@@ -314,13 +317,26 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         Date d = (Date) datePicker.getModel().getValue();
         int id = (int) jSpinnerMission.getValue();
         int nb = (int) jSprNbPers.getValue();
-        Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,null);
+        CompetenceMission[] tabCM = new CompetenceMission[competences.size()/2];
+        for(int i = 0; i< competences.size(); i = i+2){
+            for(int j = 0; j<listC.size(); j++){
+                String str = listC.get(j).getIDC() +" " + listC.get(j).getCat() + " " + listC.get(j).getLib();
+                JSpinner jsp = (JSpinner)competences.get(i+1);
+                int value = (int)jsp.getValue();
+                JComboBox jcb = (JComboBox)competences.get(i);
+                if(str.equals(jcb.getSelectedItem().toString())){
+                    CompetenceMission cm = new CompetenceMission(listC.get(j),value);
+                    tabCM[i/2]=cm;
+                }
+            }
+        }
+        Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,tabCM);
         listM.add(newMiss);
         MenuMissionGeneral.sauvegarderMissions();
         model = refreshTableModel();
         
         table.setModel(model);
-        table.repaint();   
+        table.repaint();  
         this.dispose();
             
     }//GEN-LAST:event_jBtnEnregistrerActionPerformed
@@ -328,9 +344,11 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     private void jButtonRemoveCompRechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCompRechActionPerformed
         // TODO add your handling code here:
         if(nbComp >0){
-            Component test = competences.get(competences.size() - 1);
+            Component test = competences.get(competences.size() - 2);
             //showMessageDialog(null,test);
             jPanelCompRech.remove(test);
+            jPanelCompRech.remove(test);
+            competences.remove(test);
             competences.remove(test);
             this.revalidate();
             this.repaint();
@@ -342,25 +360,33 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(nbComp ==0){
-
-            JComboBox listComp = new JComboBox();
+            //listE.size() à la place de 10
+            JSpinner spi = new JSpinner(new SpinnerNumberModel(0,0,10,1));
+            JComboBox listComp = new JComboBox(tabCompetence());
             listComp.setBounds(jLabelTitre.getX(), jLabelTitre.getY()+15, 200,30);
+            
             jPanelCompRech.add(listComp);
+            spi.setBounds(jLabelTitre.getX() + 200,jLabelTitre.getY() +15, 50,30 );
+            jPanelCompRech.add(spi);
             competences.add(listComp);
+            competences.add(spi);
             this.revalidate();
             this.repaint();
-            nbComp ++;
+            nbComp += 2;
 
-            //showMessageDialog(null,label1.getX() + " " + label1.getY() + " " +label1.isVisible() );
         }else {
-
-            JComboBox listComp = new JComboBox();
-            listComp.setBounds(jLabelTitre.getX(), jLabelTitre.getY() + 15 + (35*nbComp), 200,30);
+            //pareil ici
+            JSpinner spi = new JSpinner(new SpinnerNumberModel(0,0,10,1));
+            JComboBox listComp = new JComboBox(tabCompetence());
+            listComp.setBounds(jLabelTitre.getX(), jLabelTitre.getY() + 15 + (17*nbComp), 200,30);
             jPanelCompRech.add(listComp);
+            spi.setBounds(jLabelTitre.getX() + 200,jLabelTitre.getY()+15+ (17*nbComp), 50,30 );
+            jPanelCompRech.add(spi);
             competences.add(listComp);
+            competences.add(spi);
             this.revalidate();
             this.repaint();
-            nbComp ++;
+            nbComp += 2;
         }
     }//GEN-LAST:event_jButtonAddCompRechActionPerformed
 
@@ -438,6 +464,17 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(jLabel4.getX() + 110,jLabel4.getY() - 5,120,30);
         jPanelSettings.add(datePicker);
+    }
+    
+    private String[] tabCompetence(){
+        int taille = listC.size();
+        String[] tabComp = new String[taille];
+        for(int i=0;i<listC.size();i++)
+        {
+            tabComp[i] =listC.get(i).getIDC() +" " + listC.get(i).getCat() + " " + listC.get(i).getLib() ;
+        }
+
+        return tabComp;
     }
 }
 
