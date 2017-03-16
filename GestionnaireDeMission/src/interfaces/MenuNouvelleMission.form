@@ -122,7 +122,7 @@
                       </Group>
                       <Component id="jCheckBoxDateFin" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="172" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -224,7 +224,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabelTitre" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="157" max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <Component id="jLabelnbEmp" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jButtonAddCompRech" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonRemoveCompRech" min="-2" max="-2" attributes="0"/>
@@ -240,7 +242,10 @@
                               <Component id="jButtonAddCompRech" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonRemoveCompRech" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabelTitre" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelTitre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelnbEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
                   </Group>
@@ -271,6 +276,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoveCompRechActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelnbEmp">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre d&apos;employ&#xe9;s"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

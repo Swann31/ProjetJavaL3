@@ -16,22 +16,23 @@ public class Competence implements ICompetence{
     private String idC;
     
     /**
-     * Catégorie de la compétence
+     * Catégorie de la compétence.
      * @see Competence#getCat() 
      * @see Competence#setCat(java.lang.String) 
      */
     private String categorieComp;
-    
+
     /**
      * Libellé de la compétence.
      * @see Competence#getLib() 
      * @see Competence#setLib(java.lang.String) 
      */
     private String libelleComp;
-    
+
     /**
-     * Flag indiquant la suppression d'une compétencce
-     * @see 
+     * Flag indiquant la "suppression"/visibilité d'une compétence.
+     * @see Competence#getSuppr() 
+     * @see Competence#setSuppr(boolean) 
      */
     private boolean suppr;
     

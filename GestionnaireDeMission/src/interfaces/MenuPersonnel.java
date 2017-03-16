@@ -143,6 +143,11 @@ public class MenuPersonnel extends javax.swing.JFrame {
         });
 
         jButtonDetailsMission.setText("Missions");
+        jButtonDetailsMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDetailsMissionActionPerformed(evt);
+            }
+        });
 
         jButtonDetailsComp.setText("Compétences");
         jButtonDetailsComp.addActionListener(new java.awt.event.ActionListener() {
@@ -363,6 +368,13 @@ public class MenuPersonnel extends javax.swing.JFrame {
         mdc.setLocationRelativeTo(this);;
         mdc.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsCompActionPerformed
+
+    private void jButtonDetailsMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsMissionActionPerformed
+        // TODO add your handling code here:
+        MenuDetailMissionEmp mdce = new MenuDetailMissionEmp(num);
+        mdce.setLocationRelativeTo(this);;
+        mdce.setVisible(true);
+    }//GEN-LAST:event_jButtonDetailsMissionActionPerformed
 
     public static void main(String args[]) {
 

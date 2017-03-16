@@ -76,6 +76,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jLabelTitre = new javax.swing.JLabel();
         jButtonAddCompRech = new javax.swing.JButton();
         jButtonRemoveCompRech = new javax.swing.JButton();
+        jLabelnbEmp = new javax.swing.JLabel();
         jPanelDescriptif = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDescriptif = new javax.swing.JTextArea();
@@ -117,7 +118,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jSpinnerMission, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckBoxDateFin))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         jPanelSettingsLayout.setVerticalGroup(
             jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,13 +175,17 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             }
         });
 
+        jLabelnbEmp.setText("Nombre d'employés");
+
         javax.swing.GroupLayout jPanelCompRechLayout = new javax.swing.GroupLayout(jPanelCompRech);
         jPanelCompRech.setLayout(jPanelCompRechLayout);
         jPanelCompRechLayout.setHorizontalGroup(
             jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCompRechLayout.createSequentialGroup()
                 .addComponent(jLabelTitre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jLabelnbEmp)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonAddCompRech)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonRemoveCompRech)
@@ -193,7 +198,9 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                     .addGroup(jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAddCompRech)
                         .addComponent(jButtonRemoveCompRech))
-                    .addComponent(jLabelTitre))
+                    .addGroup(jPanelCompRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelTitre)
+                        .addComponent(jLabelnbEmp)))
                 .addGap(0, 309, Short.MAX_VALUE))
         );
 
@@ -339,11 +346,12 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(nbComp >0){
             Component test = competences.get(competences.size() - 2);
+            Component test1 = competences.get(competences.size() - 1);
             //showMessageDialog(null,test);
             jPanelCompRech.remove(test);
-            jPanelCompRech.remove(test);
             competences.remove(test);
-            competences.remove(test);
+            jPanelCompRech.remove(test1);
+            competences.remove(test1);
             this.revalidate();
             this.repaint();
             nbComp -=2;
@@ -453,6 +461,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelTitre;
+    private javax.swing.JLabel jLabelnbEmp;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
     private javax.swing.JPanel jPanelCompRech;
