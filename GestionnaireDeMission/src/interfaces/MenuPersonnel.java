@@ -57,6 +57,10 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jButtonImptCompEmp.setVisible(false);
         jButtonDetailsMission.setVisible(false);
         jButtonDetailsComp.setVisible(false);
+        if(listE!=null)
+        {
+            afficherpage();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -523,6 +527,46 @@ public class MenuPersonnel extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    private void afficherpage(){
+        tablemodel = refreshTableModel();
+        table = new JTable(tablemodel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jPanelTable.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(table);
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+        this.pack();
+        this.setVisible(true);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            if(!event.getValueIsAdjusting()) {
+			ListSelectionModel  model = (ListSelectionModel)event.getSource();
+			num=model.getMinSelectionIndex();
+                        //JOptionPane.showMessageDialog(null,num);
+                        if(num != -1){
+                            valueId = new String();
+                            valueId = (String)table.getModel().getValueAt(num,3);
+                            //JOptionPane.showMessageDialog(null,valueId);
+                            if(valueId == null){
+                                jButtonSupprimer.setVisible(false);
+                                jButtonDetailsComp.setVisible(false);
+                                jButtonDetailsMission.setVisible(false);
+                                JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
+                                
+                            }else 
+                            {
+                                jButtonSupprimer.setVisible(true);
+                                jButtonDetailsComp.setVisible(true);
+                                jButtonDetailsMission.setVisible(true);
+                            }
+                            
+                        }
+            }
+        }
+    });
     }
 
 }

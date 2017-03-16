@@ -45,6 +45,10 @@ public class MenuCompetence extends javax.swing.JFrame {
         jButtonSauvegarder.setVisible(false);
         jButtonSupprimer.setVisible(false);
         jButtonAjouterComp.setVisible(false);
+        if(listC!=null)
+        {
+            afficherpage();
+        } 
     }
 
     /**
@@ -423,4 +427,37 @@ public class MenuCompetence extends javax.swing.JFrame {
 
         return new DefaultTableModel(tabCAff, title2);
     }
+        
+        private void afficherpage(){
+        tablemodel = rebuildFile();
+        table = new JTable(tablemodel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jPanelTable.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(table);    
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+        this.pack();
+        this.setVisible(true);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        @Override
+        public void valueChanged(ListSelectionEvent event) {
+            // do some actions here, for example
+            // print first column value from selected row
+            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            if(!event.getValueIsAdjusting()) {
+			ListSelectionModel  model = (ListSelectionModel)event.getSource();
+			num=model.getMinSelectionIndex();
+                        if(num != -1){
+                            valueID = new String();
+                            valueID = (String)table.getModel().getValueAt(num,0);
+                        }
+                            if(valueID == null){
+                                jButtonSupprimer.setVisible(false);
+                                JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
+                                
+                            }else jButtonSupprimer.setVisible(true);
+                        }
+        }
+        });
+        }
 }

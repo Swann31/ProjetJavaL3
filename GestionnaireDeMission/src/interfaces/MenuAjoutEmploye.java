@@ -181,7 +181,7 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         // TODO add your handling code here:
         int id;
-        if(listE.isEmpty())
+        if(listE==null)
         {
             id = 0;
         }

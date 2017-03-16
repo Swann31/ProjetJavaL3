@@ -54,6 +54,11 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         jBtnNouvelleMission.setVisible(false);
         jCbxTypeMission.setVisible(false);
         jLabel2.setVisible(false);
+        if(listM!=null)
+        {
+            afficherpage();
+        }
+
     }
 
     /**
@@ -492,5 +497,27 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             return 0;
         }
         return tab.length;  
+    }
+    
+    private void afficherpage(){
+        jPanelTable.setLayout(new BorderLayout());
+        model = refreshTableModel();
+        table = new JTable(model);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane tableContainer = new JScrollPane(table);    
+        jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelTable);
+        this.pack();
+        this.setVisible(true);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+            if(!event.getValueIsAdjusting()) {
+			ListSelectionModel  model = (ListSelectionModel)event.getSource();
+			num=model.getMinSelectionIndex(); 
+            }
+            jBtnDetailMission.setVisible(true);
+        }
+    });
     }
 }
