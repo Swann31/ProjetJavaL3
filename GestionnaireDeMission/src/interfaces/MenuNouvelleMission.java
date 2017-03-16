@@ -65,9 +65,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanelSettings = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinnerMission = new javax.swing.JSpinner();
         jCheckBoxDateFin = new javax.swing.JCheckBox();
         jBtnAnnuler = new javax.swing.JButton();
         jBtnEnregistrer = new javax.swing.JButton();
@@ -92,11 +90,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Nouvelle Mission");
 
-        jLabel2.setText("Num Mission :");
-
         jLabel4.setText("Date début :");
-
-        jSpinnerMission.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jCheckBoxDateFin.setText("Date de fin");
         jCheckBoxDateFin.addActionListener(new java.awt.event.ActionListener() {
@@ -113,21 +107,13 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(jSpinnerMission, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckBoxDateFin))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         jPanelSettingsLayout.setVerticalGroup(
             jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jSpinnerMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxDateFin)
@@ -307,7 +293,15 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date d = (Date) datePickerDebut.getModel().getValue();
         df = (Date)datePickerFin.getModel().getValue();
-        int id = (int) jSpinnerMission.getValue();
+        int id;
+        if(listM.isEmpty())
+        {
+            id = 0;
+        }
+        else
+        {
+            id=listM.get(listM.size()-1).getIdM()+1;
+        }
         int nb =0;
         int value = 0;
         CompetenceMission[] tabCM = new CompetenceMission[competences.size()/2];
@@ -457,7 +451,6 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemoveCompRech;
     private javax.swing.JCheckBox jCheckBoxDateFin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelTitre;
@@ -469,7 +462,6 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinnerMission;
     private javax.swing.JTextArea jTextAreaDescriptif;
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
