@@ -31,6 +31,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
     private static int valueTab=4;
     protected static String compId;
     protected static int nbEmp;
+    protected static int idMission;
     /**
      * Creates new form MenuDetailMission
      */
@@ -40,6 +41,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jButtonAddEmp.setVisible(false);
         afficherInfo(idM);
         chargerCompetence(idM);
+        
     }
 
     private MenuDetailMission() {
@@ -81,7 +83,6 @@ public class MenuDetailMission extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1094, 495));
-        setPreferredSize(new java.awt.Dimension(1094, 495));
 
         jLabel2.setText("Id Mission :");
 
@@ -106,31 +107,29 @@ public class MenuDetailMission extends javax.swing.JFrame {
             .addGroup(jPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(19, 19, 19)
+                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                                .addComponent(jTextFieldIDM, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextFieldDateDebut))
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                                .addComponent(jLabelDateF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldDateFin, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                            .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNbPers))))
+                        .addComponent(jTextFieldIDM, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1, Short.MAX_VALUE))
+                    .addComponent(jTextFieldDateDebut))
+                .addGap(9, 9, 9)
+                .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(jLabelDateF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldTypeMission, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)))
+                        .addComponent(jTextFieldDateFin, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                    .addGroup(jPanelSettingsLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldNbPers, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanelSettingsLayout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldTypeMission, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
         );
         jPanelSettingsLayout.setVerticalGroup(
             jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,12 +137,13 @@ public class MenuDetailMission extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelSettingsLayout.createSequentialGroup()
-                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldIDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
+                        .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
-                                .addComponent(jTextFieldNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextFieldNbPers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldIDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)))
                         .addGap(31, 31, 31))
                     .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -151,11 +151,10 @@ public class MenuDetailMission extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jTextFieldDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jTextFieldDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTypeMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7)))
         );
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
@@ -211,6 +210,11 @@ public class MenuDetailMission extends javax.swing.JFrame {
         );
 
         jButtonAddEmp.setText("Ajouter Employé");
+        jButtonAddEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddEmpActionPerformed(evt);
+            }
+        });
 
         jMenuPrincipal.setText("Application");
 
@@ -301,6 +305,13 @@ public class MenuDetailMission extends javax.swing.JFrame {
     private void jTextFieldDateFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDateFinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDateFinActionPerformed
+
+    private void jButtonAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddEmpActionPerformed
+        // TODO add your handling code here:
+        MenuMissionAjoutEmp mmae = new MenuMissionAjoutEmp();
+        mmae.setLocationRelativeTo(this);
+        mmae.setVisible(true);
+    }//GEN-LAST:event_jButtonAddEmpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,6 +425,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
 			int num=model.getMinSelectionIndex();
                         if(num != -1){
+                            idMission = Integer.parseInt(jTextFieldIDM.getText());
                             jButtonAddEmp.setVisible(true);
                             compId = new String();
                             compId = (String)table.getModel().getValueAt(num,0);
@@ -425,7 +437,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
                                 
                             }else 
                             {
-                              JOptionPane.showMessageDialog(null,compId); 
+                              //JOptionPane.showMessageDialog(null,compId); 
                             }
                             
                         }

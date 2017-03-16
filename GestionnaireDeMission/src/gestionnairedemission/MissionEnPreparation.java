@@ -33,4 +33,9 @@ public class MissionEnPreparation extends MissionModifiable {
      public Date getDateFin(){
          return null;
      };
+
+    @Override
+    public void setEmployeMission(Employe[] employeMission) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

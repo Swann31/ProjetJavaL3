@@ -34,6 +34,7 @@ public abstract class MissionModifiable extends Mission {
     
      public abstract Employe[] getEmployeMission();
       public abstract Date getDateFin();
+      public abstract void setEmployeMission(Employe[] employeMission);
     
     public MissionModifiable (){
         super();

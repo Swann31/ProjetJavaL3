@@ -30,4 +30,10 @@ public class MissionEnCours extends MissionNonModifiable {
     {
         super(mp,"Mission En Cours");
     }
+
+    @Override
+    public void setEmployeMission(Employe[] employeMission) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -5,9 +5,17 @@
  */
 package interfaces;
 
+import gestionnairedemission.Employe;
 import static interfaces.MenuDetailMission.compId;
 import static interfaces.MenuDetailMission.nbEmp;
+import static interfaces.MenuDetailMission.idMission;
+import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -15,14 +23,15 @@ import static interfaces.MenuPrincipal.listM;
  */
 public class MenuMissionAjoutEmp extends javax.swing.JFrame {
 
-    private static int nbE;
+    private static ArrayList<Component> listComp;
     /**
      * Creates new form MenuMissionAjoutEmp
      */
     public MenuMissionAjoutEmp() {
         initComponents();
-        jButtonValider.setVisible(false);
+        listComp = new ArrayList<Component>();
         afficherInfo(compId);
+        afficherEmploye(nbEmp, compId);
         //chargerCompetence(idM);
     }
 //compId;nbEmp
@@ -44,6 +53,7 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
         jTextFieldCat = new javax.swing.JTextField();
         jTextFieldLibC = new javax.swing.JTextField();
         jPanelAddEmp = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jButtonRetour = new javax.swing.JButton();
         jButtonValider = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -66,20 +76,36 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Employés:");
+
         javax.swing.GroupLayout jPanelAddEmpLayout = new javax.swing.GroupLayout(jPanelAddEmp);
         jPanelAddEmp.setLayout(jPanelAddEmpLayout);
         jPanelAddEmpLayout.setHorizontalGroup(
             jPanelAddEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanelAddEmpLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelAddEmpLayout.setVerticalGroup(
             jPanelAddEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGroup(jPanelAddEmpLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 156, Short.MAX_VALUE))
         );
 
         jButtonRetour.setText("Retour");
+        jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetourActionPerformed(evt);
+            }
+        });
 
         jButtonValider.setText("Valider");
+        jButtonValider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValiderActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre d'employés");
 
@@ -163,6 +189,42 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCatActionPerformed
 
+    private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
+       
+        Employe[] tabE = new Employe[nbEmp];
+        for(int i = 0; i< nbEmp; i++){
+            for(int j = 0; j<listE.size(); j++){
+                String str = listE.get(j).getIdE() +" " + listE.get(j).getNom() + " " + listE.get(j).getPrenom();
+                JComboBox jcb = (JComboBox)listComp.get(i);
+                if(str.equals(jcb.getSelectedItem().toString())){
+                    tabE[i] = listE.get(j);
+                }
+            }
+        }
+        for(int i = 0; i< listM.size();i++){
+            if(listM.get(i).getIdM() == idMission){
+                if(listM.get(i).getEmployeMission().length == 0 || listM.get(i).getEmployeMission() == null ){
+                    listM.get(i).setEmployeMission(tabE);
+                }else{
+                    int t = tabE.length + listM.get(i).getEmployeMission().length;
+                    Employe[] tabEmp = new Employe[t];
+                    for(int j = 0; j< t-tabE.length ; j++){
+                        tabEmp[j] = listM.get(i).getEmployeMission()[j];
+                    }
+                    for(int j = t-tabE.length ; j< t ; j++){
+                        tabEmp[j] = tabE[j-listM.get(i).getEmployeMission().length];
+                    }
+                    listM.get(i).setEmployeMission(tabEmp);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonValiderActionPerformed
+
+    private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRetourActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +264,7 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRetour;
     private javax.swing.JButton jButtonValider;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCatC;
     private javax.swing.JLabel jLabelIDC;
     private javax.swing.JLabel jLabelLibC;
@@ -236,5 +299,45 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void afficherEmploye(int nbEmp, String idComp){
+        
+            String[] tabEmp = chargerEmploye(idComp);
+            for(int i = 0; i<nbEmp ; i++){
+                JComboBox listEmp = new JComboBox(tabEmp);
+                listComp.add(listEmp);
+                listEmp.setBounds(jLabel2.getX(), jLabel2.getY()+15 + (i*10), 400,30);
+                jPanelAddEmp.add(listEmp);
+            }
+           this.revalidate();
+           this.repaint();
+           
+    }
+    
+    private String[] chargerEmploye(String idComp){
+        int taille = tailleEmployeCorrespondant(idComp);
+        int id = 0;
+        String[] tabEmp = new String[taille];
+        for(int i = 0; i<listE.size(); i++){
+                for(int j = 0; j<listE.get(i).getCompetence().length;j++){
+                        if(listE.get(i).getCompetence()[j].getIDC().equals(idComp)){
+                         tabEmp[id] = listE.get(i).getIdE() + " " + listE.get(i).getNom() + " " + listE.get(i).getPrenom();
+                         id++;
+                        }
+            }
+        }
+        return tabEmp;
+    }
 
+    private int tailleEmployeCorrespondant(String idComp){
+        int taille = 0;
+        for(int i = 0; i<listE.size(); i++){
+                for(int j = 0; j<listE.get(i).getCompetence().length;j++){
+                        if(listE.get(i).getCompetence()[j].getIDC().equals(idComp)){
+                            taille++;
+                        }
+                }
+        }
+        return taille;
+    }
 }

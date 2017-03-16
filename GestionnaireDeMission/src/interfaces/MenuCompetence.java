@@ -264,10 +264,14 @@ public class MenuCompetence extends javax.swing.JFrame {
             buffer.append(";");
             try {
                 writer.write(buffer.toString() + "\r\n");
+                if(i == nRow -1){
+                    writer.write("\r\n");
+                }
             } catch (IOException ex) {
                 Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+            
         } finally {
             try {
                 writer.close();
@@ -275,6 +279,7 @@ public class MenuCompetence extends javax.swing.JFrame {
                 Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        JOptionPane.showMessageDialog(null, "Fichier sauvegardé");
 
     }//GEN-LAST:event_jButtonSauvegarderActionPerformed
 
