@@ -293,46 +293,52 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date d = (Date) datePickerDebut.getModel().getValue();
         df = (Date)datePickerFin.getModel().getValue();
-        int id;
-        if(listM.isEmpty())
+        if(d.before(df)==true)
         {
-            id = 0;
+            int id;
+            if(listM.isEmpty())
+            {
+                id = 0;
+            }
+            else
+            {
+                id=listM.get(listM.size()-1).getIdM()+1;
+            }
+            int nb =0;
+            int value = 0;
+            CompetenceMission[] tabCM = new CompetenceMission[competences.size()/2];
+            for(int i = 0; i< competences.size(); i = i+2){
+                for(int j = 0; j<listC.size(); j++){
+                    String str = listC.get(j).getIDC() +" " + listC.get(j).getCat() + " " + listC.get(j).getLib();
+                    JSpinner jsp = (JSpinner)competences.get(i+1);
+                    value = (int)jsp.getValue();
+
+                    JComboBox jcb = (JComboBox)competences.get(i);
+                    if(str.equals(jcb.getSelectedItem().toString())){
+                        CompetenceMission cm = new CompetenceMission(listC.get(j),value);
+                        tabCM[i/2]=cm;
+                    }
+                }
+                nb+=value;
+            }
+            if(df != null){
+                Employe[] emp = {};
+                Mission newMiss = new MissionPlanifiee(id,jTextAreaDescriptif.getText(),d,nb,tabCM,emp,df);
+                listM.add(newMiss);
+            }else{
+                Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,tabCM);
+                listM.add(newMiss);
+            }
+            MenuMissionGeneral.sauvegarderMissions();
+            model = refreshTableModel();
+            table.setModel(model);
+            table.repaint();  
+            this.dispose();
         }
         else
         {
-            id=listM.get(listM.size()-1).getIdM()+1;
+            JOptionPane.showMessageDialog(this,"Veuillez mettre une date de fin de mission postérieure à la date de début de mission.","Erreur de choix de dates",JOptionPane.ERROR_MESSAGE);
         }
-        int nb =0;
-        int value = 0;
-        CompetenceMission[] tabCM = new CompetenceMission[competences.size()/2];
-        for(int i = 0; i< competences.size(); i = i+2){
-            for(int j = 0; j<listC.size(); j++){
-                String str = listC.get(j).getIDC() +" " + listC.get(j).getCat() + " " + listC.get(j).getLib();
-                JSpinner jsp = (JSpinner)competences.get(i+1);
-                value = (int)jsp.getValue();
-                
-                JComboBox jcb = (JComboBox)competences.get(i);
-                if(str.equals(jcb.getSelectedItem().toString())){
-                    CompetenceMission cm = new CompetenceMission(listC.get(j),value);
-                    tabCM[i/2]=cm;
-                }
-            }
-            nb+=value;
-        }
-        if(df != null){
-            Employe[] emp = {};
-            Mission newMiss = new MissionPlanifiee(id,jTextAreaDescriptif.getText(),d,nb,tabCM,emp,df);
-            listM.add(newMiss);
-        }else{
-            Mission newMiss = new MissionEnPreparation(id,jTextAreaDescriptif.getText(),d,nb,tabCM);
-            listM.add(newMiss);
-        }
-        
-        MenuMissionGeneral.sauvegarderMissions();
-        model = refreshTableModel();
-        table.setModel(model);
-        table.repaint();  
-        this.dispose();
             
     }//GEN-LAST:event_jBtnEnregistrerActionPerformed
 
