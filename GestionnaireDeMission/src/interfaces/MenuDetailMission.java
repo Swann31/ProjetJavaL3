@@ -8,6 +8,7 @@ package interfaces;
 import gestionnairedemission.CompetenceMission;
 import gestionnairedemission.Employe;
 import gestionnairedemission.Mission;
+import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.BorderLayout;
 import java.text.DateFormat;
@@ -29,9 +30,12 @@ import javax.swing.table.DefaultTableModel;
 public class MenuDetailMission extends javax.swing.JFrame {
 
     private static int valueTab=4;
+    private static int valueTabE=3;
     protected static String compId;
     protected static int nbEmp;
     protected static int idMission;
+    protected static DefaultTableModel dtmE;
+    protected static JTable tableE;
     /**
      * Creates new form MenuDetailMission
      */
@@ -41,6 +45,10 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jButtonAddEmp.setVisible(false);
         afficherInfo(idM);
         chargerCompetence(idM);
+        if(listM.isEmpty()==false && listM.get(obtID(idM)).getEmployeMission()!=null && listM.get(obtID(idM)).getEmployeMission().length!=0)
+        {
+            chargerEmploye(idM);
+        }
         
     }
 
@@ -487,5 +495,84 @@ public class MenuDetailMission extends javax.swing.JFrame {
             tabComp[i][3]=str;
         }
         return tabComp;
+    }
+    
+    public void chargerEmploye(int idM){
+        int tailleE = listM.get(obtID(idM)).getEmployeMission().length;
+        String[][] tabEmp = new String[tailleE][valueTabE];
+        tabEmp=tabEmploye(tailleE,idM);
+        String[] titleE = {"Identifiant","Prénom","Nom"};
+        dtmE=new DefaultTableModel(tabEmp,titleE);
+        tableE=new JTable(dtmE);
+        jPanelListEmp.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(tableE);
+        jPanelListEmp.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelListEmp);
+        this.pack();
+        this.setVisible(true);
+    }
+    
+    private static int tailleTabE(int idM)
+    {
+        int tailleE=0;
+        for(int i=0;i<listM.size();i++)
+        {
+            if(listM.get(i).getIdM()==idM)
+            {
+                if(listM.get(i).getCompMission()!=null && listM.get(i).getCompMission().length>0)
+                {   
+                    for(int j=0;j<listM.get(i).getCompMission().length;j++)
+                    {
+                        tailleE+=listM.get(i).getCompMission()[j].getNb();
+                    }
+                }
+            }
+        }
+        return tailleE;
+    }
+    
+    private static String[][] tabEmploye (int taille, int idM)
+    {
+        String[][] tabE = new String[taille][valueTabE];
+        for(int i=0;i<listM.size();i++)
+        {
+            if(listM.get(i).getIdM()==idM)
+            {
+                for(int j=0;j<listM.get(i).getEmployeMission().length;j++)
+                {
+                    for(int k=0;k<listE.size();k++)
+                    {
+                        if(listM.get(i).getEmployeMission()[j].getIdE()==listE.get(k).getIdE())
+                        {
+                            tabE[j][0]=String.valueOf(listE.get(k).getIdE());
+                            tabE[j][1]=listE.get(k).getPrenom();
+                            tabE[j][2]=listE.get(k).getNom();
+                        }
+                    }
+                }
+            }
+        }
+        return tabE;
+    }
+    
+    public static DefaultTableModel refreshModelE(int idM){
+        int tailleEmp = listM.get(obtID(idM)).getEmployeMission().length;
+        String[][] tabEAff = new String[tailleEmp][valueTabE];
+        String[] titleER = {"Identifiant","Prénom","Nom"};
+        tabEAff=tabEmploye(tailleEmp,idM);
+        return new DefaultTableModel(tabEAff,titleER);
+    }
+    
+    public static int obtID(int idM)
+    {
+        int res=0;
+        for(int i=0;i<listM.size();i++)
+        {
+            if(listM.get(i).getIdM()==idM)
+            {
+                res=i;
+            }
+        }
+        return res;
     }
 }

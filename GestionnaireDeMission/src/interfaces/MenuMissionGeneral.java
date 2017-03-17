@@ -457,10 +457,10 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                      buffer.append(listM.get(i).getEmployeMission()[k].getIdE());
                      buffer.append(";");
                     } 
-                }else {
+                }/*else {
                     buffer.append(nbPers);
                     buffer.append(";");
-                }
+                }*/
                 if( listM.get(i).getDateFin() !=null){
                     buffer.append(df.format(listM.get(i).getDateFin()));
                     buffer.append(";");
