@@ -9,12 +9,16 @@ import gestionnairedemission.Employe;
 import static interfaces.MenuDetailMission.compId;
 import static interfaces.MenuDetailMission.nbEmp;
 import static interfaces.MenuDetailMission.idMission;
+import static interfaces.MenuDetailMission.dtmE;
+import static interfaces.MenuDetailMission.tableE;
+import static interfaces.MenuDetailMission.refreshModelE;
 import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -218,6 +222,19 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
                 }
             }
         }
+        dtmE = refreshModelE(idMission);
+        if(tableE!=null)
+        {
+            tableE.setModel(dtmE);
+            tableE.repaint();
+        }
+        else
+        {
+            tableE=new JTable(dtmE);
+            tableE.repaint();
+        }
+        this.dispose();
+        
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
