@@ -319,6 +319,9 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanelListEmp">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

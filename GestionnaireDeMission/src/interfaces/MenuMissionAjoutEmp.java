@@ -10,13 +10,16 @@ import static interfaces.MenuDetailMission.compId;
 import static interfaces.MenuDetailMission.nbEmp;
 import static interfaces.MenuDetailMission.idMission;
 import static interfaces.MenuDetailMission.dtmE;
+import static interfaces.MenuDetailMission.jPanelListEmp;
 import static interfaces.MenuDetailMission.tableE;
 import static interfaces.MenuDetailMission.refreshModelE;
 import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
@@ -231,7 +234,8 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
         else
         {
             tableE=new JTable(dtmE);
-            tableE.repaint();
+            MenuDetailMission.rechargerUI(tableE);
+            
         }
         this.dispose();
         
@@ -323,7 +327,7 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
             for(int i = 0; i<nbEmp ; i++){
                 JComboBox listEmp = new JComboBox(tabEmp);
                 listComp.add(listEmp);
-                listEmp.setBounds(jLabel2.getX(), jLabel2.getY()+15 + (i*10), 400,30);
+                listEmp.setBounds(jLabel2.getX(), jLabel2.getY()+15 + (i*30), 400,30);
                 jPanelAddEmp.add(listEmp);
             }
            this.revalidate();
