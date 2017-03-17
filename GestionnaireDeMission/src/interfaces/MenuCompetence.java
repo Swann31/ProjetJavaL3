@@ -435,6 +435,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        jButtonAjouterComp.setVisible(true);
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
@@ -455,7 +456,9 @@ public class MenuCompetence extends javax.swing.JFrame {
                                 jButtonSupprimer.setVisible(false);
                                 JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
                                 
-                            }else jButtonSupprimer.setVisible(true);
+                            }else {
+                                jButtonSupprimer.setVisible(true);
+                            }
                         }
         }
         });

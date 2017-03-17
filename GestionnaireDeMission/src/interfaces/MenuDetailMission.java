@@ -52,7 +52,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
         
     }
 
-    private MenuDetailMission() {
+    public MenuDetailMission() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -370,7 +370,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuPrincpalItem1;
     private javax.swing.JPanel jPanelCompetenceMission;
     private javax.swing.JPanel jPanelDescriptif;
-    private javax.swing.JPanel jPanelListEmp;
+    protected static javax.swing.JPanel jPanelListEmp;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaDescriptif;
@@ -458,6 +458,12 @@ public class MenuDetailMission extends javax.swing.JFrame {
         this.getContentPane().add(jPanelCompetenceMission);
         this.pack();
         this.setVisible(true);
+    }
+    
+    public static void rechargerUI(JTable j){
+         jPanelListEmp.setLayout(new BorderLayout());
+            JScrollPane tableContainer = new JScrollPane(j);
+            jPanelListEmp.add(tableContainer, BorderLayout.CENTER);
     }
     
     private int tailleTab(int idM)
