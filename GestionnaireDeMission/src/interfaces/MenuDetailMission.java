@@ -45,11 +45,12 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jButtonAddEmp.setVisible(false);
         afficherInfo(idM);
         chargerCompetence(idM);
-        if(listM.isEmpty()==false && listM.get(obtID(idM)).getEmployeMission()!=null && listM.get(obtID(idM)).getEmployeMission().length!=0)
+        if(listM.isEmpty()==false && listM.get(obtID(idM)).getEmployeMission()!=null)
         {
-            chargerEmploye(idM);
+            if(listM.get(obtID(idM)).getEmployeMission().length!=0){
+                chargerEmploye(idM);
+            }else chargerEmployeVide();
         }
-        
     }
 
     public MenuDetailMission() {
@@ -78,7 +79,6 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jTextFieldNbPers = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jBtnRetour = new javax.swing.JButton();
-        jPanelDescriptif = new javax.swing.JPanel();
         jPanelCompetenceMission = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDescriptif = new javax.swing.JTextArea();
@@ -178,17 +178,6 @@ public class MenuDetailMission extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelDescriptifLayout = new javax.swing.GroupLayout(jPanelDescriptif);
-        jPanelDescriptif.setLayout(jPanelDescriptifLayout);
-        jPanelDescriptifLayout.setHorizontalGroup(
-            jPanelDescriptifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanelDescriptifLayout.setVerticalGroup(
-            jPanelDescriptifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanelCompetenceMissionLayout = new javax.swing.GroupLayout(jPanelCompetenceMission);
         jPanelCompetenceMission.setLayout(jPanelCompetenceMissionLayout);
         jPanelCompetenceMissionLayout.setHorizontalGroup(
@@ -214,7 +203,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
         );
         jPanelListEmpLayout.setVerticalGroup(
             jPanelListEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jButtonAddEmp.setText("Ajouter Employé");
@@ -243,8 +232,8 @@ public class MenuDetailMission extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonAddEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,9 +251,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jPanelDescriptif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addComponent(jPanelListEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -273,25 +260,22 @@ public class MenuDetailMission extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanelDescriptif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jPanelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelCompetenceMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanelCompetenceMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanelListEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jPanelListEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBtnRetour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAddEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -369,7 +353,6 @@ public class MenuDetailMission extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPrincpalItem1;
     private javax.swing.JPanel jPanelCompetenceMission;
-    private javax.swing.JPanel jPanelDescriptif;
     protected static javax.swing.JPanel jPanelListEmp;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JScrollPane jScrollPane2;
@@ -417,6 +400,18 @@ public class MenuDetailMission extends javax.swing.JFrame {
         Mission m = listM.get(id);
         return m;
     }
+    public void chargerEmployeVide(){
+        String[] titleE = {"Identifiant","Prénom","Nom"};
+        String[][] tu = new String[0][0];
+        DefaultTableModel dtm = new DefaultTableModel(tu,titleE);
+        tableE=new JTable(dtm);
+        jPanelListEmp.setLayout(new BorderLayout());
+        JScrollPane tableContainer = new JScrollPane(tableE);
+        jPanelListEmp.add(tableContainer, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelListEmp);
+        this.pack();
+        this.setVisible(true);
+    }
     
     public void chargerCompetence(int idM)
     {
@@ -460,11 +455,6 @@ public class MenuDetailMission extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
-    public static void rechargerUI(JTable j){
-         jPanelListEmp.setLayout(new BorderLayout());
-            JScrollPane tableContainer = new JScrollPane(j);
-            jPanelListEmp.add(tableContainer, BorderLayout.CENTER);
-    }
     
     private int tailleTab(int idM)
     {

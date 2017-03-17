@@ -539,6 +539,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
         JScrollPane tableContainer = new JScrollPane(table);
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         jButtonAjouterEmp.setVisible(true);
+        jButtonSauvegarder.setVisible(true);
+        jButtonImptCompEmp.setVisible(true);
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);

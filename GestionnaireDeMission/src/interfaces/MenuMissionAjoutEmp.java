@@ -226,17 +226,9 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
             }
         }
         dtmE = refreshModelE(idMission);
-        if(tableE!=null)
-        {
-            tableE.setModel(dtmE);
-            tableE.repaint();
-        }
-        else
-        {
-            tableE=new JTable(dtmE);
-            MenuDetailMission.rechargerUI(tableE);
-            
-        }
+        tableE.setModel(dtmE);
+        tableE.updateUI();
+        tableE.repaint();
         this.dispose();
         
     }//GEN-LAST:event_jButtonValiderActionPerformed
