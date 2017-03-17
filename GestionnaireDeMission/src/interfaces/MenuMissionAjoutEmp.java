@@ -12,6 +12,7 @@ import static interfaces.MenuDetailMission.idMission;
 import static interfaces.MenuDetailMission.dtmE;
 import static interfaces.MenuDetailMission.tableE;
 import static interfaces.MenuDetailMission.refreshModelE;
+import static interfaces.MenuMissionGeneral.sauvegarderMissions;
 import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.Component;
@@ -222,6 +223,7 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
                 }
             }
         }
+        sauvegarderMissions();
         dtmE = refreshModelE(idMission);
         if(tableE!=null)
         {
