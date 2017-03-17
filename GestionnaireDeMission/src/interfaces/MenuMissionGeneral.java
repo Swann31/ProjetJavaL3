@@ -451,7 +451,8 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                     buffer.append(";");
                 }
                 nbPers = compterPersonnes(listM.get(i).getEmployeMission());
-                buffer.append(nbPers + ";");
+                buffer.append(nbPers);
+                buffer.append(";");
                 if(nbPers !=0 && listM.get(i).getEmployeMission().length != 0){
                    for(int k = 0; k <nbPers; k++){
                      buffer.append(listM.get(i).getEmployeMission()[k].getIdE());

@@ -438,6 +438,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
+        jButtonAjouterEmp.setVisible(true);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         public void valueChanged(ListSelectionEvent event) {
             //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
@@ -458,6 +459,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
                             }else 
                             {
                                 jButtonSupprimer.setVisible(true);
+                                jButtonAjouterEmp.setVisible(true);
                                 jButtonDetailsComp.setVisible(true);
                                 jButtonDetailsMission.setVisible(true);
                             }
@@ -536,6 +538,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jPanelTable.setLayout(new BorderLayout());
         JScrollPane tableContainer = new JScrollPane(table);
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
+        jButtonAjouterEmp.setVisible(true);
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
