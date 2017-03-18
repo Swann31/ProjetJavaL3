@@ -63,7 +63,7 @@ public class CsvMissionDAO {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         if(tab[0].equals("Mission En Cours")){
             CompetenceMission[] tabC = new CompetenceMission[Integer.parseInt(tab[5])];
-            int t = Integer.parseInt(tab[6+2*(Integer.parseInt(tab[5]))]);
+            int t=6+2*Integer.parseInt(tab[5]);
             int dateFin = tab.length -1;
             Employe[] emp = new Employe[t];
             for(int i=0; i<Integer.parseInt(tab[5]); i=i+2){
@@ -74,7 +74,7 @@ public class CsvMissionDAO {
                 }
             }
             
-            for(int i=0;i<Integer.parseInt(tab[6]);i++){
+            for(int i=1;i<Integer.parseInt(tab[t])+1;i++){
                 for(int j=0; j<listE.size(); j++){
                     if(listE.get(j).getIdE() == Integer.parseInt(tab[t+i])){
                         emp[i]= listE.get(j);
@@ -115,21 +115,23 @@ public class CsvMissionDAO {
         }else if(tab[0].equals("Mission Planifiée")){
             
             CompetenceMission[] tabC = new CompetenceMission[Integer.parseInt(tab[5])];
-            int t = Integer.parseInt(tab[6+2*(Integer.parseInt(tab[5]))]);
+            int t=6+2*Integer.parseInt(tab[5]);
             int dateFin = tab.length -1;
-            Employe[] emp = new Employe[t];
-            for(int i=0; i<Integer.parseInt(tab[5]); i=i+2){
+            Employe[] emp = new Employe[Integer.parseInt(tab[t])];
+            int id=0;
+            for(int i=1; i<2*Integer.parseInt(tab[5])+1; i+=2){
                 for(int j = 0 ; j<listC.size();j++){
                     if(listC.get(j).getIDC().equals(tab[5+i])){
-                        tabC[i] = new CompetenceMission(listC.get(j), Integer.parseInt(tab[6+i]));
+                        tabC[id] = new CompetenceMission(listC.get(j), Integer.parseInt(tab[6+i]));
+                        id++;
                     }
                 }
             }
             
-            for(int i=0;i<Integer.parseInt(tab[6]);i++){
+            for(int i=1;i<Integer.parseInt(tab[t])+1;i++){
                 for(int j=0; j<listE.size(); j++){
                     if(listE.get(j).getIdE() == Integer.parseInt(tab[t+i])){
-                        emp[i]= listE.get(j);
+                        emp[i-1]= listE.get(j);
                     }
                 }
             }
@@ -146,7 +148,7 @@ public class CsvMissionDAO {
         }else if(tab[0].equals("Mission Terminée")){
             
             CompetenceMission[] tabC = new CompetenceMission[Integer.parseInt(tab[5])];
-            int t = Integer.parseInt(tab[6+2*(Integer.parseInt(tab[5]))]);
+            int t=6+2*Integer.parseInt(tab[5]);
             int dateFin = tab.length -1;
             Employe[] emp = new Employe[t];
             for(int i=0; i<Integer.parseInt(tab[5]); i=i+2){
@@ -157,7 +159,7 @@ public class CsvMissionDAO {
                 }
             }
             
-            for(int i=0;i<Integer.parseInt(tab[6]);i++){
+            for(int i=1;i<Integer.parseInt(tab[t])+1;i++){
                 for(int j=0; j<listE.size(); j++){
                     if(listE.get(j).getIdE() == Integer.parseInt(tab[t+i])){
                         emp[i]= listE.get(j);

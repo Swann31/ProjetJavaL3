@@ -515,9 +515,11 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                 buffer.append(";");
                 buffer.append(listM.get(i).getNbEmployes());
                 buffer.append(";");
-                nbComp = compterCompetences(listM.get(i).getCompMission());
-                buffer.append(nbComp + ";");
+                //buffer.append(listM.get(i).getCompMission().length);//compterCompetences(listM.get(i).getCompMission());
+                nbComp=listM.get(i).getCompMission().length;
                 if(nbComp !=0){
+                   buffer.append(listM.get(i).getCompMission().length);
+                   buffer.append(";");
                    for(int k = 0; k <nbComp; k++){
                      buffer.append(listM.get(i).getCompMission()[k].getIDC());
                      buffer.append(";");
@@ -529,7 +531,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                     buffer.append(";");
                 }
                 nbPers = compterPersonnes(listM.get(i).getEmployeMission());
-                buffer.append(nbPers);
+                buffer.append(listM.get(i).getEmployeMission().length);
                 buffer.append(";");
                 if(nbPers !=0 && listM.get(i).getEmployeMission().length != 0){
                    for(int k = 0; k <nbPers; k++){
@@ -563,6 +565,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
             }
         }
     }
+
 
     private static int compterCompetences(CompetenceMission[] tab){
         if (tab == null){
