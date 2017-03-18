@@ -28,9 +28,12 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -119,6 +122,11 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         });
 
         jCbxTypeMission.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toutes", "En Cours", "En Préparation", "Planifiées", "Terminées" }));
+        jCbxTypeMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbxTypeMissionActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Afficher type de mission :");
 
@@ -291,6 +299,76 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         }
                 showMessageDialog(null,"Fichier new_liste_mission créé dans 'Mes Documents'");
     }//GEN-LAST:event_jBtnFichierMissionActionPerformed
+
+    private void jCbxTypeMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxTypeMissionActionPerformed
+        
+        switch(jCbxTypeMission.getSelectedIndex()){
+            case 0:
+                 RowFilter<Object, Object> filter = new RowFilter<Object, Object>() {
+                    public boolean include(Entry entry) {
+                      return true;
+                    }
+                  };
+
+                  TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+                  sorter.setRowFilter(filter);
+                  table.setRowSorter(sorter);
+                
+                break;
+            case 1:
+                    RowFilter<Object, Object> filter1 = new RowFilter<Object, Object>() {
+                        public boolean include(Entry entry) {
+                          String type = (String) entry.getValue(0);
+                          return type.equals("Mission En Cours");
+                        }
+                  };
+
+                  TableRowSorter<TableModel> sorter1 = new TableRowSorter<TableModel>(model);
+                  sorter1.setRowFilter(filter1);
+                  table.setRowSorter(sorter1);
+                  table.repaint();
+                break;
+            case 2:
+                RowFilter<Object, Object> filter2 = new RowFilter<Object, Object>() {
+                        public boolean include(Entry entry) {
+                          String type = (String) entry.getValue(0);
+                          return type.equals("Mission En Préparation");
+                        }
+                  };
+
+                  TableRowSorter<TableModel> sorter2 = new TableRowSorter<TableModel>(model);
+                  sorter2.setRowFilter(filter2);
+                  table.setRowSorter(sorter2);
+                  table.repaint();
+                break;
+            case 3:
+                RowFilter<Object, Object> filter3 = new RowFilter<Object, Object>() {
+                        public boolean include(Entry entry) {
+                          String type = (String) entry.getValue(0);
+                          return type.equals("Mission Planifiée");
+                        }
+                  };
+
+                  TableRowSorter<TableModel> sorter3 = new TableRowSorter<TableModel>(model);
+                  sorter3.setRowFilter(filter3);
+                  table.setRowSorter(sorter3);
+                  table.repaint();
+                break;
+            case 4:
+                RowFilter<Object, Object> filter4 = new RowFilter<Object, Object>() {
+                        public boolean include(Entry entry) {
+                          String type = (String) entry.getValue(0);
+                          return type.equals("Mission Terminée");
+                        }
+                  };
+
+                  TableRowSorter<TableModel> sorter4 = new TableRowSorter<TableModel>(model);
+                  sorter4.setRowFilter(filter4);
+                  table.setRowSorter(sorter4);
+                  table.repaint();
+                  break;
+        }
+    }//GEN-LAST:event_jCbxTypeMissionActionPerformed
 
     /**
      * @param args the command line arguments
