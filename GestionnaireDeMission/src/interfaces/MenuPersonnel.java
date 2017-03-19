@@ -368,8 +368,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     private void jButtonDetailsCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsCompActionPerformed
         // TODO add your handling code here:
-        MenuDetailCompetence mdc = new MenuDetailCompetence(num);
-        mdc.setLocationRelativeTo(this);;
+        MenuDetailCompetence mdc = new MenuDetailCompetence(num+1);
+        mdc.setLocationRelativeTo(this);
         mdc.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsCompActionPerformed
 
