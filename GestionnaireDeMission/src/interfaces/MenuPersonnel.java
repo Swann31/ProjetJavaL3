@@ -368,14 +368,14 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     private void jButtonDetailsCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsCompActionPerformed
         // TODO add your handling code here:
-        MenuDetailCompetence mdc = new MenuDetailCompetence(num);
+        MenuDetailCompetence mdc = new MenuDetailCompetence(num+1);
         mdc.setLocationRelativeTo(this);;
         mdc.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsCompActionPerformed
 
     private void jButtonDetailsMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsMissionActionPerformed
         // TODO add your handling code here:
-        MenuDetailMissionEmp mdce = new MenuDetailMissionEmp(num);
+        MenuDetailMissionEmp mdce = new MenuDetailMissionEmp(num+1);
         mdce.setLocationRelativeTo(this);;
         mdce.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsMissionActionPerformed
