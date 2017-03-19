@@ -271,7 +271,14 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
         {
             if(listE.get(i).getIdE()==idEmp)
             {
-                taille=listE.get(i).getCompetence().length;
+                if(listE.get(i).getCompetence()!=null)
+                {
+                    taille=listE.get(i).getCompetence().length;
+                }
+                else
+                {
+                    taille=0;
+                }
             }
         }
         return taille;
@@ -284,13 +291,22 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
         {
             if(listE.get(i).getIdE()==idEmp)
             {
-                comp =listE.get(i).getCompetence();
-                for(int j=0;j<taille;j++)
+                if(listE.get(i).getCompetence()!=null)
                 {
-                    tabComp[j][0]=comp[j].getIDC();
-                    tabComp[j][1]=comp[j].getCat();
-                    tabComp[j][2]=comp[j].getLib();
+                    comp =listE.get(i).getCompetence();
+                    for(int j=0;j<taille;j++)
+                    {
+                        tabComp[j][0]=comp[j].getIDC();
+                        tabComp[j][1]=comp[j].getCat();
+                        tabComp[j][2]=comp[j].getLib();
+                    }
                 }
+                /*else
+                {
+                    tabComp[0][0]="";
+                    tabComp[0][1]="";
+                    tabComp[0][2]="";
+                }*/
             }
         }
         return tabComp;
