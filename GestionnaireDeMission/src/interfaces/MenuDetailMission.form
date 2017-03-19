@@ -56,7 +56,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtnRetour" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jPanelCompetenceMission" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -74,7 +74,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelListEmp" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -197,6 +197,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="jTextFieldIDM">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -214,8 +217,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDateDebut">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldTypeMission">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -223,6 +232,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDateFin">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDateFinActionPerformed"/>
           </Events>
@@ -233,6 +245,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNbPers">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -304,7 +319,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="374" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="428" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

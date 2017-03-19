@@ -92,14 +92,21 @@ public class MenuDetailMission extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1160, 495));
 
+        jTextFieldIDM.setEnabled(false);
+
         jLabel2.setText("Id Mission :");
 
         jLabel4.setText("Date début :");
 
         jLabelDateF.setText("Date de Fin");
 
+        jTextFieldDateDebut.setEnabled(false);
+
+        jTextFieldTypeMission.setEnabled(false);
+
         jLabel7.setText("Type de la Mission:");
 
+        jTextFieldDateFin.setEnabled(false);
         jTextFieldDateFin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDateFinActionPerformed(evt);
@@ -107,6 +114,8 @@ public class MenuDetailMission extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Nombre de Pers. :");
+
+        jTextFieldNbPers.setEnabled(false);
 
         javax.swing.GroupLayout jPanelSettingsLayout = new javax.swing.GroupLayout(jPanelSettings);
         jPanelSettings.setLayout(jPanelSettingsLayout);
@@ -199,7 +208,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jPanelListEmp.setLayout(jPanelListEmpLayout);
         jPanelListEmpLayout.setHorizontalGroup(
             jPanelListEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
         jPanelListEmpLayout.setVerticalGroup(
             jPanelListEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +260,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelListEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
