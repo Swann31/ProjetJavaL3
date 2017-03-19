@@ -71,6 +71,7 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(464, 355));
 
         jLabelIDC.setText("ID Competence");
 
@@ -156,7 +157,7 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
                             .addComponent(jTextFieldCat)
                             .addComponent(jTextFieldLibC)
                             .addComponent(jTextFieldNBE, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                        .addGap(0, 152, Short.MAX_VALUE)))
+                        .addGap(0, 208, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
