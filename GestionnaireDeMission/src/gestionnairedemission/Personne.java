@@ -23,7 +23,7 @@ public abstract class Personne {
     protected String prenom;
     
     /**
-     * Déclaration du setteur pour le nom de la Personne.
+     * Déclaration du setter pour le nom de la Personne.
      * @param n 
      *      Nom de la personne qui sera renseigné.
      * @see Personne#nom
@@ -34,7 +34,7 @@ public abstract class Personne {
     }
     
     /**
-     * Déclaration du setteur pour le prénom de la Personne.
+     * Déclaration du setter pour le prénom de la Personne.
      * @param s
      *      Prénom de la personne qui sera renseigné.
      * @see Personne#prenom
@@ -45,7 +45,7 @@ public abstract class Personne {
     }
     
     /**
-     * Déclaration du getteur pour le nom de la personne.
+     * Déclaration du getter pour le nom de la personne.
      * @return Le nom de la personne concernée.
      * @see Personne#nom
      */
@@ -55,7 +55,7 @@ public abstract class Personne {
     }
     
     /**
-     * Déclaration du getteur pour le prénom de la personne.
+     * Déclaration du getter pour le prénom de la personne.
      * @return Le prénom de la personne concernée.
      * @see Personne#prenom
      */

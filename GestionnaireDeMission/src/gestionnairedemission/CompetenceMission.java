@@ -80,7 +80,7 @@ public class CompetenceMission extends Competence {
     }
     
     /**
-     * Getteur pour le nombre de personnes possédant la compétence.
+     * Getter pour le nombre de personnes possédant la compétence.
      * @return Le nombre de personne possédant la compétence.
      * @see CompetenceMission#nbPersonnes
      */
@@ -90,7 +90,7 @@ public class CompetenceMission extends Competence {
     }
     
     /**
-     * Setteur pour le nombre de personnes possédant la compétence.
+     * Setter pour le nombre de personnes possédant la compétence.
      * @param i
      *      Le nombre de personnes devant posséder la compétence.
      * @see CompetenceMission#nbPersonnes

@@ -94,7 +94,7 @@ public class Competence implements ICompetence{
     }
     
     /**
-     * Getteur pour la catégorie de la compétence.
+     * Getter pour la catégorie de la compétence.
      * @return La catégorie de la compétence.
      * @see Competence#categorieComp
      */
@@ -105,7 +105,7 @@ public class Competence implements ICompetence{
     }
     
     /**
-     * Getteur pour le libellé de la compétence.
+     * Getter pour le libellé de la compétence.
      * @return Le libellé de la compétence.
      * @see Competence#libelleComp
      */
@@ -116,7 +116,7 @@ public class Competence implements ICompetence{
     }
     
     /**
-     * Getteur pour l'état de "suppression" de la compétence.
+     * Getter pour l'état de "suppression" de la compétence.
      * @return Le booléen déterminant l'état de "suppression" de la compétence.
      * @see Competence#suppr
      */
@@ -125,7 +125,7 @@ public class Competence implements ICompetence{
     }
     
     /**
-     * Setteur pour l'identifiant de la compétence.
+     * Setter pour l'identifiant de la compétence.
      * @param id 
      *      L'identifiant de la compétence.
      * @see Competence#idC
@@ -136,7 +136,7 @@ public class Competence implements ICompetence{
     }
     
     /**
-     * Setteur pour la catégorie de la compétence.
+     * Setter pour la catégorie de la compétence.
      * @param cat
      *      Catégorie de la compétence.
      * @see Competence#categorieComp

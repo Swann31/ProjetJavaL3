@@ -26,7 +26,7 @@ public class MissionPlanifiee extends MissionModifiable{
     protected Date dateFin;
 
     /**
-     * Getteur pour le tableau d'employés travaillant sur la mission.
+     * Getter pour le tableau d'employés travaillant sur la mission.
      * @return Le tableau d'employés associés à la mission.
      * @see MissionPlanifiee#employeMission
      * @see Employe
@@ -99,7 +99,7 @@ public class MissionPlanifiee extends MissionModifiable{
      * @see MissionModifiable#nbEmployes
      * @see MissionModifiable#compMission
      * @see MissionPlanifiee#employeMission
-     * @see MissionPlanifieee#dateFin
+     * @see MissionPlanifiee#dateFin
      */
     public MissionPlanifiee(int id, String desc, Date dateD,int nbE, CompetenceMission[] comp, Employe[] emp, Date dateF){
         super(id, desc, dateD, nbE, comp, "Mission Planifiée");
@@ -122,7 +122,7 @@ public class MissionPlanifiee extends MissionModifiable{
      * @see MissionModifiable#getNbEmployes() 
      * @see MissionModifiable#getCompMission() 
      * @see MissionPlanifiee#employeMission
-     * @see MissionPlanifieee#dateFin
+     * @see MissionPlanifiee#dateFin
      */
     public MissionPlanifiee(MissionModifiable mm, Employe[] emp, Date dateF)
     {

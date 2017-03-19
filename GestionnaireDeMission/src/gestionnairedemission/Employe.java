@@ -179,7 +179,7 @@ public class Employe extends Personne implements IEmploye {
     }
     
     /**
-     * Getteur pour l'identifiant de l'employé.
+     * Getter pour l'identifiant de l'employé.
      * @return L'identifiant de l'employé.
      * @see Employe#idE
      */
@@ -190,7 +190,7 @@ public class Employe extends Personne implements IEmploye {
     }
     
     /**
-     * Getteur pour la date d'entrée dans l'entreprise de l'employé.
+     * Getter pour la date d'entrée dans l'entreprise de l'employé.
      * @return La date d'entrée dans l'entreprise.
      * @see Employe#dateEntree
      */
@@ -201,7 +201,7 @@ public class Employe extends Personne implements IEmploye {
     }
     
     /**
-     * Getteur pour le flag suppression de l'employé.
+     * Getter pour le flag suppression de l'employé.
      * @return si l'employé est supprimé ou pas.
      * @see Employe#suppr
      */
@@ -211,7 +211,7 @@ public class Employe extends Personne implements IEmploye {
     }
     
      /**
-     * Setteur pour le flag de l'employé.
+     * Setter pour le flag de l'employé.
      * @param bool 
      *      Si l'employé est présent dans la liste ou non.
      * @see Employe#suppr
@@ -223,7 +223,7 @@ public class Employe extends Personne implements IEmploye {
     
     
     /**
-     * Getteur pour l'ensemble des compétences possédées par l'employé.
+     * Getter pour l'ensemble des compétences possédées par l'employé.
      * @return Une liste de compétences inhérentes à l'employé.
      * @see Employe#comp
      * @see Competence

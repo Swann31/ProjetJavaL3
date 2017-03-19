@@ -12,13 +12,13 @@ import java.util.List;
 interface ICsvFile {
     
     /**
-     * Getteur pour le file du CsvFile
+     * Getter pour le file du CsvFile
      * @return Le fichier lié à la classe CsvFile.
      */
     File getFile();
     
     /**
-     * Getteur pour les données contenues au sein du fichier CSV
+     * Getter pour les données contenues au sein du fichier CSV
      * @return L'ensemble des données contenues dans le fichier au sein d'un grand tableau.
      */
     List<String[]> getData();

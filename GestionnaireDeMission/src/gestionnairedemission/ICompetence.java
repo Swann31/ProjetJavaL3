@@ -9,19 +9,19 @@ package gestionnairedemission;
 public interface ICompetence {
     
     /**
-     * Getteur pour l'identifiant de la compétence.
+     * Getter pour l'identifiant de la compétence.
      * @return L'identifiant de la compétence.
      */
     String getIDC();
     
     /**
-     * Getteur pour la catégorie de la compétence.
+     * Getter pour la catégorie de la compétence.
      * @return La catégorie de la compétence.
      */
     String getCat();
 
     /**
-     * Getteur pour le libellé de la compétence.
+     * Getter pour le libellé de la compétence.
      * @return Le libellé de la compétence.
      */
     String getLib();
