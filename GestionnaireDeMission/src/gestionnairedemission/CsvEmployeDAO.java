@@ -29,14 +29,14 @@ public class CsvEmployeDAO implements EmployeDAO {
     private CsvFile csvF;
     
     /**
-     * Constructeur par défaut du CsvEmployeDAO ayant une portée limitée (private).
+     * Constructeur par défaut du CsvEmployeDAO.
      */
-    private CsvEmployeDAO() {
+    public CsvEmployeDAO() {
         super();
     }
     
     /**
-     * Constructeur du CsvExmployeDAO.
+     * Constructeur du CsvEmployeDAO.
      * @param file 
      *      Le fichier contenant les employés à ajouter.
      * @see CsvFile
@@ -84,10 +84,11 @@ public class CsvEmployeDAO implements EmployeDAO {
      *      Tableau correspondant aux différents éléments composant une ligne du fichier CSV.
      * @return L'employé nouvellement créé avec l'ensemble de ses caractéristiques extraites.
      * @see Employe
-     * @see Employe#setIdE(int) 
-     * @see Employe#setPrenom(java.lang.String) 
-     * @see Employe#setNom(java.lang.String) 
-     * @see Employe#setDateEntree(java.util.Date) 
+     * @see Employe#idE
+     * @see Employe#dateEntree
+     * @see Employe#prenom
+     * @see Employe#nom
+     * @see Employe#suppr
      * @throws ex Si le format n'est pas valide.
      */
     private Employe employeTab(String[] tab)

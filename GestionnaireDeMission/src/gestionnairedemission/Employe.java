@@ -211,7 +211,7 @@ public class Employe extends Personne implements IEmploye {
     }
     
      /**
-     * Setteur pour le flafg de l'employé.
+     * Setteur pour le flag de l'employé.
      * @param bool 
      *      Si l'employé est présent dans la liste ou non.
      * @see Employe#suppr

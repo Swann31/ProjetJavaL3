@@ -1,7 +1,6 @@
 package gestionnairedemission;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <b> Interface CompetenceDAO </b>

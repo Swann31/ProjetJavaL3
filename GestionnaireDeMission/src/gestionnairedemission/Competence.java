@@ -60,6 +60,21 @@ public class Competence implements ICompetence{
         this.libelleComp=libC;
     }
     
+    /**
+     * Constructeur d'une compétence.
+     * @param id
+     *      Identifiant de la compétence.
+     * @param catC
+     *      Catégorie de la compétence.
+     * @param libC 
+     *      Libellé de la compétence.
+     * @param bool 
+     *      Etat de la "suppression" de la compétence.
+     * @see Competence#idC
+     * @see Competence#categorieComp
+     * @see Competence#libelleComp
+     * @see Competence#suppr
+     */
     public Competence (String id, String catC, String libC, boolean bool) {
         this.idC=id;
         this.categorieComp=catC;
@@ -100,6 +115,11 @@ public class Competence implements ICompetence{
         return this.libelleComp;
     }
     
+    /**
+     * Getteur pour l'état de "suppression" de la compétence.
+     * @return Le booléen déterminant l'état de "suppression" de la compétence.
+     * @see Competence#suppr
+     */
     public boolean getSuppr(){
         return this.suppr;
     }
@@ -137,6 +157,12 @@ public class Competence implements ICompetence{
         this.libelleComp=lib;
     }
     
+    /**
+     * Setteur pour l'état de "suppression" de la compétence.
+     * @param bool 
+     *      Flag de suppression de la compétence.
+     * @see Competence#suppr
+     */
     public void setSuppr(boolean bool)
     {
         this.suppr=bool;

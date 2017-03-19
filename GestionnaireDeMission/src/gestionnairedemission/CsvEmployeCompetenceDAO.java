@@ -1,6 +1,5 @@
 package gestionnairedemission;
 
-import static interfaces.MenuPrincipal.listC;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +25,10 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
     private CsvFile csvF;
     
     /**
-     * Constructeur par défaut du CsvEmployeCompetenceDAO ayant une portée limitée (private).
+     * Constructeur par défaut du CsvEmployeCompetenceDAO.
      * @see EmployeCompetenceDAO
      */
-    private CsvEmployeCompetenceDAO() {
+    public CsvEmployeCompetenceDAO() {
         super();
     }
     
@@ -47,7 +46,7 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
     }
     
     /**
-     * Conversion des données reçues au sein du fichier en un tableau comprenant l'ensemble des données à traiter.
+     * Conversion des données reçues au sein du fichier en une liste comprenant l'ensemble des données à traiter.
      * @return La liste des IdEmployés liée à la liste des IDCompetences.
      * @see CsvEmployeCompetenceDAO#csvF
      */
@@ -65,22 +64,5 @@ public class CsvEmployeCompetenceDAO implements EmployeCompetenceDAO {
             }
         }
         return listD;
-    }
-    
-        public int nbLignes() {
-        List<String[]> data;
-        data = this.csvF.getData();
-        //String[][] tabp = null;
-        String[][] tabp = new String[data.size()][listC.size()+1];
-        int tour=0;
-        for(String[] data1 : data)
-        {
-            for(int i=0;i<data1.length;i++)
-            {
-                tabp[tour][i]=data1[i];
-            }
-            tour++;
-        }
-        return tour;
     }
 }

@@ -25,10 +25,10 @@ public class CsvCompetenceDAO implements CompetenceDAO{
     private CsvFile csvF;
     
     /**
-     * Constructeur par défaut du CsvCompetenceDAO ayant une portée limitée (private).
+     * Constructeur par défaut du CsvCompetenceDAO.
      * @see CompetenceDAO
      */
-    private CsvCompetenceDAO() {
+    public CsvCompetenceDAO() {
         super();
     }
     
@@ -47,7 +47,7 @@ public class CsvCompetenceDAO implements CompetenceDAO{
     
     /**
      * Créé une liste contenant l'ensemble des compétences a ajouter de la sorte.
-     * Il s'agit d'un parcours de la liste fournie via l'objet CsvFile et une conversion en données de celui-ci.
+     * Il s'agit d'un parcours de la liste fournie via l'objet CsvFile et une conversion en données de celui-ci en une liste.
      * @return La liste des compétences ajoutés en omettant le titre au sein du fichier CSV.
      * @see Competence
      * @see CsvCompetenceDAO#csvF
@@ -79,9 +79,10 @@ public class CsvCompetenceDAO implements CompetenceDAO{
      *      Tableau correspondant aux différents éléments composant une ligne du fichier CSV.
      * @return La compétence nouvellement créé avec l'ensemble de ses caractéristiques extraites.
      * @see Competence
-     * @see Competence#setIDC(java.lang.String) 
-     * @see Competence#setCat(java.lang.String) 
-     * @see Competence#setLib(java.lang.String) 
+     * @see Competence#idC 
+     * @see Competence#categorieComp 
+     * @see Competence#libelleComp
+     * @see Competence#suppr
      */
     private Competence competenceTab(String[] tab)
     {

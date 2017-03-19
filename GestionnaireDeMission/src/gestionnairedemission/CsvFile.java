@@ -70,7 +70,7 @@ final class CsvFile implements ICsvFile{
     }
     
     /**
-     * Getteur pour le file du CsvFile
+     * Getteur pour le file du CsvFile.
      * @return Le fichier lié à la classe CsvFile.
      * @see CsvFile#f
      */

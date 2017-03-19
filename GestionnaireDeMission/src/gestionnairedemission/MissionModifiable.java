@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionnairedemission;
 
 import java.util.Date;
@@ -24,6 +19,7 @@ public abstract class MissionModifiable extends Mission {
         this.nbEmployes = nbE;
     }
 
+    @Override
     public CompetenceMission[] getCompMission() {
         return compMission;
     }
@@ -32,8 +28,11 @@ public abstract class MissionModifiable extends Mission {
         this.compMission = compM;
     }
     
+    @Override
      public abstract Employe[] getEmployeMission();
+    @Override
       public abstract Date getDateFin();
+    @Override
       public abstract void setEmployeMission(Employe[] employeMission);
     
     public MissionModifiable (){
