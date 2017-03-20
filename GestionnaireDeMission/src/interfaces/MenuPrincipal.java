@@ -110,7 +110,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("2 : liste_personnel.csv");
 
-        jLabel5.setText("3 : compétences_personnel.csv");
+        jLabel5.setText("3 : compétences_personnel.csv (Bouton importer compétence)");
 
         jLabel6.setText("4 : new_liste_mission.csv");
 
@@ -140,8 +140,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()

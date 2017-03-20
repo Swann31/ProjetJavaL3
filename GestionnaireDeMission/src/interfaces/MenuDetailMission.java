@@ -345,13 +345,13 @@ public class MenuDetailMission extends javax.swing.JFrame {
         mmae.setVisible(true);
     }//GEN-LAST:event_jButtonAddEmpActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
     private void jTextFieldDateFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDateFinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDateFinActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     /**
      * @param args the command line arguments
