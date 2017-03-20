@@ -8,12 +8,15 @@ package interfaces;
 import gestionnairedemission.CompetenceMission;
 import gestionnairedemission.Employe;
 import gestionnairedemission.Mission;
+import static interfaces.MenuMissionGeneral.sauvegarderMissions;
+import static interfaces.MenuMissionGeneral.table;
 import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
 import java.awt.BorderLayout;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JScrollPane;
@@ -36,6 +39,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
     protected static int idMission;
     protected static DefaultTableModel dtmE;
     protected static JTable tableE;
+    protected static int idMiss;
     /**
      * Creates new form MenuDetailMission
      */
@@ -45,12 +49,25 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jButtonAddEmp.setVisible(false);
         afficherInfo(idM);
         chargerCompetence(idM);
+        idMiss = idM;
         if(listM.isEmpty()==false && listM.get(obtID(idM)).getEmployeMission()!=null)
         {
             if(listM.get(obtID(idM)).getEmployeMission().length!=0){
                 chargerEmploye(idM);
             }else chargerEmployeVide();
         }
+        jRadioButtonEnCours.setVisible(false);
+        jRadioButtonTerminee.setVisible(false);
+        jButtonValiderChangement.setVisible(false);
+        if(listM.get(obtID(idM)).getTypeM().equals("Mission Planifiée") && listM.get(obtID(idM)).getDateFin()!= null && listM.get(obtID(idM)).getEmployeMission() != null){
+            ButtonGroup bg = new ButtonGroup();
+            bg.add(jRadioButtonEnCours);
+            bg.add(jRadioButtonTerminee);
+            jRadioButtonEnCours.setVisible(true);
+            jRadioButtonTerminee.setVisible(true);
+            jButtonValiderChangement.setVisible(true);
+        }
+        
     }
 
     public MenuDetailMission() {
@@ -86,15 +103,15 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jTextFieldDateFin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldNbPers = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jRadioButtonEnCours = new javax.swing.JRadioButton();
+        jRadioButtonTerminee = new javax.swing.JRadioButton();
+        jButtonValiderChangement = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuPrincpalItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1350, 700));
-        setPreferredSize(new java.awt.Dimension(1350, 700));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
         jLabel1.setText("Detail de la Mission");
@@ -140,6 +157,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
 
         jTextAreaDescriptif.setColumns(20);
         jTextAreaDescriptif.setRows(5);
+        jTextAreaDescriptif.setEnabled(false);
         jScrollPane2.setViewportView(jTextAreaDescriptif);
 
         jLabel8.setText("Descriptif :");
@@ -251,12 +269,19 @@ public class MenuDetailMission extends javax.swing.JFrame {
                         .addContainerGap(48, Short.MAX_VALUE))))
         );
 
-        jCheckBox1.setText("Mission terminée");
+        jRadioButtonEnCours.setText("Mission en Cours");
 
-        jCheckBox2.setText("Mission en cours");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonTerminee.setText("Mission Terminée");
+        jRadioButtonTerminee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                jRadioButtonTermineeActionPerformed(evt);
+            }
+        });
+
+        jButtonValiderChangement.setText("Valider changement");
+        jButtonValiderChangement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValiderChangementActionPerformed(evt);
             }
         });
 
@@ -285,10 +310,12 @@ public class MenuDetailMission extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(6, 6, 6)
-                                .addComponent(jCheckBox1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButtonEnCours)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButtonTerminee)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonValiderChangement))
                             .addComponent(jPanelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -313,15 +340,17 @@ public class MenuDetailMission extends javax.swing.JFrame {
                             .addComponent(jBtnRetour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAddEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCheckBox1)
-                                .addComponent(jCheckBox2))
-                            .addComponent(jLabel1))
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelCompetenceMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelCompetenceMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButtonEnCours)
+                            .addComponent(jRadioButtonTerminee)
+                            .addComponent(jButtonValiderChangement))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -349,9 +378,25 @@ public class MenuDetailMission extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDateFinActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jRadioButtonTermineeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTermineeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_jRadioButtonTermineeActionPerformed
+
+    private void jButtonValiderChangementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderChangementActionPerformed
+        // TODO add your handling code here:
+        if(jRadioButtonEnCours.isSelected()){
+            listM.get(obtID(idMiss)).setTypeM("Mission En Cours");
+            sauvegarderMissions();
+            table.repaint();
+            this.dispose();
+            
+        }else if(jRadioButtonTerminee.isSelected()){
+            listM.get(obtID(idMiss)).setTypeM("Mission Terminée");
+            sauvegarderMissions();
+            table.repaint();
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButtonValiderChangementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,8 +436,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnRetour;
     private javax.swing.JButton jButtonAddEmp;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JButton jButtonValiderChangement;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -406,6 +450,8 @@ public class MenuDetailMission extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelInfo;
     protected static javax.swing.JPanel jPanelListEmp;
     private javax.swing.JPanel jPanelSettings;
+    private javax.swing.JRadioButton jRadioButtonEnCours;
+    private javax.swing.JRadioButton jRadioButtonTerminee;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaDescriptif;
     private javax.swing.JTextField jTextFieldDateDebut;
@@ -428,14 +474,18 @@ public class MenuDetailMission extends javax.swing.JFrame {
         String idm = Integer.toString(M.getIdM());
         String typeM = M.getTypeM();
         String dd = sdf.format(M.getDateDebut());
-        String df = sdf.format(M.getDateFin());
+        if(M.getDateFin() != null){
+            String df = sdf.format(M.getDateFin());
+            jTextFieldDateFin.setText(df);
+        }
+        
         String nbp = String.valueOf(M.getNbEmployes());
         String desc = M.getDescM();
         jTextFieldIDM.setText(idm);
         jTextFieldTypeMission.setText(typeM);
         jTextFieldNbPers.setText(nbp);
         jTextFieldDateDebut.setText(dd);
-        jTextFieldDateFin.setText(df);
+        
         jTextAreaDescriptif.setText(desc);
     }
     
@@ -482,22 +532,16 @@ public class MenuDetailMission extends javax.swing.JFrame {
                             idMission = Integer.parseInt(jTextFieldIDM.getText());
                             compId = new String();
                             compId = (String)table.getModel().getValueAt(num,0);
-                            for(int i=0;i<listM.size();i++)
-                            {
-                                if(listM.get(i).getIdM()==idMission)
-                                {
-                                    for(int j=0;j<listM.get(i).getCompMission().length;j++)
+                            showMessageDialog(null,compId);
+                            int nbEmploye=0;
+                                    for(int j=0;j<listM.get(idMission).getCompMission().length;j++)
                                     {
-                                        if(listM.get(i).getCompMission()[j].getIDC().equals(compId))
-                                        {
-                                            if(listM.get(i).getCompMission()[j].getNb()>listM.get(i).getEmployeMission().length)
+                                        nbEmploye+=listM.get(idMission).getCompMission()[j].getNb();
+                                            if(nbEmploye<listM.get(idMission).getNbEmployes())
                                             {
                                                 jButtonAddEmp.setVisible(true);
                                             }
-                                        }
                                     }
-                                }
-                            }
                             nbEmp = Integer.parseInt((String)table.getModel().getValueAt(num,3));
                             //JOptionPane.showMessageDialog(null,valueId);
                             if(compId.equals(null)){

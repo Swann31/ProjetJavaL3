@@ -531,8 +531,11 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
                     buffer.append(";");
                 }
                 nbPers = compterPersonnes(listM.get(i).getEmployeMission());
-                buffer.append(listM.get(i).getEmployeMission().length);
-                buffer.append(";");
+                if(listM.get(i).getEmployeMission() !=null){
+                    buffer.append(listM.get(i).getEmployeMission().length);
+                    buffer.append(";");
+                }
+                
                 if(nbPers !=0 && listM.get(i).getEmployeMission().length != 0){
                    for(int k = 0; k <nbPers; k++){
                      buffer.append(listM.get(i).getEmployeMission()[k].getIdE());
@@ -588,6 +591,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane tableContainer = new JScrollPane(table);    
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
+         jBtnNouvelleMission.setVisible(true);
         this.getContentPane().add(jPanelTable);
         this.pack();
         this.setVisible(true);
