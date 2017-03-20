@@ -198,9 +198,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Action du clic sur la croix en haut à droite de l'application pour fermer la fenêtre courante.
+     * Action du clic sur le 'fermer' dans le menu en haut à gauche de l'application pour fermer la fenêtre courante.
      * @param evt 
-     *      Evènement représentant un clic sur la croix en haut à droite de l'application.
+     *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
      */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
         this.dispose();
