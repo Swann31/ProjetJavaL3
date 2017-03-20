@@ -330,6 +330,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
             else
             {
                 JOptionPane.showMessageDialog(this,"Veuillez mettre une date de fin de mission postérieure à la date de début de mission.","Erreur de choix de dates",JOptionPane.ERROR_MESSAGE);
+                return;
             }
             
             

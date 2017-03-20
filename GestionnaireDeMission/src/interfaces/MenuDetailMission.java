@@ -59,7 +59,7 @@ public class MenuDetailMission extends javax.swing.JFrame {
         jRadioButtonEnCours.setVisible(false);
         jRadioButtonTerminee.setVisible(false);
         jButtonValiderChangement.setVisible(false);
-        if(listM.get(obtID(idM)).getTypeM().equals("Mission Planifiée") && listM.get(obtID(idM)).getDateFin()!= null && listM.get(obtID(idM)).getEmployeMission() != null){
+        if(listM.get(obtID(idM)).getTypeM().equals("Mission Planifiée") && listM.get(obtID(idM)).getDateFin()!= null && listM.get(obtID(idM)).getEmployeMission() != null && listM.get(obtID(idM)).getEmployeMission().length==listM.get(obtID(idM)).getNbEmployes()){
             ButtonGroup bg = new ButtonGroup();
             bg.add(jRadioButtonEnCours);
             bg.add(jRadioButtonTerminee);
@@ -322,10 +322,11 @@ public class MenuDetailMission extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelListEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonAddEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 298, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -532,12 +533,11 @@ public class MenuDetailMission extends javax.swing.JFrame {
                             idMission = Integer.parseInt(jTextFieldIDM.getText());
                             compId = new String();
                             compId = (String)table.getModel().getValueAt(num,0);
-                            showMessageDialog(null,compId);
                             int nbEmploye=0;
                                     for(int j=0;j<listM.get(idMission).getCompMission().length;j++)
                                     {
                                         nbEmploye+=listM.get(idMission).getCompMission()[j].getNb();
-                                            if(nbEmploye<listM.get(idMission).getNbEmployes())
+                                            if(listM.get(idMission).getEmployeMission().length<nbEmploye)
                                             {
                                                 jButtonAddEmp.setVisible(true);
                                             }

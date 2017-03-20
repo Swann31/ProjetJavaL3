@@ -335,11 +335,13 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
     private int tailleEmployeCorrespondant(String idComp){
         int taille = 0;
         for(int i = 0; i<listE.size(); i++){
-            if(listE.get(i).getCompetence()!=null && listE.get(i).getCompetence().length>0){
-                for(int j = 0; j<listE.get(i).getCompetence().length;j++){
+            if(listE.get(i).getCompetence()!=null){
+                if(listE.get(i).getCompetence().length>0){
+                    for(int j = 0; j<listE.get(i).getCompetence().length;j++){
                         if(listE.get(i).getCompetence()[j].getIDC().equals(idComp)){
                             taille++;
                         }
+                    }
                 }
             }
         }

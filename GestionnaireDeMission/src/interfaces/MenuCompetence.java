@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class MenuCompetence extends javax.swing.JFrame {
 
     private static int num;
-    private File selectedFile;
+    private static File selectedFileC;
     protected static String valueID;
     protected static JTable table;
     protected static DefaultTableModel tablemodel;
@@ -48,6 +48,9 @@ public class MenuCompetence extends javax.swing.JFrame {
         if(listC!=null)
         {
             afficherpage();
+            jButtonSauvegarder.setVisible(true);
+            jButtonCharger.setVisible(false);
+            jButtonAjouterComp.setVisible(true);
         } 
     }
 
@@ -211,9 +214,9 @@ public class MenuCompetence extends javax.swing.JFrame {
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
         {
-            selectedFile = jc.getSelectedFile();
+            selectedFileC = jc.getSelectedFile();
             try {
-                initialiserTableau(selectedFile);
+                initialiserTableau(selectedFileC);
             } catch (IOException ex) {
                 Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -233,7 +236,7 @@ public class MenuCompetence extends javax.swing.JFrame {
         try {
             try {
                 try {
-                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile.getAbsolutePath()), "utf-8"));
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFileC.getAbsolutePath()), "utf-8"));
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
                 }

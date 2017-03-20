@@ -52,7 +52,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
     /**
      * Fichier selectionné lors du chargement d'un fichier pour l'import des employés.
      */
-    private File selectedFile; 
+    private static File selectedFileE; 
+    
+    private static File selectedFileEC;
     
     /**
      * DefaultTableModel définissant le "graphisme" de la JTable table.
@@ -304,7 +306,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
      * Action du clic sur le bouton "Charger fichier" permettant de charger un fichier csv en vue de sa lecture a venir.
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Charger fichier".
-     * @see MenuPersonnel#selectedFile
+     * @see MenuPersonnel#selectedFileE
      * @see MenuPersonnel#initialiserTableau(java.io.File) 
      * @see MenuPersonnel#jPanelTable
      * @see MenuPersonnel#jButtonSauvegarder
@@ -317,9 +319,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
         {
-            selectedFile = jc.getSelectedFile();
+            selectedFileE = jc.getSelectedFile();
             try {
-                initialiserTableau(selectedFile); 
+                initialiserTableau(selectedFileE); 
                 
             } catch (IOException ex) {
                 Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
@@ -339,7 +341,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         try {
             try {
                 try {
-                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile.getAbsolutePath()), "utf-8"));
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFileE.getAbsolutePath()), "utf-8"));
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -380,6 +382,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
             writer.write(System.getProperty( "line.separator" ));
         } catch (IOException ex) {
             Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
         } finally {
             try {
                 writer.close();
@@ -415,9 +418,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
         {
-            selectedFile = jc.getSelectedFile();
+            selectedFileEC = jc.getSelectedFile();
             try {
-                ajoutCompetenceEmploye(selectedFile); 
+                ajoutCompetenceEmploye(selectedFileEC); 
                 
             } catch (IOException ex) {
                 Logger.getLogger(MenuCompetence.class.getName()).log(Level.SEVERE, null, ex);
