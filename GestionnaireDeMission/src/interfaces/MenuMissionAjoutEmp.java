@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import gestionnairedemission.Employe;
@@ -10,20 +5,14 @@ import static interfaces.MenuDetailMission.compId;
 import static interfaces.MenuDetailMission.nbEmp;
 import static interfaces.MenuDetailMission.idMission;
 import static interfaces.MenuDetailMission.dtmE;
-import static interfaces.MenuDetailMission.jPanelListEmp;
 import static interfaces.MenuDetailMission.tableE;
 import static interfaces.MenuDetailMission.refreshModelE;
 import static interfaces.MenuMissionGeneral.sauvegarderMissions;
 import static interfaces.MenuPrincipal.listE;
 import static interfaces.MenuPrincipal.listM;
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
-import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -32,17 +21,13 @@ import javax.swing.SpinnerNumberModel;
 public class MenuMissionAjoutEmp extends javax.swing.JFrame {
 
     private static ArrayList<Component> listComp;
-    /**
-     * Creates new form MenuMissionAjoutEmp
-     */
+
     public MenuMissionAjoutEmp() {
         initComponents();
         listComp = new ArrayList<Component>();
         afficherInfo(compId);
         afficherEmploye(nbEmp, compId);
-        //chargerCompetence(idM);
     }
-//compId;nbEmp
 
 
     /**

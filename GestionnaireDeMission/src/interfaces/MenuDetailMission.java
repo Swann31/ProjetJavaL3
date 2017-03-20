@@ -480,9 +480,24 @@ public class MenuDetailMission extends javax.swing.JFrame {
 			int num=model.getMinSelectionIndex();
                         if(num != -1){
                             idMission = Integer.parseInt(jTextFieldIDM.getText());
-                            jButtonAddEmp.setVisible(true);
                             compId = new String();
                             compId = (String)table.getModel().getValueAt(num,0);
+                            for(int i=0;i<listM.size();i++)
+                            {
+                                if(listM.get(i).getIdM()==idMission)
+                                {
+                                    for(int j=0;j<listM.get(i).getCompMission().length;j++)
+                                    {
+                                        if(listM.get(i).getCompMission()[j].getIDC().equals(compId))
+                                        {
+                                            if(listM.get(i).getCompMission()[j].getNb()>listM.get(i).getEmployeMission().length)
+                                            {
+                                                jButtonAddEmp.setVisible(true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                             nbEmp = Integer.parseInt((String)table.getModel().getValueAt(num,3));
                             //JOptionPane.showMessageDialog(null,valueId);
                             if(compId.equals(null)){
