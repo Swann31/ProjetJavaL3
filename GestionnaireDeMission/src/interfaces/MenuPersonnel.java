@@ -31,7 +31,7 @@ import javax.swing.event.ListSelectionListener;
 
 
 /**
- * <b> Classe Menu Principal </b>
+ * <b> Classe Menu Personnel </b>
  * <p> Il s'agit du menu gérant la gestion du personnel au sein de l'application. Elle sert d'interface d'échange auprès de l'utilisateur via l'utilisation d'un fichier CSV et autorise 
  * l'utilisateur à  créer et supprimer des employés.</p>
  * @author Swann LAZAR, Maxence DESLANDES
@@ -39,15 +39,59 @@ import javax.swing.event.ListSelectionListener;
  */
 public class MenuPersonnel extends javax.swing.JFrame {
 
+    /**
+     * Identifiant d'une ligne selectionné par l'utilisateur afin d'effectuer des actions sur l'employe selectionné.
+     */
     private static int num;
+    
+    /**
+     * JTable servant a afficher la liste des employés.
+     */
     protected static JTable table;
+    
+    /**
+     * Fichier selectionné lors du chargement d'un fichier pour l'import des employés.
+     */
     private File selectedFile; 
+    
+    /**
+     * DefaultTableModel définissant le "graphisme" de la JTable table.
+     * @see MenuPersonnel#table
+     */
     protected static DefaultTableModel tablemodel;
+    
+    /**
+     * Titre pour la sauvegarde au sein du fichier.
+     */
     protected static String[] title = {"Prenom","Nom","Date Entrée","IDE","Suppr"};
+    
+    /**
+     * Titre pour l'affichage des employés.
+     */
     protected static String[] titleHead = {"Prenom","Nom","Date Entrée","IDE"};
+    
+    /**
+     * Identifiant de l'employé lors de la sélection d'une ligne.
+     */
     protected static String valueId;
+    
+    /**
+     * Tableau regroupant l'ensemble des informations sur les employés.
+     */
     private static String[][] tabEAff;
 
+    /**
+     * Constructeur par défaut du Menu Personnel.
+     * @see MenuPrincipal#listE
+     * @see MenuPersonnel#afficherpage() 
+     * @see MenuPersonnel#jButtonSauvegarder
+     * @see MenuPersonnel#jButtonSupprimer
+     * @see MenuPersonnel#jButtonAjouterEmp
+     * @see MenuPersonnel#jButtonCharger
+     * @see MenuPersonnel#jButtonImptCompEmp
+     * @see MenuPersonnel#jButtonDetailsMission
+     * @see MenuPersonnel#jButtonDetailsComp
+     */
     public MenuPersonnel() {
         initComponents();
         jButtonSauvegarder.setVisible(false);
@@ -63,6 +107,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Chargement de l'ensemble des éléments affichés à l'écran pour le menu personnel.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -230,10 +277,21 @@ public class MenuPersonnel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action du clic sur la croix en haut à droite de l'application pour fermer la fenêtre courante.
+     * @param evt 
+     *      Evènement représentant un clic sur la croix en haut à droite de l'application.
+     */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Retour" fermant la fenêtre MenuPersonnel et rouvrant le MenuPrincipal.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Retour".
+     * @see MenuPrincipal
+     */
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
         
         MenuPrincipal mp = new MenuPrincipal();
@@ -242,6 +300,18 @@ public class MenuPersonnel extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Charger fichier" permettant de charger un fichier csv en vue de sa lecture a venir.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Charger fichier".
+     * @see MenuPersonnel#selectedFile
+     * @see MenuPersonnel#initialiserTableau(java.io.File) 
+     * @see MenuPersonnel#jPanelTable
+     * @see MenuPersonnel#jButtonSauvegarder
+     * @see MenuPersonnel#jButtonAjouterEmp
+     * @see MenuPersonnel#jButtonCharger
+     * @see MenuPersonnel#jButtonImptCompEmp
+     */
     private void jButtonChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChargerActionPerformed
        JFileChooser jc = new JFileChooser();
         int returnValue = jc.showOpenDialog(null);
@@ -264,8 +334,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
 
     private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
         Writer writer = null;
-        //DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-      
         int nRow = listE.size();
         int nCol = 5;
         try {
@@ -278,8 +346,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            //write the header information
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(title[j]);
@@ -292,13 +358,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-           //write row information
            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             for (int i = 0 ; i < nRow ; i++){
                  StringBuffer buffer = new StringBuffer();
-                //for (int j = 0 ; j < nCol ; j++){
-                  
                 buffer.append(listE.get(i).getPrenom());
                 buffer.append(";");
                 buffer.append(listE.get(i).getNom());
@@ -308,8 +370,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
                 buffer.append(listE.get(i).getIdE());
                 buffer.append(";");
                 buffer.append(listE.get(i).getSuppr());
-                buffer.append(";");
-                       
+                buffer.append(";");                       
                 try {
                     writer.write(buffer.toString() + "\r\n");
                 } catch (IOException ex) {
@@ -337,8 +398,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAjouterEmpActionPerformed
 
     private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
-        // TODO add your handling code here:
-        for (int j = 0; j < listE.size(); j++) {
+    for (int j = 0; j < listE.size(); j++) {
             int ide=listE.get(j).getIdE();
             int value = Integer.parseInt(valueId);
             if(ide == value ){
@@ -351,7 +411,6 @@ public class MenuPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
     private void jButtonImptCompEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImptCompEmpActionPerformed
-        // TODO add your handling code here:
         JFileChooser jc = new JFileChooser();
         int returnValue = jc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) 
@@ -367,14 +426,12 @@ public class MenuPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonImptCompEmpActionPerformed
 
     private void jButtonDetailsCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsCompActionPerformed
-        // TODO add your handling code here:
         MenuDetailCompetence mdc = new MenuDetailCompetence(num+1);
         mdc.setLocationRelativeTo(this);
         mdc.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsCompActionPerformed
 
     private void jButtonDetailsMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsMissionActionPerformed
-        // TODO add your handling code here:
         MenuDetailMissionEmp mdce = new MenuDetailMissionEmp(num+1);
         mdce.setLocationRelativeTo(this);;
         mdce.setVisible(true);
@@ -440,44 +497,37 @@ public class MenuPersonnel extends javax.swing.JFrame {
         this.setVisible(true);
         jButtonAjouterEmp.setVisible(true);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-        public void valueChanged(ListSelectionEvent event) {
-            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
-            if(!event.getValueIsAdjusting()) {
-			ListSelectionModel  model = (ListSelectionModel)event.getSource();
-			num=model.getMinSelectionIndex();
-                        //JOptionPane.showMessageDialog(null,num);
-                        if(num != -1){
-                            valueId = new String();
-                            valueId = (String)table.getModel().getValueAt(num,3);
-                            //JOptionPane.showMessageDialog(null,valueId);
-                            if(valueId == null){
-                                jButtonSupprimer.setVisible(false);
-                                jButtonDetailsComp.setVisible(false);
-                                jButtonDetailsMission.setVisible(false);
-                                JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
-                                
-                            }else 
-                            {
-                                jButtonSupprimer.setVisible(true);
-                                jButtonAjouterEmp.setVisible(true);
-                                jButtonDetailsComp.setVisible(true);
-                                jButtonDetailsMission.setVisible(true);
-                            }
-                            
+            public void valueChanged(ListSelectionEvent event) {
+                if(!event.getValueIsAdjusting()) {
+                    ListSelectionModel  model = (ListSelectionModel)event.getSource();
+                    num=model.getMinSelectionIndex();
+                    if(num != -1){
+                        valueId = new String();
+                        valueId = (String)table.getModel().getValueAt(num,3);
+                        if(valueId == null){
+                            jButtonSupprimer.setVisible(false);
+                            jButtonDetailsComp.setVisible(false);
+                            jButtonDetailsMission.setVisible(false);
+                            JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
+                        }else 
+                        {
+                            jButtonSupprimer.setVisible(true);
+                            jButtonAjouterEmp.setVisible(true);
+                            jButtonDetailsComp.setVisible(true);
+                            jButtonDetailsMission.setVisible(true);
                         }
+                    }
+                }
             }
-        }
-    });
+        });
     }
-
-    //Avec la vérification des flag afin d'avoir un affichage correspondant
+    
     public static DefaultTableModel refreshTableModel(){
         int j = 0;
         tabEAff = new String[listE.size()][5]; 
         for (int i=0;i<listE.size();i++)
         {
             if(listE.get(i).getSuppr() == false){
-                
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 int ide;
                 String pnom, nom, bool;
@@ -495,10 +545,8 @@ public class MenuPersonnel extends javax.swing.JFrame {
                 tabEAff[i-j][2]=df.format(dt);
                 tabEAff[i-j][3]= id;
                 tabEAff[i-j][4]=bool;
-                
             }else j++;
         }
-
         return new DefaultTableModel(tabEAff, titleHead);
     }
     
@@ -545,33 +593,28 @@ public class MenuPersonnel extends javax.swing.JFrame {
         this.pack();
         this.setVisible(true);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-        public void valueChanged(ListSelectionEvent event) {
-            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
-            if(!event.getValueIsAdjusting()) {
-			ListSelectionModel  model = (ListSelectionModel)event.getSource();
-			num=model.getMinSelectionIndex();
-                        //JOptionPane.showMessageDialog(null,num);
-                        if(num != -1){
-                            valueId = new String();
-                            valueId = (String)table.getModel().getValueAt(num,3);
-                            //JOptionPane.showMessageDialog(null,valueId);
-                            if(valueId == null){
-                                jButtonSupprimer.setVisible(false);
-                                jButtonDetailsComp.setVisible(false);
-                                jButtonDetailsMission.setVisible(false);
-                                JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
-                                
-                            }else 
-                            {
-                                jButtonSupprimer.setVisible(true);
-                                jButtonDetailsComp.setVisible(true);
-                                jButtonDetailsMission.setVisible(true);
-                            }
-                            
+            public void valueChanged(ListSelectionEvent event) {
+                if(!event.getValueIsAdjusting()) {
+                    ListSelectionModel  model = (ListSelectionModel)event.getSource();
+                    num=model.getMinSelectionIndex();
+                    if(num != -1){
+                        valueId = new String();
+                        valueId = (String)table.getModel().getValueAt(num,3);
+                        if(valueId == null){
+                            jButtonSupprimer.setVisible(false);
+                            jButtonDetailsComp.setVisible(false);
+                            jButtonDetailsMission.setVisible(false);
+                            JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
+                        }else 
+                        {
+                            jButtonSupprimer.setVisible(true);
+                            jButtonDetailsComp.setVisible(true);
+                            jButtonDetailsMission.setVisible(true);
                         }
-            }
-        }
-    });
-    }
 
+                    }
+                }
+            }
+        });
+    }
 }
