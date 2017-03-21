@@ -54,6 +54,9 @@ public class MenuPersonnel extends javax.swing.JFrame {
      */
     private static File selectedFileE; 
     
+    /**
+     * Fichier selectionné lors du chargement d'un fichier pour l'import des compétences pour chaque employé.
+     */
     private static File selectedFileEC;
     
     /**
@@ -303,7 +306,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnRetourActionPerformed
 
     /**
-     * Action du clic sur le bouton "Charger fichier" permettant de charger un fichier csv en vue de sa lecture a venir.
+     * Action du clic sur le bouton "Charger fichier" permettant de charger un fichier csv en vue de sa lecture a venir. Ce fichier contiendra l'ensemble des employés et de leurs informations.
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Charger fichier".
      * @see MenuPersonnel#selectedFileE
@@ -334,6 +337,19 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonChargerActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Sauvegarder tableau" permettant de sauvegarder dans le fichier csv ayant été lu en chargement des employés.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Sauvegarder tableau". 
+     * @see MenuPrincipal#listE
+     * @see MenuPersonnel#selectedFileE
+     * @see MenuPersonnel#title
+     * @see gestionnairedemission.Employe#getPrenom() 
+     * @see gestionnairedemission.Employe#getNom() 
+     * @see gestionnairedemission.Employe#getDate() 
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see gestionnairedemission.Employe#getSuppr() 
+     */
     private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
         Writer writer = null;
         int nRow = listE.size();
@@ -393,6 +409,12 @@ public class MenuPersonnel extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Fichier sauvegardé");
     }//GEN-LAST:event_jButtonSauvegarderActionPerformed
 
+    /**
+     * Action liée au clic sur le bouton "+" ouvrant le MenuAjoutEmploye, permettant d'ajouter un nouvel employé.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "+".
+     * @see MenuAjoutEmploye
+     */
     private void jButtonAjouterEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterEmpActionPerformed
         MenuAjoutEmploye mae = new MenuAjoutEmploye();
         mae.setLocationRelativeTo(this);
@@ -400,6 +422,16 @@ public class MenuPersonnel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonAjouterEmpActionPerformed
 
+    /**
+     * Action liée au clic sur le bouton "-" une fois une ligne du tableau d'employés selectionnée. Elle permet de changer l'état de la variable "suppr" d'un employé à "true" pour simuler la suppression d'un employé sans perdre les informations relatives à celui-ci.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "-".
+     * @see MenuPrincipal#listE
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see gestionnairedemission.Employe#setSuppr(boolean) 
+     * @see MenuPersonnel#tablemodel
+     * @see MenuPersonnel#table
+     */
     private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
     for (int j = 0; j < listE.size(); j++) {
             int ide=listE.get(j).getIdE();
@@ -413,6 +445,13 @@ public class MenuPersonnel extends javax.swing.JFrame {
        table.repaint();
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Importer compétences" permettant de charger un fichier csv en vue de sa lecture a venir. Ce fichier contiendra l'ensemble des compétences des employés.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Importer compétences".
+     * @see MenuPersonnel#selectedFileEC
+     * @see MenuPersonnel#ajoutCompetenceEmploye(java.io.File) 
+     */
     private void jButtonImptCompEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImptCompEmpActionPerformed
         JFileChooser jc = new JFileChooser();
         int returnValue = jc.showOpenDialog(null);
@@ -428,18 +467,35 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonImptCompEmpActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Compétences" permettant, pour un employé selectionné dans le tableau, d'afficher l'ensemble de ses compétences via le menu MenuDetailCompetence     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Compétences".
+     * @see MenuDetailCompetence
+     * @see MenuPersonnel#num
+     */
     private void jButtonDetailsCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsCompActionPerformed
         MenuDetailCompetence mdc = new MenuDetailCompetence(num+1);
         mdc.setLocationRelativeTo(this);
         mdc.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsCompActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Missions" permettant, pour un employé selectionné dans le tableau, d'afficher l'historique de ses missions via le menu MenuDetailMissionEmp.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Missions".
+     * @see MenuDetailMissionEmp
+     * @see MenuPersonnel#num
+     */
     private void jButtonDetailsMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsMissionActionPerformed
         MenuDetailMissionEmp mdce = new MenuDetailMissionEmp(num+1);
         mdce.setLocationRelativeTo(this);;
         mdce.setVisible(true);
     }//GEN-LAST:event_jButtonDetailsMissionActionPerformed
 
+    /**
+     * Partie main du MenuPersonnel.
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -486,6 +542,12 @@ public class MenuPersonnel extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * 
+     * @param fi
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
         CsvEmployeDAO csvE = new CsvEmployeDAO(fi);
         MenuPrincipal.listE = csvE.addEmploye(); 
