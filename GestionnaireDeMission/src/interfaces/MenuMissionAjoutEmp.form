@@ -130,13 +130,22 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldIDC">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldCat">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCatActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldLibC">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanelAddEmp">
 
@@ -188,6 +197,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNBE">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
