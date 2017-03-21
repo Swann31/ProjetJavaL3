@@ -700,6 +700,7 @@ public class MenuPersonnel extends javax.swing.JFrame {
         jPanelTable.add(tableContainer, BorderLayout.CENTER);
         jButtonAjouterEmp.setVisible(true);
         jButtonSauvegarder.setVisible(true);
+        jButtonCharger.setVisible(false);
         jButtonImptCompEmp.setVisible(true);
         this.getContentPane().add(jPanelTable);
         this.pack();
