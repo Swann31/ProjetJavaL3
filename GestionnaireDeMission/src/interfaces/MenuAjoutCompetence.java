@@ -134,6 +134,11 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action liée au clic sur le bouton "Valider" fermant le menu d'ajout de compétence et enregistrant les données rentrées.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Valider".
+     */
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         // TODO add your handling code here:
         Competence newC = new Competence(jTextFieldId.getText(),jTextFieldCat.getText(),jTextFieldLib.getText(),false);
@@ -144,7 +149,7 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
         table.repaint();   
         this.dispose();
     }//GEN-LAST:event_jButtonOKActionPerformed
-/**
+    /**
      * Action liée au clic sur le bouton "Annuler" fermant le menu d'ajout de compétence.
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Annuler".
@@ -160,6 +165,7 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
     }//GEN-LAST:event_JMenuPrincipalActionPerformed
 
     /**
+     * Partie main du MenuAjoutCompetence
      * @param args the command line arguments
      */
     public static void main(String args[]) {
