@@ -67,8 +67,24 @@ public class MenuDetailMission extends javax.swing.JFrame {
      */
     protected static int idMiss;
     
-    /**
-     * Creates new form MenuDetailMission
+     /**
+     * Constructeur du MenuDetailMission.
+     * @param idM
+     *          id de la mission dont on affiche le detail
+     * @see MenuDetailMission#initComponents() 
+     * @see MenuDetailMission#jButtonAddEmp
+     * @see MenuDetailMission#afficherInfo(int) 
+     * @see MenuDetailMission#chargerCompetence(int) 
+     * @see MenuDetailMission#idMiss 
+     * @see MenuPrincipal#listM 
+     * @see gestionnairedemission.Mission#getEmployeMission() 
+     * @see MenuDetailMission#chargerEmploye(int) 
+     * @see MenuDetailMission#chargerEmployeVide() 
+     * @see MenuDetailMission#jRadioButtonEnCours
+     * @see MenuDetailMission#jRadioButtonTerminee
+     * @see MenuDetailMission#jButtonValiderChangement
+     * @see gestionnairedemission.Mission#getTypeM() 
+     * @see gestionnairedemission.Mission#getDateFin() 
      */
     public MenuDetailMission(int idM) {
         initComponents();
