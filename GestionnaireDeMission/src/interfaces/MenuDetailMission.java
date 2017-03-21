@@ -385,14 +385,19 @@ public class MenuDetailMission extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     /**
-     * Action du clic sur le bouton "Retour" fermant la fenêtre courrante.
+     * Action du clic sur le 'fermer' dans le menu en haut à gauche de l'application pour fermer la fenêtre courante.
      * @param evt 
-     *      Evènement représentant un clic sur le bouton "Retour".
+     *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
      */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Retour" fermant la fenêtre courrante.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Retour".
+     */
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
