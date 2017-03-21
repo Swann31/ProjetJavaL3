@@ -543,10 +543,21 @@ public class MenuPersonnel extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * 
+     * Méthode permettant d'initialiser la table via le fichier csv en entrée.
      * @param fi
-     * @throws FileNotFoundException
-     * @throws IOException 
+     *      Fichier csv contenant l'ensemble des employés
+     * @throws FileNotFoundException Exception d'un fichier non trouvé.
+     * @throws IOException Problèmes liés aux input/output.
+     * @see MenuPrincipal#listE
+     * @see MenuPersonnel#tablemodel
+     * @see MenuPersonnel#table
+     * @see MenuPersonnel#jPanelTable
+     * @see MenuPersonnel#jButtonAjouterEmp
+     * @see MenuPersonnel#num
+     * @see MenuPersonnel#valueId
+     * @see MenuPersonnel#jButtonSupprimer
+     * @see MenuPersonnel#jButtonDetailsComp
+     * @see MenuPersonnel#jButtonDetailsMission     
      */
     private void initialiserTableau( File fi) throws FileNotFoundException, IOException {
         CsvEmployeDAO csvE = new CsvEmployeDAO(fi);
@@ -587,6 +598,17 @@ public class MenuPersonnel extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Méthode permettant de rafraichir le tableau d'employés.
+     * @return Un DefaultTableModel utilisé pour rafraichir le tableau d'employés.
+     * @see MenuPersonnel#tabEAff
+     * @see MenuPrincipal#listE
+     * @see gestionnairedemission.Employe#getPrenom() 
+     * @see gestionnairedemission.Employe#getNom() 
+     * @see gestionnairedemission.Employe#getDate() 
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see gestionnairedemission.Employe#getSuppr() 
+     */
     public static DefaultTableModel refreshTableModel(){
         int j = 0;
         tabEAff = new String[listE.size()][5]; 
@@ -615,6 +637,16 @@ public class MenuPersonnel extends javax.swing.JFrame {
         return new DefaultTableModel(tabEAff, titleHead);
     }
     
+    /**
+     * Méthode permettant d'ajouter les compétences aux employés en fonction d'un fichier en entrée.
+     * @param fi
+     *      Fichier contenant les id des employés et des compétences devant être ajoutées à ceux-ci.
+     * @throws FileNotFoundException Exception d'un fichier non trouvé.
+     * @throws IOException Problèmes liés aux input/output.
+     * @see MenuPrincipal#listE
+     * @see MenuPrincipal#listC
+     * @see gestionnairedemission.Competence#getIDC() 
+     */
     private void ajoutCompetenceEmploye(File fi) throws FileNotFoundException, IOException
     {
         CsvEmployeCompetenceDAO csvEC = new CsvEmployeCompetenceDAO(fi);
@@ -644,6 +676,20 @@ public class MenuPersonnel extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Méthode permettant d'afficher la page si elle a déjà été chargée initialement.
+     * @see MenuPersonnel#tablemodel
+     * @see MenuPersonnel#table
+     * @see MenuPersonnel#jPanelTable
+     * @see MenuPersonnel#jButtonAjouterEmp
+     * @see MenuPersonnel#jButtonSauvegarder
+     * @see MenuPersonnel#jButtonImptCompEmp
+     * @see MenuPersonnel#num
+     * @see MenuPersonnel#valueId
+     * @see MenuPersonnel#jButtonSupprimer
+     * @see MenuPersonnel#jButtonDetailsComp
+     * @see MenuPersonnel#jButtonDetailsMission
+     */
     private void afficherpage(){
         tablemodel = refreshTableModel();
         table = new JTable(tablemodel);
