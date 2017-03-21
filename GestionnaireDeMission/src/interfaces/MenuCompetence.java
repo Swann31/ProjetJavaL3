@@ -70,6 +70,7 @@ public class MenuCompetence extends javax.swing.JFrame {
      /**
      * Constructeur par défaut du Menu Compétence.
      * @see MenuPrincipal#listC
+     * @see MenuCompetence#initComponents() 
      * @see MenuCompetence#afficherpage() 
      * @see MenuCompetence#jButtonSauvegarder
      * @see MenuCompetence#jButtonSupprimer
@@ -236,7 +237,6 @@ public class MenuCompetence extends javax.swing.JFrame {
      *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
      */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
 
@@ -247,7 +247,6 @@ public class MenuCompetence extends javax.swing.JFrame {
      * @see MenuPrincipal
      */
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
-        // TODO add your handling code here:
         MenuPrincipal mp = new MenuPrincipal();
         mp.setLocationRelativeTo(this);
         mp.setVisible(true);
@@ -291,6 +290,10 @@ public class MenuCompetence extends javax.swing.JFrame {
      * @see MenuPrincipal#listC
      * @see MenuCompetence#selectedFileC
      * @see MenuCompetence#title
+     * @see gestionnairedemission.Competence#getIDC() 
+     * @see gestionnairedemission.Competence#getCat() 
+     * @see gestionnairedemission.Competence#getLib() 
+     * @see gestionnairedemission.Competence#getSuppr() 
      */
     private void jButtonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegarderActionPerformed
         // TODO add your handling code here:
@@ -307,8 +310,6 @@ public class MenuCompetence extends javax.swing.JFrame {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            //write the header information
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(title[j]);
@@ -321,8 +322,6 @@ public class MenuCompetence extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(MenuPersonnel.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-           //write row information
             for (int i = 0 ; i < nRow ; i++){
             StringBuffer buffer = new StringBuffer();
             buffer.append(listC.get(i).getIDC());
@@ -372,7 +371,9 @@ public class MenuCompetence extends javax.swing.JFrame {
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Sauvegarder fichier".
      * @see MenuPrincipal#listC
+     * @see gestionnairedemission.Competence#getIDC() 
      * @see MenuCompetence#valueID
+     * @see gestionnairedemission.Competence#setSuppr(boolean) 
      * @see MenuCompetence#tablemodel
      * @see MenuCompetence#refreshTableModel()
      * @see MenuCompetence#table
@@ -396,11 +397,6 @@ public class MenuCompetence extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -417,9 +413,6 @@ public class MenuCompetence extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuCompetence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuCompetence().setVisible(true);
@@ -443,10 +436,12 @@ public class MenuCompetence extends javax.swing.JFrame {
 
     /**
      * Méthode permettant d'initialiser la table via le fichier csv correspondant chargé précédemment
+     * @see gestionnairedemission.CsvCompetenceDAO
      * @see MenuPrincipal#listC
      * @see MenuCompetence#tablemodel
+     * @see MenuCompetence#rebuildFile() 
      * @see MenuCompetence#table
-     * @see MenuCompetence#rebuildFile
+     * @see MenuCompetence#jPanelTable
      * @see MenuCompetence#num
      * @see MenuCompetence#valueID
      * @see MenuCompetence#jButtonSupprimer
@@ -466,9 +461,6 @@ public class MenuCompetence extends javax.swing.JFrame {
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         @Override
         public void valueChanged(ListSelectionEvent event) {
-            // do some actions here, for example
-            // print first column value from selected row
-            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
             if(!event.getValueIsAdjusting()) {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
 			num=model.getMinSelectionIndex();
@@ -479,7 +471,6 @@ public class MenuCompetence extends javax.swing.JFrame {
                             if(valueID == null){
                                 jButtonSupprimer.setVisible(false);
                                 JOptionPane.showMessageDialog(null,"Veuillez sélectionner une ligne non vide");
-                                
                             }else jButtonSupprimer.setVisible(true);
                         }
         }
@@ -492,6 +483,10 @@ public class MenuCompetence extends javax.swing.JFrame {
      *          la définition de la table ainsi que son contenu
      * @see MenuCompetence#tabCAff
      * @see MenuPrincipal#listC
+     * @see gestionnairedemission.Competence#getSuppr() 
+     * @see gestionnairedemission.Competence#getIDC() 
+     * @see gestionnairedemission.Competence#getCat() 
+     * @see gestionnairedemission.Competence#getLib() 
      * @see MenuCompetence#title2
      */
         public static DefaultTableModel refreshTableModel(){
@@ -520,6 +515,9 @@ public class MenuCompetence extends javax.swing.JFrame {
      *          la définition de la table ainsi que son contenu
      * @see MenuCompetence#tabCAff
      * @see MenuPrincipal#listC
+     * @see gestionnairedemission.Competence#getIDC() 
+     * @see gestionnairedemission.Competence#getCat() 
+     * @see gestionnairedemission.Competence#getLib() 
      * @see MenuCompetence#title2
      */
         public static DefaultTableModel rebuildFile(){
@@ -541,8 +539,9 @@ public class MenuCompetence extends javax.swing.JFrame {
       /**
      * Méthode permettant de faire l'affichage de l'interface si le fichier a déja été chargé une fois
      * @see MenuCompetence#tablemodel
-     * @see MenuCompetence#rebuildFile
+     * @see MenuCompetence#rebuildFile() 
      * @see MenuCompetence#table
+     * @see MenuCompetence#jPanelTable
      * @see MenuCompetence#jButtonAjouterComp
      * @see MenuCompetence#num
      * @see MenuCompetence#valueID
@@ -562,9 +561,6 @@ public class MenuCompetence extends javax.swing.JFrame {
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         @Override
         public void valueChanged(ListSelectionEvent event) {
-            // do some actions here, for example
-            // print first column value from selected row
-            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
             if(!event.getValueIsAdjusting()) {
 			ListSelectionModel  model = (ListSelectionModel)event.getSource();
 			num=model.getMinSelectionIndex();

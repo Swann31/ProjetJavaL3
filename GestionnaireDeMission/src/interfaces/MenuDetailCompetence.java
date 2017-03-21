@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import gestionnairedemission.Competence;
@@ -42,7 +37,6 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * Constructeur surchargé du Menu Compétence.
      */
     private MenuDetailCompetence() {
-     
     }
 
    /**
@@ -197,7 +191,6 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      *      Evènement représentant un clic sur le bouton "Retour".
      */
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jBtnRetourActionPerformed
 
@@ -207,12 +200,10 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
      */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
 
     private void jTextFieldIDEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDEActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIDEActionPerformed
 
    /**
@@ -220,11 +211,6 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -241,9 +227,6 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuDetailCompetence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuDetailCompetence().setVisible(true);
@@ -274,6 +257,7 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * @see MenuPrincipal#listE
      * @see MenuDetailCompetence#tailleTab
      * @see MenuDetailCompetence#tabCompetence
+     * @see MenuDetailCompetence#jPanelCompetences
      */
     private void chargerCompetence(int idEmp) {
         int taille = tailleTab(idEmp);
@@ -295,6 +279,8 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * @return taille
      *          taille du tableau de compétence
      * @see MenuPrincipal#listE
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see gestionnairedemission.Employe#getCompetence() 
      */
     private int tailleTab(int idEmp){
         int taille = 0;
@@ -320,6 +306,11 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * @return tabComp
      *          tableau de compétence permettant l'affichage dans la table
      * @see MenuPrincipal#listE
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see gestionnairedemission.Employe#getCompetence() 
+     * @see gestionnairedemission.Competence#getIDC() 
+     * @see gestionnairedemission.Competence#getCat() 
+     * @see gestionnairedemission.Competence#getLib() 
      */
     private String[][] tabCompetence (int taille, int idEmp){
         Competence[] comp = new Competence[taille];
@@ -338,12 +329,6 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
                         tabComp[j][2]=comp[j].getLib();
                     }
                 }
-                /*else
-                {
-                    tabComp[0][0]="";
-                    tabComp[0][1]="";
-                    tabComp[0][2]="";
-                }*/
             }
         }
         return tabComp;
@@ -354,6 +339,8 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * @return e
      *          objet Employe retourné
      * @see MenuPrincipal#listE
+     * @see gestionnairedemission.Employe
+     * @see gestionnairedemission.Employe#getIdE() 
      */
     private Employe obtEmp(int idEmp)
     {
@@ -372,6 +359,12 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
      * Méthode permettant d'afficher toutes les informations de l'employé selectionné (sauf les compétences)
      * @param idEmp
      *          l'id de l'employé selectionné
+     * @see gestionnairedemission.Employe
+     * @see MenuDetailCompetence#obtEmp(int) 
+     * @see gestionnairedemission.Employe#getDate() 
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see gestionnairedemission.Employe#getPrenom() 
+     * @see gestionnairedemission.Employe#getNom() 
      * @see MenuDetailCompetence#jTextFieldIDE
      * @see MenuDetailCompetence#jTextFieldPrenom
      * @see MenuDetailCompetence#jTextFieldNom

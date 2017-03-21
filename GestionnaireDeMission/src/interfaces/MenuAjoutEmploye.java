@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import gestionnairedemission.Employe;
@@ -10,8 +5,6 @@ import static interfaces.MenuPersonnel.refreshTableModel;
 import static interfaces.MenuPersonnel.table;
 import static interfaces.MenuPersonnel.tablemodel;
 import static interfaces.MenuPrincipal.listE;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -30,6 +23,7 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
      * Déclaration du JDatePicker, qui fait partie de la librairie du même nom.
      */
     private static JDatePickerImpl datePicker;
+    
     /**
      * Constructeur par défaut du menu d'ajout employe. 
      * @see MenuAjoutEmploye#initComponents() 
@@ -179,7 +173,6 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
      *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
      */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
     /**
@@ -188,7 +181,6 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
      *      Evènement représentant un clic sur le bouton "Annuler".
      */
     private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
@@ -196,6 +188,13 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
      * Action liée au clic sur le bouton "Valider" fermant le menu d'ajout d'employe et enregistrant les données rentrées.
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Valider".
+     * @see MenuPrincipal#listE
+     * @see gestionnairedemission.Employe#getIdE() 
+     * @see MenuAjoutEmploye#datePicker
+     * @see MenuAjoutEmploye#jTextFieldNom
+     * @see MenuAjoutEmploye#jTextFieldPrenom
+     * @see MenuPersonnel#tablemodel
+     * @see MenuPersonnel#table
      */
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         // TODO add your handling code here:
@@ -220,11 +219,9 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomActionPerformed
 
     private void jTextFieldPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrenomActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPrenomActionPerformed
 
     /**
@@ -232,11 +229,6 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -253,9 +245,6 @@ public class MenuAjoutEmploye extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuAjoutEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuAjoutEmploye().setVisible(true);
@@ -297,10 +286,6 @@ private void implementerDatePicker() {
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(jLabelDate.getX() + 110,jLabelDate.getY() - 5,120,30);
         this.add(datePicker);
-        //this.revalidate();
-        //this.repaint();
     }
-
-
 }
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import gestionnairedemission.Competence;
@@ -138,9 +133,14 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
      * Action liée au clic sur le bouton "Valider" fermant le menu d'ajout de compétence et enregistrant les données rentrées.
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Valider".
+     * @see MenuAjoutCompetence#jTextFieldId
+     * @see MenuAjoutCompetence#jTextFieldCat
+     * @see MenuAjoutCompetence#jTextFieldLib
+     * @see MenuPrincipal#listC
+     * @see MenuCompetence#tablemodel
+     * @see MenuCompetence#table
      */
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        // TODO add your handling code here:
         Competence newC = new Competence(jTextFieldId.getText(),jTextFieldCat.getText(),jTextFieldLib.getText(),false);
         System.out.println(newC);
         listC.add(newC);
@@ -149,18 +149,17 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
         table.repaint();   
         this.dispose();
     }//GEN-LAST:event_jButtonOKActionPerformed
+    
     /**
      * Action liée au clic sur le bouton "Annuler" fermant le menu d'ajout de compétence.
      * @param evt 
      *      Evènement représentant un clic sur le bouton "Annuler".
      */
     private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
     private void JMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuPrincipalActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_JMenuPrincipalActionPerformed
 
@@ -169,11 +168,6 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -190,9 +184,6 @@ public class MenuAjoutCompetence extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuAjoutCompetence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuAjoutCompetence().setVisible(true);
