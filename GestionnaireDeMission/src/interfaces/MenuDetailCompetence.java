@@ -253,7 +253,7 @@ public class MenuDetailCompetence extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * Méthode permettant de charger et de gérer l'affichage de la table des compétences pour un employé
+     * Méthode permettant de charger et de gérer l'affichage de la table des compétences pour un employé.
      * @see MenuPrincipal#listE
      * @see MenuDetailCompetence#tailleTab
      * @see MenuDetailCompetence#tabCompetence
