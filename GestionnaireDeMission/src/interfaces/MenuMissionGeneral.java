@@ -213,11 +213,22 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action du clic sur le 'fermer' dans le menu en haut à gauche de l'application pour fermer la fenêtre courante.
+     * @param evt 
+     *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
+     */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Retour" fermant la fenêtre MenuMissionGeneral et rouvrant le MenuPrincipal.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Retour".
+     * @see MenuPrincipal
+     */
     private void jBtnRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRetourActionPerformed
         // TODO add your handling code here:
         MenuPrincipal mp = new MenuPrincipal();
@@ -371,6 +382,7 @@ public class MenuMissionGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jCbxTypeMissionActionPerformed
 
     /**
+     * Partie main du MenuMissionGeneral.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

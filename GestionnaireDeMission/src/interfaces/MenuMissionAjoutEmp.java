@@ -175,6 +175,11 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action du clic sur le 'fermer' dans le menu en haut à gauche de l'application pour fermer la fenêtre courante.
+     * @param evt 
+     *      Evènement représentant un clic sur le 'fermer' dans le menu en haut à gauche de l'application.
+     */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuPrincpalItem1ActionPerformed
@@ -221,12 +226,17 @@ public class MenuMissionAjoutEmp extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
+    /**
+     * Action du clic sur le bouton "Retour" fermant la fenêtre courante.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Retour".
+     */
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonRetourActionPerformed
 
     /**
+     * Partie main du MenuMissionAjoutEmp.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

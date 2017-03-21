@@ -277,6 +277,11 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action du clic sur le bouton "Annuler" fermant la fenêtre courante.
+     * @param evt 
+     *      Evènement représentant un clic sur le bouton "Annuler".
+     */
     private void jMenuPrincpalItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincpalItem1ActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -492,6 +497,7 @@ public class MenuNouvelleMission extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxDateFinActionPerformed
 
     /**
+     * Partie main du MenuNouvelleMission.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
