@@ -37,22 +37,34 @@ public class MenuDetailMission extends javax.swing.JFrame {
      */
     private static int valueTabE=3;
     
-    
+    /**
+     * Valeur de la colonne correspondant à l'id de la compétence selectionnée dans la table
+     */
     protected static String compId;
     
-    
+    /**
+     * Valeur de la colonne correspondant au nombre d'employé de la compétence selectionnée dans la table
+     */
     protected static int nbEmp;
     
-    
+    /**
+     * Valeur du textbox contenant l'id de la mission dont on affiche les details
+     */
     protected static int idMission;
     
-    
+     /**
+     * Définition de la table d'affichage des employés travaillant sur la mission
+     */
     protected static DefaultTableModel dtmE;
     
-    
+    /**
+     * table permettant l'affichage des employés travaillant sur la mission
+     */
     protected static JTable tableE;
     
-    
+    /**
+     * Valeur de l'id de la mission dont on affiche les détails
+     */
     protected static int idMiss;
     
     /**
