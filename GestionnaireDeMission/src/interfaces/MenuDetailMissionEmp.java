@@ -393,5 +393,4 @@ public class MenuDetailMissionEmp extends javax.swing.JFrame {
         }
         return tabM;   
     }
-
 }
